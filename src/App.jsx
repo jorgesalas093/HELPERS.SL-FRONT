@@ -7,13 +7,14 @@ import ProtectedRoute from "./components/ProtectedRoute"
 import UserProfile from "./pages/UserProfile"
 import CurrentUserProfile from "./pages/CurrentUserProfile"
 import Timeline from "./pages/Timeline"
+import Footer from "./components/Footer"
 
 function App() {
   return (
     <div>
       <Navbar />
 
-      <div className="max-w-container border-x-2 border-tw-light-gray mx-auto min-h-body p-4">
+      <div className="max-w-container border-x-2 mx-auto min-h-body p-4">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
@@ -23,6 +24,7 @@ function App() {
           <Route path="/timeline" element={<ProtectedRoute><Timeline /></ProtectedRoute>} />
         </Routes>
       </div>
+      <Footer/>
     </div>
   )
 }

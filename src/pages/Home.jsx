@@ -1,20 +1,27 @@
 import "./Home.css";
 import Jobs from "../components/Jobs";
 import HelpersLogoTitle from "../components/HelpersTitle";
-
+import HelpersBackground from "../components/HelpersBackground"
 
 const Home = () => {
   return (
     <div>
       <div>
-      
-        <h1><HelpersLogoTitle/></h1>
+        <HelpersLogoTitle/>
       </div>
-      <div>
-     
-        <Jobs/>
+      <div className="border-jobs">
+        <div>
+          <Jobs/>
+          
+          <div>
+            <HelpersBackground/>
+          </div>
+
+        </div>
+
+       
+
       </div>
-      <div></div>
     </div>
   );
 };

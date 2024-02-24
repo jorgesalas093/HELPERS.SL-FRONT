@@ -60,10 +60,8 @@ const Navbar = () => {
             </NavLink>
           )) : null}
           {hasUser ? (
-            <button
-              className="text-white hover:text-tw-light-gray"
-              onClick={logout}
-            >
+            <button className="text-white hover:text-tw-light-gray"
+              onClick={logout}>
                 Logout
             </button>
           ) : null}

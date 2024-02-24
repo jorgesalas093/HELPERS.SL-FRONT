@@ -1,3 +1,7 @@
+import Slider from "react-slick";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
 import Carer from "../assets/gifWorks/carer-cuidador.gif";
 import Carpenter from "../assets/gifWorks/carpenter.gif";
 import Brickwork from "../assets/gifWorks/brickwork-reformas-en-general.gif";
@@ -16,67 +20,109 @@ import Welder from "../assets/gifWorks/welder-soldador.gif";
 import "./Jobs.css";
 
 const Jobs = () => {
+  const carousel = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 10,
+    slidesToScroll: 1
+  };
+
   return (
     <div className="jobs-container">
-      <div className="jobs-line">
-        <img src={Carer} />
-        <p>Carer</p>
-      </div>
-      <div className="jobs-line">
-        <img src={Carpenter} />
-        <p>Carpenter</p>
-      </div>
-      <div className="jobs-line">
-        <img src={Brickwork} />
-        <p>Brickwork</p>
-      </div>
-      <div className="jobs-line">
-        <img src={Chef} />
-        <p>Chef</p>
-      </div>
-      <div className="jobs-line">
-        <img src={ClosetOrganizer} />
-        <p>Closet Organizer</p>
-      </div>
-      <div className="jobs-line">
-        <img src={Electrician} />
-        <p>Electrician</p>
-      </div>
-      <div className="jobs-line">
-        <img src={Fitter} />
-        <p>Fitter</p>
-      </div>
-      <div className="jobs-line">
-        <img src={Gardener} />
-        <p>Gardener</p>
-      </div>
-      <div className="jobs-line">
-        <img src={HomeCleaner} />
-        <p>Home Cleaner</p>
-      </div>
-      <div className="jobs-line">
-        <img src={Locksmith} />
-        <p>Locksmith</p>
-      </div>
-      <div className="jobs-line">
-        <img src={Messenger} />
-        <p>Messenger</p>
-      </div>
-      <div className="jobs-line">
-        <img src={Painter} />
-        <p>Painter</p>
-      </div>
-      <div className="jobs-line">
-        <img src={Plumber} />
-        <p>Plumber</p>
-      </div>
-      <div className="jobs-line">
-        <img src={Teacher} />
-        <p>Teacher</p>
-      </div>
-      <div className="jobs-line">
-        <img src={Welder} />
-        <p>Welder</p>
+      <div>
+        <Slider {...carousel}>
+          <div className="jobs-line">
+            <button>
+              <img src={Carer} />
+              <p>Carer</p>
+            </button>
+          </div>
+          <div className="jobs-line">
+            <button>
+              <img src={Carpenter} />
+              <p>Carpenter</p>
+            </button>
+          </div>
+          <div className="jobs-line">
+            <button>
+              <img src={Brickwork} />
+              <p>Brickwork</p>
+            </button>
+          </div>
+          <div className="jobs-line">
+          <button>
+            <img src={Chef} />
+            <p>Chef</p>
+          </button>
+          </div>
+          <div className="jobs-line">
+            <button>
+              <img src={ClosetOrganizer} />
+              <p>Closet Organizer</p>
+            </button>
+          </div>
+          <div className="jobs-line">
+            <button>
+              <img src={Electrician} />
+              <p>Electrician</p>
+            </button>
+          </div>
+          <div className="jobs-line">
+            <button>
+              <img src={Fitter} />
+              <p>Fitter</p>
+            </button>
+          </div>
+          <div className="jobs-line">
+            <button>
+              <img src={Gardener} />
+              <p>Gardener</p>
+            </button>
+          </div>
+          <div className="jobs-line">
+            <button>
+              <img src={HomeCleaner} />
+              <p>Home Cleaner</p>
+            </button>
+          </div>
+          <div className="jobs-line">
+            <button>
+              <img src={Locksmith} />
+              <p>Locksmith</p>
+            </button>
+          </div>
+          <div className="jobs-line">
+            <button>
+              <img src={Messenger} />
+              <p>Messenger</p>
+            </button>
+          </div>
+          <div className="jobs-line">
+            <button>
+              <img src={Painter} />
+              <p>Painter</p>
+            </button>
+          </div>
+          <div className="jobs-line">
+            <button>
+              <img src={Plumber} />
+              <p>Plumber</p>
+            </button>
+          </div>
+          <div className="jobs-line">
+            <button>
+              <img src={Teacher} />
+              <p>Teacher</p>
+            </button>
+          </div>
+          <div className="jobs-line">
+            <button>
+              <img src={Welder} />
+              <p>Welder</p>        
+            </button>
+          </div>
+        </Slider>
       </div>
     </div>
   );

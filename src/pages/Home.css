@@ -4,5 +4,15 @@
     border-width: 5px;
 }
 
+.border-jobs {
+    margin-top: -80px;
+    border-radius: 15px;
+    border: 2px solid black;
+    padding-top: 100px;
+}
 
+.background {
+    margin-top: -100px;
+    border-radius: 15px;
+}
 
