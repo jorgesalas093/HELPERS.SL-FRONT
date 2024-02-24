@@ -1,0 +1,21 @@
+.jobs-container {
+    display: flex;
+  }
+
+  .jobs-line img {
+    height: 50px;
+    align-items: center;
+  }
+
+  .jobs-line p {
+    width: 60px;
+    font-size: 10px;
+    text-align: center;
+  }
+
+  .jobs-line {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }

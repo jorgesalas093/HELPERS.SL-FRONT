@@ -1,12 +1,14 @@
 import "./Home.css";
 import Jobs from "../components/Jobs";
+import HelpersLogoTitle from "../components/HelpersTitle";
 
 
 const Home = () => {
   return (
     <div>
       <div>
-        <h1 className="helpersTitle text-3xl font-bold p-1000">Helpers</h1>
+      
+        <h1><HelpersLogoTitle/></h1>
       </div>
       <div>
      

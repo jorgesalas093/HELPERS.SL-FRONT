@@ -1,5 +1,4 @@
-import LogoIndex from "../assets/helpers/LogoIndex.jpeg";
-import LogoHeader from "../assets/helpers/HelpersHorizontal.jpeg";
+import LogoIndex from "../assets/helpersLogo/LogoIndex.jpeg";
 
 const HelpersLogoIndex = () => {
   return (
