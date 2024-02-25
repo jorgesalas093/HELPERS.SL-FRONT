@@ -1,4 +1,4 @@
-import LogoTitle from "../assets/helpersLogo/HelpersHorizontalGrande.jpeg";
+import LogoTitle from "../../assets/helpersLogo/HelpersHorizontalGrande.jpeg";
 import "./HelpersTitle.css"
 
 const HelpersLogoTitle = () => {

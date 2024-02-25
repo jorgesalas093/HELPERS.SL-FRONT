@@ -1,4 +1,4 @@
-import LogoIndex from "../assets/helpersLogo/LogoIndex.jpeg";
+import LogoIndex from "../../assets/helpersLogo/LogoIndex.jpeg";
 import "./HelpersLogoIndex.css"
 
 const HelpersLogoIndex = () => {

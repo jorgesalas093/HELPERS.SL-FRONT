@@ -1,5 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
-import HelpersLogoIndex from "../components/HelpersLogoIndex";
+import HelpersLogoIndex from "../components/HelppersLogo/HelpersLogoIndex";
 
 import { useContext } from "react";
 import AuthContext from '../contexts/AuthContext';
@@ -9,10 +9,6 @@ const Navbar = () => {
   const { user, isAuthFetched } = useContext(AuthContext)
 
   const protectedRoutes = [
-    {
-      to: '/timeline',
-      text: 'Timeline'
-    },
     {
       to: '/profile',
       text: 'Profile'
@@ -49,7 +45,7 @@ const Navbar = () => {
   return (
     <div className="bg-he-primary p-3 h-[70px] flex items-center">
       <div className="flex justify-between items-center max-w-container mx-auto w-full">
-        <Link to={hasUser ? "/timeline" : "/"}>
+        <Link to="/">
            <HelpersLogoIndex/>
         </Link>
 

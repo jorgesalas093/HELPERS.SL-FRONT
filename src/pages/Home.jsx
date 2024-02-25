@@ -1,6 +1,6 @@
 import "./Home.css";
-import Jobs from "../components/Jobs";
-import HelpersLogoTitle from "../components/HelpersTitle";
+import Jobs from "../components/Job/Jobs";
+import HelpersLogoTitle from "../components/HelpersTitle/HelpersTitle";
 import HelpersBackground from "../components/HelpersBackground"
 
 const Home = () => {

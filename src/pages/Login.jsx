@@ -57,7 +57,9 @@ const Login = () => {
             onBlur={handleBlur}
           />
         </div>
-        <Button extraClassName="mt-4" disabled={!isValid} text="Sign in" />
+        <Button extraClassName="mt-4" 
+        // disabled={!isValid}
+         text="Sign in" />
 
       </form>
     </div>
