@@ -2,28 +2,25 @@ import "./Home.css";
 import Jobs from "../components/Job/Jobs";
 import HelpersLogoTitle from "../components/HelpersTitle/HelpersTitle";
 import HelpersBackground from "../components/HelpersBackground"
-
+import FeaturedWorks from "../components/FeaturedWorks";
 const Home = () => {
   return (
     <div>
       <div>
-        <HelpersLogoTitle/>
+        <HelpersLogoTitle />
       </div>
       <div className="border-jobs">
         <div>
-          <Jobs/>
-          
+          <Jobs />
           <div>
-            <HelpersBackground/>
+            <HelpersBackground />
           </div>
-
         </div>
-
-       
-
+      </div>
+      <div>
+        <FeaturedWorks />
       </div>
     </div>
   );
 };
-
 export default Home;

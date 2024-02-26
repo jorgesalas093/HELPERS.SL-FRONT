@@ -1,14 +1,14 @@
-// import { createHttp } from "./BaseService";
+import { createHttp } from "./BaseService";
 
-// const http = createHttp(true);
+const http = createHttp(true);
 
-// export const getTimeline = (page) => {
-//   return http.get(`/tweets/timeline/${page}`)
-// }
+export const getComments = (id) => {
+  return http.get(`/comment/${id}`)
+}
 
-// export const createTweet = (text) => {
-//   return http.post('/comment/', { content: text })
-// }
+export const createComment = (id, text) => {
+  return http.post(`/comment/${id}`, { text })
+}
 
 
-// //TOCA MIRAR SI SE PUEDE APROVECHAR PARA LOS COMENTARIOS
+//TOCA MIRAR SI SE PUEDE APROVECHAR PARA LOS COMENTARIOS

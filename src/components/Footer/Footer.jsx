@@ -1,15 +1,15 @@
-import './Footer.css'; 
-
+import './Footer.css';
 function Footer() {
   return (
-    <footer className="footer">
+    <footer className="footer text-xs">
       <div className="container">
-        <div className="flex">
+        <div className="flex justify-center">
           <div className="col-md-6">
-            <ul className="inline">
-              <li><a href="/">Home</a></li>
-              <li><a href="/acerca-de">About us</a></li>
-              <li><a href="/contacto">Contact</a></li>
+            <ul className="flex">
+              <li className="mr-4"><a href="/contactus/index">Contact us</a></li>
+              <li className="mr-4"><a href="/terms-and-conditions">Subscription Terms & Conditions</a></li>
+              <li className="mr-4"><a href="/cookie-settings">Cookie Settings</a></li>
+              <li className="mr-4"><a href="/privacy-cookies-policy">Privacy Policy & Cookies</a></li>
             </ul>
           </div>
         </div>

@@ -19,109 +19,52 @@ import Teacher from "../../assets/gifWorks/teacher.gif";
 import Welder from "../../assets/gifWorks/welder-soldador.gif";
 import "./Jobs.css";
 
+const info = [
+  { src: Carer, text: "Carer", to: Carer },
+  { src: Carpenter, text: "Carpenter", to: Carpenter },
+  { src: Brickwork, text: "Brickwork", to: Brickwork },
+  { src: Chef, text: "Chef", to: Chef },
+  { src: ClosetOrganizer, text: "ClosetOrganizer", to: ClosetOrganizer },
+  { src: Electrician, text: "Electrician", to: Electrician },
+  { src: Fitter, text: "Fitter", to: Fitter },
+  { src: Gardener, text: "Gardener", to: Gardener },
+  { src: HomeCleaner, text: "HomeCleaner", to: HomeCleaner },
+  { src: Locksmith, text: "Locksmith", to: Locksmith },
+  { src: Messenger, text: "Messenger", to: Messenger },
+  { src: Painter, text: "Painter", to: Painter },
+  { src: Plumber, text: "Plumber", to: Plumber },
+  { src: Teacher, text: "Teacher", to: Teacher },
+  { src: Welder, text: "Welder", to: Welder }
+]
+
+const CarouselItem = ({ src, text, to }) => {
+  return (
+    <div className="jobs-line">
+      <button>
+        <img src={src} />
+        <p>{text}</p>
+      </button>
+    </div>
+  )
+}
+
 const Jobs = () => {
   const carousel = {
-    dots: true,
+    dots: false, //ESTOS SON LOS PUNTOS DEL CARRUSEL, MEJOR DEJARLO EN FALSE DE CARA AL RESPONSIVE
     infinite: true,
     speed: 500,
-    slidesToShow: 10,
-    slidesToScroll: 1
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    variableWidth: true
   };
 
   return (
-    <div className="jobs-container">
-      <div>
+    <div className="jobs-container pl-4">
+      <div className="">
         <Slider {...carousel}>
-          <div className="jobs-line">
-            <button>
-              <img src={Carer} />
-              <p>Carer</p>
-            </button>
-          </div>
-          <div className="jobs-line">
-            <button>
-              <img src={Carpenter} />
-              <p>Carpenter</p>
-            </button>
-          </div>
-          <div className="jobs-line">
-            <button>
-              <img src={Brickwork} />
-              <p>Brickwork</p>
-            </button>
-          </div>
-          <div className="jobs-line">
-          <button>
-            <img src={Chef} />
-            <p>Chef</p>
-          </button>
-          </div>
-          <div className="jobs-line">
-            <button>
-              <img src={ClosetOrganizer} />
-              <p>Closet Organizer</p>
-            </button>
-          </div>
-          <div className="jobs-line">
-            <button>
-              <img src={Electrician} />
-              <p>Electrician</p>
-            </button>
-          </div>
-          <div className="jobs-line">
-            <button>
-              <img src={Fitter} />
-              <p>Fitter</p>
-            </button>
-          </div>
-          <div className="jobs-line">
-            <button>
-              <img src={Gardener} />
-              <p>Gardener</p>
-            </button>
-          </div>
-          <div className="jobs-line">
-            <button>
-              <img src={HomeCleaner} />
-              <p>Home Cleaner</p>
-            </button>
-          </div>
-          <div className="jobs-line">
-            <button>
-              <img src={Locksmith} />
-              <p>Locksmith</p>
-            </button>
-          </div>
-          <div className="jobs-line">
-            <button>
-              <img src={Messenger} />
-              <p>Messenger</p>
-            </button>
-          </div>
-          <div className="jobs-line">
-            <button>
-              <img src={Painter} />
-              <p>Painter</p>
-            </button>
-          </div>
-          <div className="jobs-line">
-            <button>
-              <img src={Plumber} />
-              <p>Plumber</p>
-            </button>
-          </div>
-          <div className="jobs-line">
-            <button>
-              <img src={Teacher} />
-              <p>Teacher</p>
-            </button>
-          </div>
-          <div className="jobs-line">
-            <button>
-              <img src={Welder} />
-              <p>Welder</p>        
-            </button>
-          </div>
+          {info.map((job, index) => (
+            <CarouselItem key={index} src={job.src} text={job.text} to={job.to} />
+          ))}
         </Slider>
       </div>
     </div>
