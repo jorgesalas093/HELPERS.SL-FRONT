@@ -1,10 +1,11 @@
 import Background from "../assets/helpersLogo/I need a helpers.jpeg";
-import "../pages/Home.css"
+import "../pages/Home.css";
+import "../components/HelpersBackground.css";
 
 const HelpersBackground = () => {
   return (
-    <div className="">
-      <img src={Background} />
+    <div>
+      <img className="img-background" src={Background} />
     </div>
   );
 };
