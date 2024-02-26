@@ -2,10 +2,13 @@ import { createHttp } from "./BaseService";
 
 const http = createHttp(true);
 
-export const getTimeline = (page) => {
-  return http.get(`/tweets/timeline/${page}`)
+export const getComments = (id) => {
+  return http.get(`/comment/${id}`)
 }
 
-export const createTweet = (text) => {
-  return http.post('/tweets', { content: text })
+export const createComment = (id, text) => {
+  return http.post(`/comment/${id}`, { text })
 }
+
+
+//TOCA MIRAR SI SE PUEDE APROVECHAR PARA LOS COMENTARIOS
