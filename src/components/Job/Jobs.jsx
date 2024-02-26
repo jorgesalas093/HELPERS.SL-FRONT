@@ -60,7 +60,7 @@ const Jobs = () => {
 
   return (
     <div className="jobs-container pl-4">
-      <div className="">
+      <div className="custom-carousel">
         <Slider {...carousel}>
           {info.map((job, index) => (
             <CarouselItem key={index} src={job.src} text={job.text} to={job.to} />
