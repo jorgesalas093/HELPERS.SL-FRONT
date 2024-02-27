@@ -1,4 +1,4 @@
-import { object, string, mixed } from 'yup';
+import { object, string } from 'yup';
 import { useFormik } from 'formik';
 import Input from "../components/Input";
 import { register } from '../services/AuthService';
@@ -6,32 +6,21 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
 
 const userSchema = object({
-  username: string().required('Required field'),
+  username: string().min(3, 'At least 3').required('Required field'),
   email: string().email('Enter a valid email').required('Required field'),
-  password: string().min(8, 'Password of at least 8 characters').required('Required field'),
-  // avatar: mixed().required('Required field'),
-  // biography: string(),
-  // birthday: date().require().unique(),
+  password: string().min(8, 'Password of at least 8 characters').required('Required field')
 });
 
 const Register = () => {
   const navigate = useNavigate()
-  const { values, errors, touched, isValid, setFieldValue, handleSubmit, handleChange, handleBlur } = useFormik({
+  const { values, errors, touched, isValid, handleSubmit, handleChange, handleBlur } = useFormik({
     initialValues: {
-      username: '',
-      email: '',
-      password: '',
-      // avatar: '',
-      // biography: '',
-      // birthday: ''
+      email: 'test@gmail.com',
+      username: 'test',
+      password: '12345678'
     },
     onSubmit: (values) => {
-      const data = new FormData()
-      Object.keys(values).forEach(keyValue => {
-        data.append(keyValue, values[keyValue])
-      })
-
-      register(data)
+      register(values)
         .then(() => {
           navigate('/login')
         })
@@ -108,7 +97,7 @@ const Register = () => {
         </div>
         <Button extraClassName="mt-4" text="Create account"
         //  disabled={!isValid} 
-         />
+        />
       </form>
     </div>
   )
