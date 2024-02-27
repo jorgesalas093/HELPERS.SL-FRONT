@@ -15,7 +15,9 @@ const Login = () => {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const { values, errors, touched, isValid,handleBlur, handleChange, handleSubmit } = useFormik({
+  const { values, errors, touched, 
+   // isValid,
+    handleBlur, handleChange, handleSubmit } = useFormik({
     initialValues: {
       email: '',
       password: ''

@@ -2,6 +2,8 @@ import Slider from "react-slick";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
+import { Link } from "react-router-dom";
+
 import Carer from "../../assets/gifWorks/carer-cuidador.gif";
 import Carpenter from "../../assets/gifWorks/carpenter.gif";
 import Brickwork from "../../assets/gifWorks/brickwork-reformas-en-general.gif";
@@ -20,30 +22,30 @@ import Welder from "../../assets/gifWorks/welder-soldador.gif";
 import "./Jobs.css";
 
 const info = [
-  { src: Carer, text: "Carer", to: Carer },
-  { src: Carpenter, text: "Carpenter", to: Carpenter },
-  { src: Brickwork, text: "Brickwork", to: Brickwork },
-  { src: Chef, text: "Chef", to: Chef },
-  { src: ClosetOrganizer, text: "ClosetOrganizer", to: ClosetOrganizer },
-  { src: Electrician, text: "Electrician", to: Electrician },
-  { src: Fitter, text: "Fitter", to: Fitter },
-  { src: Gardener, text: "Gardener", to: Gardener },
-  { src: HomeCleaner, text: "HomeCleaner", to: HomeCleaner },
-  { src: Locksmith, text: "Locksmith", to: Locksmith },
-  { src: Messenger, text: "Messenger", to: Messenger },
-  { src: Painter, text: "Painter", to: Painter },
-  { src: Plumber, text: "Plumber", to: Plumber },
-  { src: Teacher, text: "Teacher", to: Teacher },
-  { src: Welder, text: "Welder", to: Welder }
+  { src: Carer, text: "Carer", to: "Carer" },
+  { src: Carpenter, text: "Carpenter", to: "Carpenter" },
+  { src: Brickwork, text: "Brickwork", to: "Brickwork" },
+  { src: Chef, text: "Chef", to: "Chef" },
+  { src: ClosetOrganizer, text: "ClosetOrganizer", to: "ClosetOrganizer" },
+  { src: Electrician, text: "Electrician", to: "Electrician" },
+  { src: Fitter, text: "Fitter", to: "Fitter" },
+  { src: Gardener, text: "Gardener", to: "Gardener" },
+  { src: HomeCleaner, text: "HomeCleaner", to: "HomeCleaner" },
+  { src: Locksmith, text: "Locksmith", to: "Locksmith" },
+  { src: Messenger, text: "Messenger", to: "Messenger" },
+  { src: Painter, text: "Painter", to: "Painter" },
+  { src: Plumber, text: "Plumber", to: "Plumber" },
+  { src: Teacher, text: "Teacher", to: "Teacher" },
+  { src: Welder, text: "Welder", to: "Welder" }
 ]
 
 const CarouselItem = ({ src, text, to }) => {
   return (
     <div className="jobs-line">
-      <button>
+       <Link to={`/job/${to}`}>
         <img src={src} />
         <p>{text}</p>
-      </button>
+      </Link>
     </div>
   )
 }

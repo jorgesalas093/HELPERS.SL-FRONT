@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom"
-import Home from "./pages/Home"
+import Home from "./pages/Home/Home"
 import Login from "./pages/Login"
 import Register from "./pages/Register"
 import Navbar from "./components/Navbar"
@@ -8,6 +8,7 @@ import UserProfile from "./pages/UserProfile"
 import CurrentUserProfile from "./pages/CurrentUserProfile"
 
 import Footer from "./components/Footer/Footer"
+import TypeJob from "./pages/TypeJob"
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<ProtectedRoute><CurrentUserProfile /></ProtectedRoute>} />
           <Route path="/users/:id" element={<UserProfile />} />
+          <Route path="/job/:to" element={<TypeJob />} />
 
         </Routes>
       </div>

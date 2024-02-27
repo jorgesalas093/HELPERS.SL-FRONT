@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Profile from "../components/Profile";
+import Profile from "../components/Profile/Profile";
 import { useParams } from "react-router-dom";
 import { getUser } from "../services/UserService";
 
@@ -13,7 +13,6 @@ const UserProfile = () => {
     getUser(id)
 
       .then(user => {
-        console.log(user);
         setUser(user)
         setLoading(false)
       })

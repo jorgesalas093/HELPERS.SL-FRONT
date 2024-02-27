@@ -13,7 +13,9 @@ const userSchema = object({
 
 const Register = () => {
   const navigate = useNavigate()
-  const { values, errors, touched, isValid, handleSubmit, handleChange, handleBlur } = useFormik({
+  const { values, errors, touched, 
+    //isValid, 
+    handleSubmit, handleChange, handleBlur } = useFormik({
     initialValues: {
       email: 'test@gmail.com',
       username: 'test',
