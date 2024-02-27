@@ -11,7 +11,9 @@ const UserProfile = () => {
 
   useEffect(() => {
     getUser(id)
+
       .then(user => {
+        console.log(user);
         setUser(user)
         setLoading(false)
       })
@@ -22,7 +24,7 @@ const UserProfile = () => {
   }
 
   return (
-    <Profile user={user}/>
+    <Profile user={user} />
   )
 }
 

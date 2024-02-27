@@ -9,6 +9,15 @@ const Profile = ({ user }) => {
         <h1 className="font-bold text-2xl">@{user.data.username}</h1>
       </div> */}
       estas en el perfil
+      <h1 className="font-bold text-2xl">{user.username}</h1>
+      <p>{user.email}</p>
+      <p>{user.biography}</p>
+      <p>{user.birthday}</p>
+      <p>{user.avatar}</p>
+      {/* TOCA ATACARLO DE OTRA MANERA, ESTO DEVUELVE EL ID DEL COMENTARIO */}
+      <p>{user.comments}</p>
+        
+      <p>{user.job}</p>
     </div>
   )
 }

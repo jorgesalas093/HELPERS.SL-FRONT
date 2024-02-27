@@ -9,7 +9,9 @@ const userSchema = object({
   username: string().required('Required field'),
   email: string().email('Enter a valid email').required('Required field'),
   password: string().min(8, 'Password of at least 8 characters').required('Required field'),
-  avatar: mixed().required('Required field')
+  // avatar: mixed().required('Required field'),
+  // biography: string(),
+  // birthday: date().require().unique(),
 });
 
 const Register = () => {
@@ -19,7 +21,9 @@ const Register = () => {
       username: '',
       email: '',
       password: '',
-      avatar: ''
+      // avatar: '',
+      // biography: '',
+      // birthday: ''
     },
     onSubmit: (values) => {
       const data = new FormData()
@@ -72,7 +76,7 @@ const Register = () => {
             onChange={handleChange}
             onBlur={handleBlur}
           />
-          <Input
+          {/* <Input
             name="avatar"
             type="file"
             label="Add your photo"
@@ -83,8 +87,28 @@ const Register = () => {
             }}
             onBlur={handleBlur}
           />
+          <Input
+            name="biography"
+            label="biography"
+            placeholder="Ex: 'About me...'"
+            value={values.biography}
+            error={touched.biography && errors.biography}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+          <Input
+            name="birthday"
+            type="date"
+            label="Add your birthday"
+            value={values.birthday}
+            error={touched.birthday && errors.birthday}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />  */}
         </div>
-        <Button extraClassName="mt-4" text="Create account" disabled={!isValid} />
+        <Button extraClassName="mt-4" text="Create account"
+        //  disabled={!isValid} 
+         />
       </form>
     </div>
   )
