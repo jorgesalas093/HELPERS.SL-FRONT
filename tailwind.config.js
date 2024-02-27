@@ -12,7 +12,7 @@ export default {
         'he-dark-gray': '#657786',
         'tw-dark': '#14171A',
         'tw-primary-accent': '#FFAD1F',
-        'tw-background': '#eee'
+        'he-background': '#eee'
       },
       maxWidth: {
         'container': '980px'
