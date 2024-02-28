@@ -22,21 +22,21 @@ import Welder from "../../assets/gifWorks/welder-soldador.gif";
 import "./Jobs.css";
 
 const info = [
-  { src: Carer, text: "Carer", to: "Carer" },
-  { src: Carpenter, text: "Carpenter", to: "Carpenter" },
-  { src: Brickwork, text: "Brickwork", to: "Brickwork" },
+  { src: Carer, text: "Carer", to: "carer" },
+  { src: Carpenter, text: "Carpenter", to: "carpenter" },
+  { src: Brickwork, text: "Brickwork", to: "brickwork" },
   { src: Chef, text: "Chef", to: "Chef" },
-  { src: ClosetOrganizer, text: "ClosetOrganizer", to: "ClosetOrganizer" },
-  { src: Electrician, text: "Electrician", to: "Electrician" },
-  { src: Fitter, text: "Fitter", to: "Fitter" },
-  { src: Gardener, text: "Gardener", to: "Gardener" },
-  { src: HomeCleaner, text: "HomeCleaner", to: "HomeCleaner" },
-  { src: Locksmith, text: "Locksmith", to: "Locksmith" },
-  { src: Messenger, text: "Messenger", to: "Messenger" },
-  { src: Painter, text: "Painter", to: "Painter" },
-  { src: Plumber, text: "Plumber", to: "Plumber" },
-  { src: Teacher, text: "Teacher", to: "Teacher" },
-  { src: Welder, text: "Welder", to: "Welder" }
+  { src: ClosetOrganizer, text: "ClosetOrganizer", to: "closetOrganizer" },
+  { src: Electrician, text: "Electrician", to: "electrician" },
+  { src: Fitter, text: "Fitter", to: "fitter" },
+  { src: Gardener, text: "Gardener", to: "gardener" },
+  { src: HomeCleaner, text: "HomeCleaner", to: "homeCleaner" },
+  { src: Locksmith, text: "Locksmith", to: "locksmith" },
+  { src: Messenger, text: "Messenger", to: "messenger" },
+  { src: Painter, text: "Painter", to: "painter" },
+  { src: Plumber, text: "Plumber", to: "plumber" },
+  { src: Teacher, text: "Teacher", to: "teacher" },
+  { src: Welder, text: "Welder", to: "welder" }
 ]
 
 const CarouselItem = ({ src, text, to }) => {

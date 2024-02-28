@@ -8,7 +8,7 @@ import UserProfile from "./pages/UserProfile"
 import CurrentUserProfile from "./pages/CurrentUserProfile"
 
 import Footer from "./components/Footer/Footer"
-import TypeJob from "./pages/TypeJob"
+import TypeJob from "./pages/TypeJob/TypeJob"
 
 function App() {
   return (
