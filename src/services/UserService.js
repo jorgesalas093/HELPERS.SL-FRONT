@@ -10,10 +10,12 @@ export const getUser = (id) => {
   return http.get(`/users/${id}`)
 }
 
-export const getUserTweets = (id) => {
-  return http.get(`/tweets/${id}`)
+export const getAllUser = () => {
+  return http.get(`/users`)
 }
 
-export const toggleLike = (tweetOwner, tweet) => {
-  return http.post(`/likes/${tweetOwner}/${tweet}`)
+export const getTypeJobUser = (typejob) => {
+  return http.get(`/users/jobs/${typejob}`)
 }
+
+

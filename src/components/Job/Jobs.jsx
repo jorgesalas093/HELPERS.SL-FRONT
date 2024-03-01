@@ -55,8 +55,8 @@ const Jobs = () => {
     dots: false, //ESTOS SON LOS PUNTOS DEL CARRUSEL, MEJOR DEJARLO EN FALSE DE CARA AL RESPONSIVE
     infinite: true,
     speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
+    slidesToShow: 10,
+    slidesToScroll: 5,
     variableWidth: true
   };
 

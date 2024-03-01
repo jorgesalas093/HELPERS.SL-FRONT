@@ -13,16 +13,25 @@ const Navbar = () => {
       to: '/profile',
       text: 'Profile'
     },
+    {
+      to: '/alljobs',
+      text: 'Jobs'
+    },
   ]
 
   const unprotectedRoutes = [
     {
       to: '/login',
-      text: 'Login'
+      text: 'Login',
+      
     },
     {
       to: '/register',
       text: 'Register'
+    },
+    {
+      to: '/alljobs',
+      text: 'Jobs'
     },
   ];
 
