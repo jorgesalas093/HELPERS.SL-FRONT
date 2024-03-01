@@ -1,18 +1,20 @@
-.jobs-line img {
-  height: 50px;
+.jobs-line {
+  display: flex;
+  flex-direction: column; /* Alinea los elementos en columnas */
   align-items: center;
+  text-align: center;
+}
+
+.jobs-line img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
 }
 
 .jobs-line p {
   width: 60px;
   font-size: 10px;
-  text-align: center;
-}
-
-.jobs-line {
-  display: flex;
-  align-items: center;
-  text-align: center;
+  margin-top: 5px; /* Espacio entre la imagen y el texto */
 }
 
 .slick-slide {
@@ -33,5 +35,5 @@
 .slick-prev,
 .slick-next {
   color: black; /* Cambia el color de las flechas */
-  border: 1px solid black; /* Agrega un borde a las flechas */
+  border: 1px solid black; /* Añade un borde a las flechas */
 }

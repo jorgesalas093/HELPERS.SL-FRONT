@@ -1,7 +1,9 @@
+import "./FeaturedWorks.css"
+
 const Card = ({ title, content, link }) => (
-    <div className="w-full md:w-1/3 p-4">
+    <div className="w-full md:w-1/3 p-4 card-container">
         <a href={link} className="block w-full h-full">
-            <div className="bg-white shadow-md rounded-lg p-6">
+            <div className="bg-white shadow-md rounded-lg p-6 card">
                 <h2 className="text-xl font-semibold mb-2">{title}</h2>
                 <p>{content}</p>
             </div>
