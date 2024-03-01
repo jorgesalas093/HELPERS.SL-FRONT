@@ -21,6 +21,20 @@ import TeacherGif from "../../assets/gifWorks/teacher.gif";
 import WelderGif from "../../assets/gifWorks/welder-soldador.gif";
 
 import Carer from "../../assets/pngWorks/carer-cuidador.png"
+import Carpenter from "../../assets/pngWorks/carpenter.png"
+import Brickwork from "../../assets/pngWorks/brickwork-reformas-en-general.png"
+import Chef from "../../assets/pngWorks/chef.png"
+import ClosetOrganizer from "../../assets/pngWorks/closet-organizer-organizador-armario.png"
+import Electrician from "../../assets/pngWorks/electrician.png"
+import Fitter from "../../assets/pngWorks/fitter-montador-muebles.png"
+import Gardener from "../../assets/pngWorks/gardener-jardinero.png"
+import HomeCleaner from "../../assets/pngWorks/home-cleaner-limpieza-hogar.png"
+import Locksmith from "../../assets/pngWorks/locksmith-cerrajero.png"
+import Messenger from "../../assets/pngWorks/messenger-hacer-compra.png"
+import Painter from "../../assets/pngWorks/painter-pintor.png"
+import Plumber from "../../assets/pngWorks/plumber.png"
+import Teacher from "../../assets/pngWorks/teacher.png"
+import Welder from "../../assets/pngWorks/welder-soldador.png"
 
 import "./Jobs.css";
 import { useState } from "react";
@@ -28,22 +42,21 @@ import { useState } from "react";
 
 
 const info = [
-  { gifSrc: CarerGif, text: "Carer", to: "Carer" },
-  { staticSrc: Carer, text: "Carer", to: "Carer" },
-  { src: CarpenterGif, text: "Carpenter", to: "Carpenter" },
-  { src: BrickworkGif, text: "Brickwork", to: "Brickwork" },
-  { src: ChefGif, text: "Chef", to: "Chef" },
-  { src: ClosetOrganizerGif, text: "ClosetOrganizer", to: "ClosetOrganizer" },
-  { src: ElectricianGif, text: "Electrician", to: "Electrician" },
-  { src: FitterGif, text: "Fitter", to: "Fitter" },
-  { src: GardenerGif, text: "Gardener", to: "Gardener" },
-  { src: HomeCleanerGif, text: "HomeCleaner", to: "HomeCleaner" },
-  { src: LocksmithGif, text: "Locksmith", to: "Locksmith" },
-  { src: MessengerGif, text: "Messenger", to: "Messenger" },
-  { src: PainterGif, text: "Painter", to: "Painter" },
-  { src: PlumberGif, text: "Plumber", to: "Plumber" },
-  { src: TeacherGif, text: "Teacher", to: "Teacher" },
-  { src: WelderGif, text: "Welder", to: "Welder" }
+  { gifSrc: CarerGif, staticSrc: Carer, text: "Carer", to: "Carer" },
+  { gifSrc: CarpenterGif, staticSrc: Carpenter, text: "Carpenter", to: "Carpenter" },
+  { gifSrc: BrickworkGif, staticSrc: Brickwork, text: "Brickwork", to: "Brickwork" },
+  { gifSrc: ChefGif, staticSrc: Chef, text: "Chef", to: "Chef" },
+  { gifSrc: ClosetOrganizerGif, staticSrc: ClosetOrganizer, text: "ClosetOrganizer", to: "ClosetOrganizer" },
+  { gifSrc: ElectricianGif, staticSrc: Electrician, text: "Electrician", to: "Electrician" },
+  { gifSrc: FitterGif, staticSrc: Fitter, text: "Fitter", to: "Fitter" },
+  { gifSrc: GardenerGif, staticSrc: Gardener, text: "Gardener", to: "Gardener" },
+  { gifSrc: HomeCleanerGif, staticSrc: HomeCleaner, text: "HomeCleaner", to: "HomeCleaner" },
+  { gifSrc: LocksmithGif, staticSrc: Locksmith, text: "Locksmith", to: "Locksmith" },
+  { gifSrc: MessengerGif, staticSrc: Messenger, text: "Messenger", to: "Messenger" },
+  { gifSrc: PainterGif, staticSrc: Painter, text: "Painter", to: "Painter" },
+  { gifSrc: PlumberGif, staticSrc: Plumber, text: "Plumber", to: "Plumber" },
+  { gifSrc: TeacherGif, staticSrc: Teacher, text: "Teacher", to: "Teacher" },
+  { gifSrc: WelderGif, staticSrc: Welder, text: "Welder", to: "Welder" }
 ]
 
 const CarouselItem = ({ gifSrc, staticSrc, text, to }) => {
@@ -57,6 +70,7 @@ const CarouselItem = ({ gifSrc, staticSrc, text, to }) => {
         <img src={isHovered ? gifSrc : staticSrc} alt={text} />
         <p>{text}</p>
       </Link>
+
     </div>
   )
 }
@@ -76,7 +90,7 @@ const Jobs = () => {
       <div className="custom-carousel">
         <Slider {...carousel}>
           {info.map((job, index) => (
-            <CarouselItem key={index} gifSrc={job.src} staticSrc={job.staticSrc} text={job.text} to={job.to} />
+            <CarouselItem key={index} gifSrc={job.gifSrc} staticSrc={job.staticSrc} text={job.text} to={job.to} />
           ))}
         </Slider>
       </div>
