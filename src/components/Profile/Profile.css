@@ -1,43 +1,46 @@
+/* Estilos similares a Airbnb */
+
 .profile-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-  }
-  
-  .profile-username {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 10px;
-  }
-  
-  .profile-info {
-    font-size: 16px;
-    color: #666;
-    margin-bottom: 5px;
-  }
-  
-  .profile-comments {
-    margin-top: 20px;
-  }
-  
-  .comment {
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
-    background-color: #fff;
-  }
-  
-  .comment-text {
-    font-size: 14px;
-    color: #444;
-  }
-  
-  .comment-info {
-    font-size: 12px;
-    color: #888;
-  }
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+.profile-username {
+  font-size: 24px;
+  font-weight: bold;
+  color: #484848;
+  margin-bottom: 10px;
+}
+
+.profile-info {
+  font-size: 16px;
+  color: #484848;
+  margin-bottom: 5px;
+}
+
+.profile-comments {
+  margin-top: 20px;
+}
+
+.comment {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+}
+
+.comment-text {
+  font-size: 16px;
+  color: #484848;
+}
+
+.comment-info {
+  font-size: 14px;
+  color: #767676;
+}
