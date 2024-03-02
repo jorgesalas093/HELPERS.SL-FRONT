@@ -4,44 +4,38 @@ import { createHttp } from '../../services/BaseService';
 import Input from '../Input';
 import Button from '../Button';
 import './Profile.css'
+import { Link } from 'react-router-dom';
+import { createComment } from '../../services/CommentService';
 
-const Profile = ({ currentUser }) => {
-  const [user, setUser] = useState(null);
+
+const Profile = ({ user, isCurrentUser, refetch }) => {
   const [commentText, setCommentText] = useState('');
   const { id } = useParams();
-  const http = createHttp(true);
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await http.get(`/users/${id}`);
-        setUser(response);
-      } catch (error) {
-        console.error('Error fetching user:', error);
-      }
-    };
-    fetchUser();
-  }, [http, id]);
 
   const handleCommentTextChange = (event) => {
     setCommentText(event.target.value);
   };
 
   const handleCreateComment = () => {
-    http.post(`/comment/${id}`, { text: commentText })
+    createComment(id, commentText)
       .then(response => {
         console.log('Comment created:', response);
         // Aquí puedes realizar alguna acción adicional, como actualizar la lista de comentarios
         setCommentText(''); // Borrar el contenido del input después de comentar
+        refetch && refetch()
       })
       .catch(error => {
         console.error('Error creating comment:', error);
       });
   };
+  //CREAR CON EL EFFECT EL PODER ATACAR SOBRE EL ID DEL CHAT SI YA ESTA CREADO Y EN EL CASO DE QUE NO ESTE CREADO 
+  //CREAR UNO NUEVO
   return (
     <div className="profile-container">
       {user && (
         <>
+          <Link to={`/chat/${user.id}`}><Button text="CHAT" /></Link>
           <p className="profile-username">{user.username}</p>
           <p className="profile-info">Email: {user.email}</p>
           <p className="profile-info">Biography: {user.biography}</p>
@@ -58,7 +52,7 @@ const Profile = ({ currentUser }) => {
             ))}
           </div>
 
-          {!currentUser && (
+          {!isCurrentUser && (
             <Input
               value={commentText}
               onChange={handleCommentTextChange}
@@ -71,7 +65,7 @@ const Profile = ({ currentUser }) => {
             />
           )}
 
-          {!currentUser && (
+          {!isCurrentUser && (
             <Button text='COMMENT' onClick={handleCreateComment}></Button>
           )}
         </>

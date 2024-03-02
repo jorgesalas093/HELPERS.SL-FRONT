@@ -6,7 +6,7 @@ const CurrentUserProfile = () => {
   const { user } = useContext(AuthContext);
 
   return (
-    <Profile user={user} currentUser />
+    <Profile user={user} isCurrentUser />
   )
 }
 
