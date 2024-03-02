@@ -7,12 +7,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        'he-primary': '#D3D6D4',
-        'tw-light-gray': '#E1E8ED',
+        'he-primary': '#56DEDE',
+        'he-light-gray': '#E1E8ED',
         'he-dark-gray': '#657786',
-        'tw-dark': '#14171A',
-        'tw-primary-accent': '#FFAD1F',
-        'tw-background': '#eee'
+        'he-dark': '#14171A',
+        'he-primary-accent': '#FFAD1F',
+        'he-background': '#eee'
       },
       maxWidth: {
         'container': '980px'

@@ -1,4 +1,4 @@
-import { object, string, mixed } from 'yup';
+import { object, string } from 'yup';
 import { useFormik } from 'formik';
 import Input from "../components/Input";
 import { register } from '../services/AuthService';
@@ -6,28 +6,23 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
 
 const userSchema = object({
-  username: string().required('Required field'),
+  username: string().min(3, 'At least 3').required('Required field'),
   email: string().email('Enter a valid email').required('Required field'),
-  password: string().min(8, 'Password of at least 8 characters').required('Required field'),
-  avatar: mixed().required('Required field')
+  password: string().min(8, 'Password of at least 8 characters').required('Required field')
 });
 
 const Register = () => {
   const navigate = useNavigate()
-  const { values, errors, touched, isValid, setFieldValue, handleSubmit, handleChange, handleBlur } = useFormik({
+  const { values, errors, touched, 
+    //isValid, 
+    handleSubmit, handleChange, handleBlur } = useFormik({
     initialValues: {
-      username: '',
-      email: '',
-      password: '',
-      avatar: ''
+      email: 'test@gmail.com',
+      username: 'test',
+      password: '12345678'
     },
     onSubmit: (values) => {
-      const data = new FormData()
-      Object.keys(values).forEach(keyValue => {
-        data.append(keyValue, values[keyValue])
-      })
-
-      register(data)
+      register(values)
         .then(() => {
           navigate('/login')
         })
@@ -72,7 +67,7 @@ const Register = () => {
             onChange={handleChange}
             onBlur={handleBlur}
           />
-          <Input
+          {/* <Input
             name="avatar"
             type="file"
             label="Add your photo"
@@ -83,8 +78,28 @@ const Register = () => {
             }}
             onBlur={handleBlur}
           />
+          <Input
+            name="biography"
+            label="biography"
+            placeholder="Ex: 'About me...'"
+            value={values.biography}
+            error={touched.biography && errors.biography}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+          <Input
+            name="birthday"
+            type="date"
+            label="Add your birthday"
+            value={values.birthday}
+            error={touched.birthday && errors.birthday}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />  */}
         </div>
-        <Button extraClassName="mt-4" text="Create account" disabled={!isValid} />
+        <Button extraClassName="mt-4" text="Create account"
+        //  disabled={!isValid} 
+        />
       </form>
     </div>
   )

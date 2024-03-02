@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import Profile from "../components/Profile";
+import { useCallback, useEffect, useState } from "react";
+import Profile from "../components/Profile/Profile";
 import { useParams } from "react-router-dom";
 import { getUser } from "../services/UserService";
 
@@ -9,7 +9,7 @@ const UserProfile = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
+  const fetchUser = useCallback(() => {
     getUser(id)
       .then(user => {
         setUser(user)
@@ -17,12 +17,16 @@ const UserProfile = () => {
       })
   }, [id])
 
+  useEffect(() => {
+    fetchUser()
+  }, [fetchUser])
+
   if (loading) {
     return <p>Loading...</p>
   }
 
   return (
-    <Profile user={user}/>
+    <Profile user={user} refetch={fetchUser} />
   )
 }
 
