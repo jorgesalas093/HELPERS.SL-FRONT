@@ -11,6 +11,7 @@ import AllJobs from "./pages/AllJobs"
 
 import Footer from "./components/Footer/Footer"
 import TypeJob from "./pages/TypeJob/TypeJob"
+import Chat from "./pages/Chat"
 
 function App() {
   return (
@@ -27,7 +28,7 @@ function App() {
           <Route path="/users/:id" element={<UserProfile />} />
           <Route path="/job/:to" element={<TypeJob />} />
           <Route path="/alljobs" element={<AllJobs />} />
-
+          <Route path="/chat/:id" element={<ProtectedRoute><Chat /></ProtectedRoute>} />
         </Routes>
       </div>
       <Footer />

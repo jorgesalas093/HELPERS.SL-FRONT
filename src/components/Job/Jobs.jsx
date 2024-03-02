@@ -46,11 +46,11 @@ const info = [
   { gifSrc: CarpenterGif, staticSrc: Carpenter, text: "Carpenter", to: "Carpenter" },
   { gifSrc: BrickworkGif, staticSrc: Brickwork, text: "Brickwork", to: "Brickwork" },
   { gifSrc: ChefGif, staticSrc: Chef, text: "Chef", to: "Chef" },
-  { gifSrc: ClosetOrganizerGif, staticSrc: ClosetOrganizer, text: "ClosetOrganizer", to: "ClosetOrganizer" },
+  { gifSrc: ClosetOrganizerGif, staticSrc: ClosetOrganizer, text: "Closet Organizer", to: "ClosetOrganizer" },
   { gifSrc: ElectricianGif, staticSrc: Electrician, text: "Electrician", to: "Electrician" },
   { gifSrc: FitterGif, staticSrc: Fitter, text: "Fitter", to: "Fitter" },
   { gifSrc: GardenerGif, staticSrc: Gardener, text: "Gardener", to: "Gardener" },
-  { gifSrc: HomeCleanerGif, staticSrc: HomeCleaner, text: "HomeCleaner", to: "HomeCleaner" },
+  { gifSrc: HomeCleanerGif, staticSrc: HomeCleaner, text: "Home Cleaner", to: "HomeCleaner" },
   { gifSrc: LocksmithGif, staticSrc: Locksmith, text: "Locksmith", to: "Locksmith" },
   { gifSrc: MessengerGif, staticSrc: Messenger, text: "Messenger", to: "Messenger" },
   { gifSrc: PainterGif, staticSrc: Painter, text: "Painter", to: "Painter" },
@@ -68,7 +68,7 @@ const CarouselItem = ({ gifSrc, staticSrc, text, to }) => {
 
        <Link to={`/job/${to}`}>
         <img src={isHovered ? gifSrc : staticSrc} alt={text} />
-        <p>{text}</p>
+        <p><b>{text}</b></p>
       </Link>
 
     </div>
