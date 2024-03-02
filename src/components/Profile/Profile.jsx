@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState,} from 'react';
 import { useParams } from 'react-router-dom';
-import { createHttp } from '../../services/BaseService';
 import Input from '../Input';
 import Button from '../Button';
 import './Profile.css'
