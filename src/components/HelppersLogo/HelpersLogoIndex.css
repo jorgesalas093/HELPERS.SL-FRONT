@@ -1,6 +1,25 @@
-.helpersLogoIndex img {
+.custom-button img {
     width: 40px;
     height: 40px;
     max-width: 100%;
     border: 1px solid black;
 }
+
+.custom-button {
+    padding: 1px 1px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .custom-button:hover,
+  .custom-button:focus {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .custom-button:active {
+    transform: translateY(1px);
+    box-shadow: none;
+  }
+  
