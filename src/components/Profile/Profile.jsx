@@ -2,7 +2,7 @@
 // import Avatar from "../components/Avatar";
 import "./Profile.css"
 import Input from "../Input";
-const Profile = ({ user }) => {
+const Profile = ({ user, currentUser }) => {
   return (
     <div className="profile-container">
       <p className="profile-username">{user.username}</p>
@@ -16,21 +16,24 @@ const Profile = ({ user }) => {
         {user.comments.map(comment => (
           <div key={comment.id} className="comment">
             <p className="comment-text">{comment.text}</p>
-            <p className="comment-info">Posted by: {comment.user}</p>
+            <p className="comment-info">Posted by: {comment.writer.username}</p>
           </div>
         ))}
       </div>
 
-      <Input
-        value=""
-        onChange={() => { }}
-        name="comment"
-        placeholder="Write your comment here..."
-        type="text"
-        label="Your Comment"
-        error={null}
-        onBlur={() => { }}
-      />
+      {!currentUser ? (
+
+        <Input
+          value=""
+          onChange={() => { }}
+          name="comment"
+          placeholder="Write your comment here..."
+          type="text"
+          label="Your Comment"
+          error={null}
+          onBlur={() => { }}
+        />
+      ) : null}
     </div>
   );
 };
