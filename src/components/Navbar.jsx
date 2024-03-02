@@ -1,6 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
 import HelpersLogoIndex from "../components/HelppersLogo/HelpersLogoIndex";
-
 import { useContext } from "react";
 import AuthContext from '../contexts/AuthContext';
 import { logout } from "../stores/AccessTokenStore";
@@ -52,22 +51,21 @@ const Navbar = () => {
   const hasUser = isAuthFetched && user;
 
   return (
-    <div className="bg-he-primary p-3 h-[70px] flex items-center">
+    <div className="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-3 h-[70px] flex items-center">
       <div className="flex justify-between items-center max-w-container mx-auto w-full">
         <Link to="/">
-           <HelpersLogoIndex/>
+          <HelpersLogoIndex/>
         </Link>
 
         <div className="flex gap-x-3">
-          {routes ? routes.map((route) => (
-            <NavLink key={route.to} to={route.to} className="text-white hover:text-tw-light-gray">
+          {routes ? routes.map((route, index) => (
+            <NavLink key={route.to} to={route.to} className="text-white hover:text-he-light-gray animate-pulse hover:animate-bounce" style={{ animationDelay: `${index * 0.2}s` }}>
               {route.text}
             </NavLink>
           )) : null}
           {hasUser ? (
-            <button className="text-white hover:text-tw-light-gray"
-              onClick={logout}>
-                Logout
+            <button className="text-white hover:text-he-light-gray hover:animate-bounce" onClick={logout}>
+              Logout
             </button>
           ) : null}
         </div>

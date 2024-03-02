@@ -8,10 +8,10 @@ export default {
     extend: {
       colors: {
         'he-primary': '#56DEDE',
-        'tw-light-gray': '#E1E8ED',
+        'he-light-gray': '#E1E8ED',
         'he-dark-gray': '#657786',
-        'tw-dark': '#14171A',
-        'tw-primary-accent': '#FFAD1F',
+        'he-dark': '#14171A',
+        'he-primary-accent': '#FFAD1F',
         'he-background': '#eee'
       },
       maxWidth: {
