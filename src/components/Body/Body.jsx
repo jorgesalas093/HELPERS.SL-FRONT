@@ -1,4 +1,4 @@
-import Trato from "../TratoImg/Trato";
+import Trato from "../Trato";
 import "./Body.css"
 
 const CardBody = ({ title, content, link }) => (

@@ -1,4 +1,4 @@
-import TratoImg from "../../assets/imageHome/cerrarTrato.jpg";
+import TratoImg from "../assets/imageHome/cerrarTrato.jpg";
 
 import { AnimatePresence } from "framer-motion";
 
