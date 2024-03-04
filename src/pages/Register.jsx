@@ -1,4 +1,4 @@
-import { object, string } from 'yup';
+import { object, string, mixed } from 'yup';
 import { useFormik } from 'formik';
 import Input from "../components/Input";
 import { register } from '../services/AuthService';
@@ -8,21 +8,28 @@ import Button from '../components/Button';
 const userSchema = object({
   username: string().min(3, 'At least 3').required('Required field'),
   email: string().email('Enter a valid email').required('Required field'),
-  password: string().min(8, 'Password of at least 8 characters').required('Required field')
+  password: string().min(8, 'Password of at least 8 characters').required('Required field'),
+  avatar: mixed().required('Required field')
 });
 
 const Register = () => {
   const navigate = useNavigate()
   const { values, errors, touched, 
-    //isValid, 
-    handleSubmit, handleChange, handleBlur } = useFormik({
+    // isValid, 
+    setFieldValue, handleSubmit, handleChange, handleBlur } = useFormik({
     initialValues: {
-      email: 'test@gmail.com',
-      username: 'test',
-      password: '12345678'
+      username: '',
+      email: '',
+      password: '',
+      avatar: ''
     },
     onSubmit: (values) => {
-      register(values)
+      const data = new FormData()
+      Object.keys(values).forEach(keyValue => {
+        data.append(keyValue, values[keyValue])
+      })
+
+      register(data)
         .then(() => {
           navigate('/login')
         })
@@ -67,7 +74,7 @@ const Register = () => {
             onChange={handleChange}
             onBlur={handleBlur}
           />
-          {/* <Input
+          <Input
             name="avatar"
             type="file"
             label="Add your photo"
@@ -78,7 +85,7 @@ const Register = () => {
             }}
             onBlur={handleBlur}
           />
-          <Input
+          {/* <Input
             name="biography"
             label="biography"
             placeholder="Ex: 'About me...'"

@@ -19,6 +19,6 @@ export const getMessages = () => {
   return http.get(`/message`)
 }
 
-export const createMessage = (chatId) => {
-  return http.post(`/message/${chatId}`)
+export const createMessage = (chatId, body) => {
+  return http.post(`/message/${chatId}`, body)
 }
