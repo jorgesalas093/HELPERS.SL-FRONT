@@ -18,7 +18,7 @@ console.log(users)
 
         fetchUsers();
     }, [http]);
-
+//PONER UN BARRA DE BUSQUEDA EN EL QUE SE ELIJA POR TIPÒ DE TRABAJO
     return (
         <div>
             {users.map(user => (

@@ -21,7 +21,7 @@ const FeaturedWorks = () => {
                     link=""
                 />
                 <Card
-                    title="Fitter"
+                    title="Assamble"
                     content="Have you bought a piece of furniture and need help with assembly? We can also take it home and assemble it."
                     link=""
                 />

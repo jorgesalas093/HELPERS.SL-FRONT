@@ -4,6 +4,7 @@ import { useContext } from "react";
 import AuthContext from '../contexts/AuthContext';
 import { logout } from "../stores/AccessTokenStore";
 
+
 const Navbar = () => {
   const { user, isAuthFetched } = useContext(AuthContext);
 

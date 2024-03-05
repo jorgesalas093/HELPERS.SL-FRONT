@@ -30,11 +30,12 @@
 }
 
 .custom-carousel .slick-next {
-  margin-right: 15px;
+  
 }
 
 .slick-prev,
 .slick-next {
   color: black; /* Cambia el color de las flechas */
   border: 1px solid black; /* Añade un borde a las flechas */
+  margin-right: 15px;
 }

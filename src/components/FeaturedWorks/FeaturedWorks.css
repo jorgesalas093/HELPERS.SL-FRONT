@@ -1,7 +1,7 @@
 .card-container {
-    transition: transform 0.3s ease-in-out;
-}
-
-.card:hover {
-    transform: scale(1.05);
-}
+    transition: transform 0.3s ease;
+  }
+  
+  .card-container:hover {
+    transform: translateY(-5px);
+  }

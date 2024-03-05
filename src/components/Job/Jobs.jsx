@@ -10,7 +10,7 @@ import BrickworkGif from "../../assets/gifWorks/brickwork-reformas-en-general.gi
 import ChefGif from "../../assets/gifWorks/chef.gif";
 import ClosetOrganizerGif from "../../assets/gifWorks/closet-organizer-organizador-armario.gif";
 import ElectricianGif from "../../assets/gifWorks/electrician.gif";
-import FitterGif from "../../assets/gifWorks/fitter-montador-muebles.gif";
+import AssemblerGif from "../../assets/gifWorks/fitter-montador-muebles.gif";
 import GardenerGif from "../../assets/gifWorks/gardener-jardinero.gif";
 import HomeCleanerGif from "../../assets/gifWorks/home-cleaner-limpieza-hogar.gif";
 import LocksmithGif from "../../assets/gifWorks/locksmith-cerrajero.gif";
@@ -26,7 +26,7 @@ import Brickwork from "../../assets/pngWorks/brickwork-reformas-en-general.png"
 import Chef from "../../assets/pngWorks/chef.png"
 import ClosetOrganizer from "../../assets/pngWorks/closet-organizer-organizador-armario.png"
 import Electrician from "../../assets/pngWorks/electrician.png"
-import Fitter from "../../assets/pngWorks/fitter-montador-muebles.png"
+import Assembler from "../../assets/pngWorks/fitter-montador-muebles.png"
 import Gardener from "../../assets/pngWorks/gardener-jardinero.png"
 import HomeCleaner from "../../assets/pngWorks/home-cleaner-limpieza-hogar.png"
 import Locksmith from "../../assets/pngWorks/locksmith-cerrajero.png"
@@ -37,9 +37,9 @@ import Teacher from "../../assets/pngWorks/teacher.png"
 import Welder from "../../assets/pngWorks/welder-soldador.png"
 
 import "./Jobs.css";
-import { useState } from "react";
-
-
+import { useEffect, useState } from "react";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const info = [
   { gifSrc: CarerGif, staticSrc: Carer, text: "Carer", to: "Carer" },
@@ -48,7 +48,7 @@ const info = [
   { gifSrc: ChefGif, staticSrc: Chef, text: "Chef", to: "Chef" },
   { gifSrc: ClosetOrganizerGif, staticSrc: ClosetOrganizer, text: "Closet Organizer", to: "ClosetOrganizer" },
   { gifSrc: ElectricianGif, staticSrc: Electrician, text: "Electrician", to: "Electrician" },
-  { gifSrc: FitterGif, staticSrc: Fitter, text: "Fitter", to: "Fitter" },
+  { gifSrc: AssemblerGif, staticSrc: Assembler, text: "Assembler", to: "Assembler" },
   { gifSrc: GardenerGif, staticSrc: Gardener, text: "Gardener", to: "Gardener" },
   { gifSrc: HomeCleanerGif, staticSrc: HomeCleaner, text: "Home Cleaner", to: "HomeCleaner" },
   { gifSrc: LocksmithGif, staticSrc: Locksmith, text: "Locksmith", to: "Locksmith" },
@@ -67,7 +67,7 @@ const CarouselItem = ({ gifSrc, staticSrc, text, to }) => {
     onMouseLeave={() => setIsHovered(false)}>
 
        <Link to={`/job/${to}`}>
-        <img src={isHovered ? gifSrc : staticSrc} alt={text} />
+        <motion.img animate={{ y: 5}} src={isHovered ? gifSrc : staticSrc} alt={text} />
         <p><b>{text}</b></p>
       </Link>
 
@@ -76,8 +76,17 @@ const CarouselItem = ({ gifSrc, staticSrc, text, to }) => {
 }
 
 const Jobs = () => {
-  const carousel = {
-    dots: false, //ESTOS SON LOS PUNTOS DEL CARRUSEL, MEJOR DEJARLO EN FALSE DE CARA AL RESPONSIVE
+  const controls = useAnimation();
+  const { ref, inView } = useInView();
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [controls, inView]);
+
+  const carouselSettings = {
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 10,
@@ -86,14 +95,22 @@ const Jobs = () => {
   };
 
   return (
-    <div className="jobs-container pl-4">
-      <div className="custom-carousel">
-        <Slider {...carousel}>
+    <div ref={ref} className="jobs-container pl-4">
+      <motion.div
+        animate={controls}
+        initial="hidden"
+        variants={{
+          visible: { opacity: 1, y: 0 },
+          hidden: { opacity: 0, y: 50 }
+        }}
+        transition={{ duration: 0.5 }}
+      >
+        <Slider {...carouselSettings}>
           {info.map((job, index) => (
             <CarouselItem key={index} gifSrc={job.gifSrc} staticSrc={job.staticSrc} text={job.text} to={job.to} />
           ))}
         </Slider>
-      </div>
+      </motion.div>
     </div>
   );
 };
