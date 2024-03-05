@@ -1,16 +1,8 @@
+import CardJob from "../CardHome";
 import Trato from "../Trato";
 import "./Body.css"
 
-const CardBody = ({ title, content, link }) => (
-    <div className="w-full md:w-1/3 p-4 card-container">
-        <a href={link} className="block w-full h-full">
-            <div className="bg-white shadow-md rounded-lg p-6 card">
-                <h2 className="text-xl font-semibold mb-2">{title}</h2>
-                <p>{content}</p>
-            </div>
-        </a>
-    </div>
-);
+
 const Body = () => {
     return (
         <div className="container mx-auto px-4">
@@ -52,22 +44,8 @@ const Body = () => {
                     <Trato />
                 </div>
             </div>
-            <div className="flex justify-center mt-4">
-                <CardBody
-                    title="Messenger"
-                    content="If you need us to bring something to your house, such as shopping, picking up an order from a local store or doing some type of procedure or transaction."
-                    link=""
-                />
-                <CardBody
-                    title="Messenger"
-                    content="If you need us to bring something to your house, such as shopping, picking up an order from a local store or doing some type of procedure or transaction."
-                    link=""
-                />
-                <CardBody
-                    title="Messenger"
-                    content="If you need us to bring something to your house, such as shopping, picking up an order from a local store or doing some type of procedure or transaction."
-                    link=""
-                />
+            <div>
+                <CardJob />
             </div>
         </div>
     );

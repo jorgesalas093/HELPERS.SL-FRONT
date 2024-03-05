@@ -66,7 +66,7 @@ const CarouselItem = ({ gifSrc, staticSrc, text, to }) => {
     <div className="jobs-line" onMouseEnter={() => setIsHovered(true)}
     onMouseLeave={() => setIsHovered(false)}>
 
-       <Link to={`/job/${to}`}>
+      <Link to={`/job/${to}`}>
         <motion.img animate={{ y: 5}} src={isHovered ? gifSrc : staticSrc} alt={text} />
         <p><b>{text}</b></p>
       </Link>
