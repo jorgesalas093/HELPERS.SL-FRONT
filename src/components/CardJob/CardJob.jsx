@@ -1,3 +1,7 @@
+import { Link } from "react-router-dom";
+
+import "../CardJob/CardJob.css"
+
 import Carer from "../../assets/imageJob/carer.jpg"
 import Carpenter from "../../assets/imageJob/carpenter.jpg"
 import Brickwork from "../../assets/imageJob/brickwork.jpg"
@@ -13,11 +17,6 @@ import Painter from "../../assets/imageJob/painter.jpg"
 import Plumber from "../../assets/imageJob/plumber.jpg"
 import Teacher from "../../assets/imageJob/teacher.jpg"
 import Welder from "../../assets/imageJob/welder.jpg"
-
-
-import { Link } from "react-router-dom";
-
-import "../CardJob/CardJob.css"
 
 const info = [
     { title: "Carer", img: Carer, text: "Caring for sick, disabled or needy people. It also accompanies medical appointments or daily tasks.", to: "Carer" },

@@ -17,8 +17,8 @@ const Home = () => {
           <Jobs />
         </div>
       </div>
-        <Body/>        
       <div>
+        <Body/>        
         <FeaturedWorks />
       </div>
     </div>
