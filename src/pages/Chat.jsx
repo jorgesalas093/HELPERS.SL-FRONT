@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import Input from "../components/Input";
-import { useState, useEffect, useCallback, useContext } from 'react';
+
+
+
+import { useState, useEffect, useCallback, useContext, useRef } from 'react';
+
 import { useParams } from 'react-router-dom';
 import { createMessage, getChat } from "../services/ChatService";
 import AuthContext from "../contexts/AuthContext";
@@ -12,6 +16,9 @@ const Chat = () => {
     const [chat, setChat] = useState(null);
     const [text, setText] = useState('');
 
+
+    const intervalRef = useRef(null)
+
     const fetchChat = useCallback(() => {
         getChat(id)
             .then(chat => {
@@ -21,6 +28,7 @@ const Chat = () => {
                 console.error('Error fetching chat:', error);
             });
     }, [id]);
+
 
     const handleChatTextChange = (event) => {
         setText(event.target.value);
@@ -37,20 +45,75 @@ const Chat = () => {
             });
     };
 
+
+    const myfuncion = (date) => {
+        const parsedDate = new Date(date);
+        const hours = parsedDate.getHours();
+        const minutes = parsedDate.getMinutes();        // Formateamos las horas y los minutos a dos dígitos
+        const formattedHours = hours < 10 ? '0' + hours : hours;
+        const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
+        return `${formattedHours}:${formattedMinutes}`;
+    };
+
     useEffect(() => {
+        intervalRef.current = setInterval(() => {
+            console.log('me traigo chat')
+            fetchChat();
+        }, 2000)
+
         fetchChat();
+
+        return () => {
+            clearInterval(intervalRef.current)
+        }
+
     }, [id, fetchChat]);
 
     return (
         <div>
-            <h1>Chat Room {chat && chat.id}</h1>
-            {console.log(chat)}
+
+
+            <div>
+                {chat && chat.users.map((chatUser, index) => (
+                    chatUser._id !== user._id &&
+                    <h1 key={index} className="text-center uppercase" >{chatUser.username}  <img src={chatUser.avatar} alt="Avatar" width="50" className="ml-2 rounded-full" /></h1>
+                ))}
+            </div>
+
+
             {chat && chat.messages.map(message => {
-                // console.log(message); // Imprimir mensaje en la consola
+                console.log(message)
                 return (
-                    user._id === message.user._id ?
-                        <p key={message._id}>{message.text}</p> :
-                        <h1 key={message._id}>{message.text}</h1>
+                    <div key={message._id} >
+                        {user._id === message.user._id ?
+                            // AQUI EMPIEZA UNA PARTE DEL TERNARIO
+                            <div className="flex justify-end">
+                                <div className="bg-blue-500 text-white rounded-lg p-2 mb-1 max-w-md flex center">
+                                    <p>{message.text}</p>
+                                    <div className="flex justify-end">
+                                        <img src={message.user.avatar} alt="Avatar" width="20" className="ml-2 rounded-full" />
+                                    </div>
+                                    <p>{myfuncion(message.createdAt)}</p>
+                                </div>
+
+                            </div>
+                            // AQUI TERMINA UNA PARTE DEL TERNARIO 
+                            :
+                            <div className="flex">
+                                <div className="bg-gray-400 text-black rounded-lg p-2 mb-1 max-w-md">
+                                    <h1 className="text-white flex items-center mr-4">
+                                        <img src={message.user.avatar} width="20" className="mr-2 rounded-full" />
+                                        {message.text}
+                                    </h1>
+                                    <p>{myfuncion(message.createdAt)}</p>
+                                </div>
+                            </div>
+                            // FIN DE TERNARIO
+                        }
+
+                    </div>
+
+
                 );
             })}
             <Input

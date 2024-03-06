@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
 import { createHttp } from '../services/BaseService';
 import Button from '../components/Button';
+
 import { Link } from "react-router-dom"
+
+
 
 const AllJobs = () => {
     const [users, setUsers] = useState([]);
     const http = createHttp(true); // Usar token de acceso
-console.log(users)
+    console.log(users)
     useEffect(() => {
         const fetchUsers = () => {
             http.get('/users')
@@ -20,15 +23,22 @@ console.log(users)
 
         fetchUsers();
     }, [http]);
+
 //PONER UN BARRA DE BUSQUEDA EN EL QUE SE ELIJA POR TIPÒ DE TRABAJO
+
+    //PONER UN BARRA DE BUSQUEDA EN EL QUE SE ELIJA POR TIPÒ DE TRABAJO
+
     return (
         <div>
             {users.map(user => (
                 <div key={user.id}>
                     <p>Username: {user.username}</p>
                     <p>Email: {user.email}</p>
+
                     
                     <Link to={`/users/${user.id}`}><Button text="PROFILE" /></Link>
+
+
                 </div>
             ))}
         </div>
