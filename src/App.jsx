@@ -24,7 +24,6 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<ProtectedRoute><CurrentUserProfile /></ProtectedRoute>} />
-          {/* ESTO LLEVA A LA RUTA DE OTROS USUARIOS //PARA LOS JOBS */}
           <Route path="/users/:id" element={<UserProfile />} />
           <Route path="/job/:to" element={<TypeJob />} />
           <Route path="/alljobs" element={<AllJobs />} />

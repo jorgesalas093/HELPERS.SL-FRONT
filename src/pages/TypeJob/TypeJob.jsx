@@ -36,7 +36,9 @@ const TypeJob = () => {
         <div key={user._id}>
           <p>Username: {user.username}</p>
           <p>Email: {user.email}</p>
-          <p>Email: {user.id}</p>
+          
+          
+          
           <Link to={`/users/${user.id}`}><Button text="PROFILE" /></Link>
         </div>
       ))}
