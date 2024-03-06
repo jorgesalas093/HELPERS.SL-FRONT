@@ -13,29 +13,29 @@ const Body = () => {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div className="flex justify-center">
                             <ul className="text-center">
-                                <li className="font-serif text-xs"><a href="#">Carer</a></li>
-                                <li className="font-serif text-xs"><a href="#">Carpenter</a></li>
-                                <li className="font-serif text-xs"><a href="#">Brickwork</a></li>
-                                <li className="font-serif text-xs"><a href="#">Chef</a></li>
-                                <li className="font-serif text-xs"><a href="#">Closet Organizer</a></li>
+                                <li className="font-serif text-xs"><a>Carer</a></li>
+                                <li className="font-serif text-xs"><a>Carpenter</a></li>
+                                <li className="font-serif text-xs"><a>Brickwork</a></li>
+                                <li className="font-serif text-xs"><a>Chef</a></li>
+                                <li className="font-serif text-xs"><a>Closet Organizer</a></li>
                             </ul>
                         </div>
                         <div className="flex justify-center">
                             <ul className="text-center">
-                                <li className="font-serif text-xs"><a href="#">Electrician</a></li>
-                                <li className="font-serif text-xs"><a href="#">Assembler</a></li>
-                                <li className="font-serif text-xs"><a href="#">Gardener</a></li>
-                                <li className="font-serif text-xs"><a href="#">Home Cleaner</a></li>
-                                <li className="font-serif text-xs"><a href="#">Locksmith</a></li>
+                                <li className="font-serif text-xs"><a>Electrician</a></li>
+                                <li className="font-serif text-xs"><a>Assembler</a></li>
+                                <li className="font-serif text-xs"><a>Gardener</a></li>
+                                <li className="font-serif text-xs"><a>Home Cleaner</a></li>
+                                <li className="font-serif text-xs"><a>Locksmith</a></li>
                             </ul>
                         </div>
                         <div className="flex justify-center">
                             <ul className="text-center">
-                                <li className="font-serif text-xs"><a href="#">Messenger</a></li>
-                                <li className="font-serif text-xs"><a href="#">Painter</a></li>
-                                <li className="font-serif text-xs"><a href="#">Plumber</a></li>
-                                <li className="font-serif text-xs"><a href="#">Teacher</a></li>
-                                <li className="font-serif text-xs"><a href="#">Welder</a></li>
+                                <li className="font-serif text-xs"><a>Messenger</a></li>
+                                <li className="font-serif text-xs"><a>Painter</a></li>
+                                <li className="font-serif text-xs"><a>Plumber</a></li>
+                                <li className="font-serif text-xs"><a>Teacher</a></li>
+                                <li className="font-serif text-xs"><a>Welder</a></li>
                             </ul>
                         </div>
                     </div>
