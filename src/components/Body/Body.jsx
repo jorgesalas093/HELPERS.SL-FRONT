@@ -1,4 +1,4 @@
-import CardJob from "../CardHome";
+import CardJob from "../CardJob/CardJob";
 import Trato from "../Trato";
 import "./Body.css"
 
