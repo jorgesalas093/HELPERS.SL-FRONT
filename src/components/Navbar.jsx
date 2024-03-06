@@ -32,6 +32,10 @@ const Navbar = () => {
       to: '/alljobs',
       text: 'Jobs'
     },
+    {
+      to: '/workwithus',
+      text: 'Work With Us'
+    },
   ];
 
   const getRoutesToShow = () => {
