@@ -8,6 +8,11 @@
   
   .card-container {
     width: 100%;
+    transition: transform 0.3s ease;
+  }
+
+  .card-container:hover {
+    transform: translateY(-5px);
   }
   
   .card {

@@ -28,7 +28,7 @@ const Chat = () => {
 
     const createMessageAndClearInput = () => {
         createMessage(id, { text: text })
-            .then(messageCreated => {
+            .then(() => {
                 setText(''); // Limpiar el campo de texto después de enviar el mensaje
                 fetchChat();
             })
