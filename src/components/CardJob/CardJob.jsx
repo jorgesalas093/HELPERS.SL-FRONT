@@ -1,7 +1,3 @@
-// con esta logica, sacar las card de la home, dale duro muchacho, confio en ti JozeLui
-
-//ya casi lo tienes JozeLui, descargate las fotos de los curros que faltan y ponle una descripción, recuerda pasar el texto en español en el block de notas
-
 import Carer from "../../assets/imageJob/carer.jpg"
 import Carpenter from "../../assets/imageJob/carpenter.jpg"
 import Brickwork from "../../assets/imageJob/brickwork.jpg"
