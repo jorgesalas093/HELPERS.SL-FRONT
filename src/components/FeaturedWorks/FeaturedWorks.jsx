@@ -1,37 +1,74 @@
-import "./FeaturedWorks.css"
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { useInView } from "react-intersection-observer";
 
-const Card = ({ title, content, link }) => (
-    <div className="w-full md:w-1/3 p-4 card-container">
-        <a href={link} className="block w-full h-full">
-            <div className="bg-white shadow-md rounded-lg p-6 card">
-                <h2 className="text-xl font-semibold mb-2">{title}</h2>
-                <p>{content}</p>
-            </div>
-        </a>
-    </div>
-);
+import Carer from "../../assets/imageJob/carer.jpg";
+import Carpenter from "../../assets/imageJob/carpenter.jpg";
+import Brickwork from "../../assets/imageJob/brickwork.jpg";
+
+import "../FeaturedWorks/FeaturedWorks.css";
+
+const job = [
+  { title: "Carer", img: Carer, text: "Caring for sick, disabled or needy people. It also accompanies medical appointments or daily tasks.", to: "Carer" },
+  { title: "Carpenter", img: Carpenter, text: "Construction and repair of furniture, doors and everything related to wood. We also put laminate flooring.", to: "Carpenter" },
+  { title: "Brickwork", img: Brickwork, text: "Bathroom renovation, changing house layout, plasterboard, changing windows. Everything related to works at home.", to: "Brickwork" },
+  { title: "Brickwork", img: Brickwork, text: "Bathroom renovation, changing house layout, plasterboard, changing windows. Everything related to works at home.", to: "Brickwork" },
+  { title: "Brickwork", img: Brickwork, text: "Bathroom renovation, changing house layout, plasterboard, changing windows. Everything related to works at home.", to: "Brickwork" },
+  { title: "Brickwork", img: Brickwork, text: "Bathroom renovation, changing house layout, plasterboard, changing windows. Everything related to works at home.", to: "Brickwork" }
+];
+
 const FeaturedWorks = () => {
     return (
-        <div>
-            <h2 className="text-xl font-bold text-center p-10">FEATURED WORKS</h2>
-            <div className="flex justify-center">
-                <Card
-                    title="Messenger"
-                    content="If you need us to bring something to your house, such as shopping, picking up an order from a local store or doing some type of procedure or transaction."
-                    link=""
-                />
-                <Card
-                    title="Assamble"
-                    content="Have you bought a piece of furniture and need help with assembly? We can also take it home and assemble it."
-                    link=""
-                />
-                <Card
-                    title="Chef"
-                    content="Are you not good at cooking but want to surprise your guests? We have a home cook for you."
-                    link=""
-                />
-            </div>
-        </div>
+      <div className="car-list">
+        {job.map((job, index) => (
+          <CardJob key={index} job={job} />
+        ))}
+      </div>
     );
-};
-export default FeaturedWorks;
+  };
+  
+  const CardJob = ({ job }) => {
+    const [ref, inView] = useInView({
+      triggerOnce: true,
+      threshold: 0.5
+    });
+  
+    const cardVariants = {
+      offscreen: {
+        y: 50
+      },
+      onscreen: {
+        y: 10,
+        rotate: -5,
+        transition: {
+          type: "spring",
+          bounce: 0.4,
+          duration: 0.8
+        }
+      }
+    };
+  
+    return (
+      <li className="card-container" ref={ref}>
+        <Link to={`/job/${job.to}`} className="block w-full h-full">
+          <motion.div
+            className="car-container"
+            initial="offscreen"
+            animate={inView ? "onscreen" : "offscreen"}
+            variants={cardVariants}
+            transition={{ type: "spring", bounce: 1.4, duration: 0.8 }}
+          >
+            <div className="car-title">{job.title}</div>
+            <div className="splash">
+              <img src={job.img} alt={job.title} />
+            </div>
+            <div className="car-content">
+              <p>{job.text}</p>
+            </div>
+          </motion.div>
+        </Link>
+      </li>
+    );
+  };
+  
+  export default FeaturedWorks;
