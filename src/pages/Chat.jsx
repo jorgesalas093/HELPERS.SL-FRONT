@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import Input from "../components/Input";
+
+
+
 import { useState, useEffect, useCallback, useContext, useRef } from 'react';
+
 import { useParams } from 'react-router-dom';
 import { createMessage, getChat } from "../services/ChatService";
 import AuthContext from "../contexts/AuthContext";
@@ -11,6 +15,7 @@ const Chat = () => {
     const { user } = useContext(AuthContext);
     const [chat, setChat] = useState(null);
     const [text, setText] = useState('');
+
 
     const intervalRef = useRef(null)
 
@@ -23,6 +28,7 @@ const Chat = () => {
                 console.error('Error fetching chat:', error);
             });
     }, [id]);
+
 
     const handleChatTextChange = (event) => {
         setText(event.target.value);
@@ -38,6 +44,7 @@ const Chat = () => {
                 console.error('Error creating message:', error);
             });
     };
+
 
     const myfuncion = (date) => {
         const parsedDate = new Date(date);
@@ -59,10 +66,12 @@ const Chat = () => {
         return () => {
             clearInterval(intervalRef.current)
         }
+
     }, [id, fetchChat]);
 
     return (
         <div>
+
 
             <div>
                 {chat && chat.users.map((chatUser, index) => (
@@ -103,6 +112,7 @@ const Chat = () => {
                         }
 
                     </div>
+
 
                 );
             })}

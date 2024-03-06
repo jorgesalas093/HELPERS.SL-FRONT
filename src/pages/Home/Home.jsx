@@ -1,7 +1,6 @@
 import "./Home.css";
 import Jobs from "../../components/Job/Jobs";
 import HelpersLogoTitle from "../../components/HelpersTitle/HelpersTitle";
-import FeaturedWorks from "../../components/FeaturedWorks/FeaturedWorks";
 import Body from "../../components/Body/Body";
 
 
@@ -17,9 +16,8 @@ const Home = () => {
           <Jobs />
         </div>
       </div>
-        <Body/>        
       <div>
-        <FeaturedWorks />
+        <Body/>        
       </div>
     </div>
   );
