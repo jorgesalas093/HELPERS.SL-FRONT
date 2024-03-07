@@ -8,15 +8,19 @@ import { createComment } from '../../services/CommentService';
 import { deleteComment } from './../../services/CommentService';
 import AuthContext from '../../contexts/AuthContext';
 import { createChat } from '../../services/ChatService';
+import Stars from '../Stars/Stars';
 
 
 const Profile = ({ user, isCurrentUser, refetch }) => {
   const [commentText, setCommentText] = useState('');
+  const [rating, setRating] = useState(0);
+
   const { user: currentUser } = useContext(AuthContext)
   const { id } = useParams();
   const navigate = useNavigate();
 
-  console.log('-----------------------', id)
+  // console.log('-----------------------', id)
+
   const handleCommentTextChange = (event) => {
     setCommentText(event.target.value);
   };
@@ -60,27 +64,47 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
         console.error('Error deleting comment:', error);
       });
   };
+  const handleRate = (value) => {
+    setRating(value);
+    // Aquí puedes hacer algo con la calificación, como enviarla al servidor
+  };
 
-  //CREAR CON EL EFFECT EL PODER ATACAR SOBRE EL ID DEL CHAT SI YA ESTA CREADO Y EN EL CASO DE QUE NO ESTE CREADO 
-  //CREAR UNO NUEVO
   return (
+
     <div className="profile-container">
       {user && (
         <>
 
           {/* AQUI TOCA METER LA LOGICA SI ESTA CREADO EL CHAT REDIRECCIONAR, SINO CREAR EL ID */}
 
-          {!isCurrentUser && (
-            <Button onClick={createChart} text="CHAT" />
-          )}
+          <div className="flex justify-between items-center">
+            <img src={user.avatar} alt="Avatar" className="profile-info rounded-full" style={{ width: "250px", height: "250px" }} />
+            {!isCurrentUser && (
+              <Button onClick={createChart} text="CHAT" />
+            )}
+          </div>
 
 
-          <p className="profile-username">{user.username}</p>
+          <div className='flex justify-between'>
+            <div>
+              <p className="profile-username">Name: {user.username}</p>
+            </div>
+            <div className='flex items-center profile-username'>
+              <p className="mr-4">{rating}</p>
+              <Stars readOnly={false} initialRating={rating} onChange={handleRate} />
+
+            </div>
+          </div>
+
+
+
           <p className="profile-info">Email: {user.email}</p>
-          <p className="profile-info">Biography: {user.biography}</p>
           <p className="profile-info">Birthday: {user.birthday}</p>
-          <img src={user.avatar} alt="Avatar" className="profile-info" />
+          <p className="profile-info">Biography: {user.biography}</p>
+
+
           <p className="profile-info">{user.typejob ? `Job: ${user.typejob}` : null}</p>
+
           <div className="profile-comments">
             <h2>Comments:</h2>
             {user.comments.map(comment => {

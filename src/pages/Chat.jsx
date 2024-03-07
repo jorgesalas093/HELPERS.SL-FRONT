@@ -70,13 +70,20 @@ const Chat = () => {
     }, [id, fetchChat]);
 
     return (
-        <div>
+        <div className="border border-gray-500 rounded-lg">
 
 
-            <div>
+            <div className="p-2 mb-1 ">
                 {chat && chat.users.map((chatUser, index) => (
                     chatUser._id !== user._id &&
-                    <h1 key={index} className="text-center uppercase" >{chatUser.username}  <img src={chatUser.avatar} alt="Avatar" width="50" className="ml-2 rounded-full" /></h1>
+                    <div key={index} className="bg-blue-400 p-4 rounded-lg border border-gray-500 flex justify-center">
+                        <h1 className="text-center uppercase flex items-center">
+                            <Link to={`/users/${chatUser._id}`}>
+                                <img src={chatUser.avatar} alt="Avatar" width="50" className="mr-2 rounded-full" />
+                            </Link>
+                            {chatUser.username}
+                        </h1>
+                    </div>
                 ))}
             </div>
 
@@ -84,7 +91,7 @@ const Chat = () => {
             {chat && chat.messages.map(message => {
                 console.log(message)
                 return (
-                    <div key={message._id} >
+                    <div key={message._id} className="items-center p-4 ">
                         {user._id === message.user._id ?
                             // AQUI EMPIEZA UNA PARTE DEL TERNARIO
                             <div className="flex justify-end">
