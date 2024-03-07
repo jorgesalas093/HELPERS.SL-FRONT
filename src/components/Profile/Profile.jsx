@@ -84,39 +84,34 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
   };
 
   return (
-
     <div className="profile-container">
       {user && (
         <>
-
           {/* AQUI TOCA METER LA LOGICA SI ESTA CREADO EL CHAT REDIRECCIONAR, SINO CREAR EL ID */}
-
-          <div className="flex justify-between items-center">
-            <img src={user.avatar} alt="Avatar" className="profile-info rounded-full" style={{ width: "250px", height: "250px" }} />
+          <div className="flex justify-center items-center mb-2">
+            <img src={user.avatar} alt="Avatar" className="avatar-image" />
+          </div>
+          <div className="flex justify-center profile-likes">
+            <Stars readOnly={false} initialRating={rating} onChange={handleRate} />
+            {/* Yo esto lo quitaria
+            <div className='flex justify-center items-center profile-username'>
+              <p className="mr-4">{rating}</p>
+            </div>
+            */}
+          </div>
+          <div className='flex justify-center'>
+            <div>
+              <p className="profile-username">Name: {user.username}</p>
+            </div>
+          </div>
+          <div className="flex justify-center mb-5">
             {!isCurrentUser && (
               <Button onClick={createChart} text="CHAT" />
             )}
           </div>
-
-
-          <div className='flex justify-between'>
-            <div>
-              <p className="profile-username">Name: {user.username}</p>
-            </div>
-            <div className='flex items-center profile-username'>
-              <p className="mr-4">{rating}</p>
-              <Stars readOnly={false} initialRating={rating} onChange={handleRate} />
-
-            </div>
-          </div>
-
-
-
           <p className="profile-info">Email: {user.email}</p>
           <p className="profile-info">Birthday: {user.birthday}</p>
           <p className="profile-info">Biography: {user.biography}</p>
-
-
           <p className="profile-info">{user.typejob ? `Job: ${user.typejob}` : null}</p>
 
           <div className="profile-comments bg-gray-100 p-4 rounded-md ">
