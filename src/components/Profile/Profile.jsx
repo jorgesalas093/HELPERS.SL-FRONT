@@ -84,83 +84,34 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
   };
 
   return (
+    
     <div className="profile-container">
       {user && (
-        <>
-          {/* AQUI TOCA METER LA LOGICA SI ESTA CREADO EL CHAT REDIRECCIONAR, SINO CREAR EL ID */}
-<<<<<<< HEAD
-
-          <div className="flex justify-center items-center">
-            <img src={user.avatar} alt="Avatar" className="avatar-image" />
-          </div>
-
-=======
+        <div>
+       
           <div className="flex justify-center items-center mb-2">
           <img src={user.avatar} alt="Avatar" className="profile-info rounded-full" style={{ width: "250px", height: "250px" }} />
           </div>
->>>>>>> 4d3c8b5ffdef00503f026744b8bab688bc1832f0
           <div className="flex justify-center profile-likes">
             <Stars readOnly={false} initialRating={rating} onChange={handleRate} />
-            {/* Yo esto lo quitaria
-            <div className='flex justify-center items-center profile-username'>
-              <p className="mr-4">{rating}</p>
-<<<<<<< HEAD
-            </div> 
-            */}
+      
           </div>
 
-
-=======
-            </div>
-            */}
-          </div>
->>>>>>> 4d3c8b5ffdef00503f026744b8bab688bc1832f0
           <div className='flex justify-center'>
             <div>
               <p className="profile-username">Name: {user.username}</p>
             </div>
           </div>
-<<<<<<< HEAD
-
-=======
->>>>>>> 4d3c8b5ffdef00503f026744b8bab688bc1832f0
           <div className="flex justify-center mb-5">
             {!isCurrentUser && (
               <Button onClick={createChart} text="CHAT" />
             )}
           </div>
-<<<<<<< HEAD
-
-=======
->>>>>>> 4d3c8b5ffdef00503f026744b8bab688bc1832f0
           <p className="profile-info">Email: {user.email}</p>
           <p className="profile-info">Birthday: {user.birthday}</p>
           <p className="profile-info">Biography: {user.biography}</p>
           <p className="profile-info">{user.typejob ? `Job: ${user.typejob}` : null}</p>
 
-<<<<<<< HEAD
-          <div className="profile-comments">
-            <h2>Comments:</h2>
-            {user.comments.map(comment => {
-              return (
-                <div key={comment._id} className="comment">
-                  <p className="comment-text">{comment.text}</p>
-                  <p className="comment-date">{comment.date}</p>
-                  {comment.writer._id === currentUser.id && (
-                    <Button onClick={() => {
-                      if (comment.writer._id === currentUser.id) {
-                        handleDeleteComment(comment._id)
-                      }
-
-                    }} text="DELETE"> </Button>
-                  )}
-                  <Link to={`/users/${comment.writer._id}`}>
-                    <p className="comment-info"> Posted by: {comment.writer.username}</p>
-                  </Link>
-                </div>
-              )
-            })}
-=======
           <div className="profile-comments bg-gray-100 p-4 rounded-md ">
             <h2 className="text-xl font-semibold mb-4">Comments:</h2>
             {user.comments.map(comment => (
@@ -182,7 +133,6 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
                 )}
               </div>
             ))}
->>>>>>> 4d3c8b5ffdef00503f026744b8bab688bc1832f0
           </div>
 
 
@@ -204,9 +154,10 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
           {!isCurrentUser && (
             <Button text='COMMENT' onClick={handleCreateComment}></Button>
           )}
-        </>
+        </div>
       )}
     </div>
+    
   );
 };
 
