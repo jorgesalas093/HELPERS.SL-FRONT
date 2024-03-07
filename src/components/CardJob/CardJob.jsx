@@ -53,7 +53,7 @@ const CardJobList = ({ job }) => {
         <motion.div className="card-wrapper">
           <div className="splash-container">
             <div className="splash">
-              <img src={job.img} alt={job.title} />
+              <img src={job.img} alt={job.img} />
               <div className="title-overlay">{job.title}</div>
             </div>
           </div>

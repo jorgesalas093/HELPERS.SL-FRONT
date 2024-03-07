@@ -11,7 +11,7 @@ const Home = () => {
       <div>
         <HelpersLogoTitle />
       </div>
-      <div className="border-jobs">
+      <div>
         <div>
           <Jobs />
         </div>

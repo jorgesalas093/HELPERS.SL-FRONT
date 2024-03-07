@@ -1,7 +1,7 @@
+import { useEffect, useState } from "react";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import Slider from "react-slick";
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-
 import { Link } from "react-router-dom";
 
 import CarerGif from "../../assets/gifWorks/carer-cuidador.gif";
@@ -36,10 +36,9 @@ import Plumber from "../../assets/pngWorks/plumber.png"
 import Teacher from "../../assets/pngWorks/teacher.png"
 import Welder from "../../assets/pngWorks/welder-soldador.png"
 
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import "./Jobs.css";
-import { useEffect, useState } from "react";
-import { motion, useAnimation } from "framer-motion";
-import { useInView } from "react-intersection-observer";
 
 const info = [
   { gifSrc: CarerGif, staticSrc: Carer, text: "Carer", to: "Carer" },
@@ -95,7 +94,7 @@ const Jobs = () => {
   };
 
   return (
-    <div ref={ref} className="jobs-container pl-4">
+    <div ref={ref} className="jobs-container">
       <motion.div
         animate={controls}
         initial="hidden"

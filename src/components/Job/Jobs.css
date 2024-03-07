@@ -1,8 +1,9 @@
 .jobs-line {
   display: flex;
-  flex-direction: column; /* Alinea los elementos en columnas */
+  flex-direction: column;
   align-items: center;
   text-align: center;
+  margin-bottom: 15px;
 }
 
 .jobs-line img {
@@ -15,27 +16,16 @@
 .jobs-line p {
   width: 60px;
   font-size: 10px;
-  margin-top: 5px; /* Espacio entre la imagen y el texto */
+  margin-top: 15px;
 }
 
 .slick-slide {
   margin: 0 15px;
 }
 
-.custom-carousel .slick-prev,
-.custom-carousel .slick-next {
-  color: black;
-  border: 1px solid black;
-  align-items: center;
-}
-
-.custom-carousel .slick-next {
-  
-}
-
 .slick-prev,
 .slick-next {
-  color: black; /* Cambia el color de las flechas */
-  border: 1px solid black; /* Añade un borde a las flechas */
-  margin-right: 15px;
+  color: blue !important; /* Cambia el color aquí */
+  border: 1px solid black;
 }
+
