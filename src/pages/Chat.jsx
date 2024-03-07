@@ -2,8 +2,6 @@ import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import Input from "../components/Input";
 
-
-
 import { useState, useEffect, useCallback, useContext, useRef } from 'react';
 
 import { useParams } from 'react-router-dom';
@@ -15,9 +13,9 @@ const Chat = () => {
     const { user } = useContext(AuthContext);
     const [chat, setChat] = useState(null);
     const [text, setText] = useState('');
+    const [lastDay, setLastDay] = useState('');
 
-
-    const intervalRef = useRef(null)
+    const intervalRef = useRef(null);
 
     const fetchChat = useCallback(() => {
         getChat(id)
@@ -29,7 +27,6 @@ const Chat = () => {
             });
     }, [id]);
 
-
     const handleChatTextChange = (event) => {
         setText(event.target.value);
     };
@@ -37,7 +34,7 @@ const Chat = () => {
     const createMessageAndClearInput = () => {
         createMessage(id, { text: text })
             .then(() => {
-                setText(''); // Limpiar el campo de texto después de enviar el mensaje
+                setText('');
                 fetchChat();
             })
             .catch(error => {
@@ -45,34 +42,45 @@ const Chat = () => {
             });
     };
 
-
     const myfuncion = (date) => {
         const parsedDate = new Date(date);
         const hours = parsedDate.getHours();
-        const minutes = parsedDate.getMinutes();        // Formateamos las horas y los minutos a dos dígitos
+        const minutes = parsedDate.getMinutes();
         const formattedHours = hours < 10 ? '0' + hours : hours;
         const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
         return `${formattedHours}:${formattedMinutes}`;
     };
 
+    const myFuncionChangeDay = (date) => {
+        const parsedDate = new Date(date);
+        const day = parsedDate.getDate();
+        const month = parsedDate.getMonth() + 1;
+        const year = parsedDate.getFullYear();
+        return `${day}-${month}-${year}`;
+    };
+
     useEffect(() => {
         intervalRef.current = setInterval(() => {
-            console.log('me traigo chat')
+            const currentDate = new Date();
+            const currentDay = currentDate.getDate();
+            if (currentDay !== lastDay) {
+                setLastDay(currentDay);
+                console.log('Se ha cambiado de día');
+                // Aquí puedes realizar alguna acción en el front cuando se cambie de día
+            }
             fetchChat();
-        }, 2000)
+        }, 2000);
 
         fetchChat();
 
         return () => {
-            clearInterval(intervalRef.current)
-        }
+            clearInterval(intervalRef.current);
+        };
 
-    }, [id, fetchChat]);
+    }, [id, fetchChat, lastDay]);
 
     return (
         <div className="border border-gray-500 rounded-lg">
-
-
             <div className="p-2 mb-1 ">
                 {chat && chat.users.map((chatUser, index) => (
                     chatUser._id !== user._id &&
@@ -87,24 +95,23 @@ const Chat = () => {
                 ))}
             </div>
 
-
             {chat && chat.messages.map(message => {
-                console.log(message)
                 return (
                     <div key={message._id} className="items-center p-4 ">
                         {user._id === message.user._id ?
-                            // AQUI EMPIEZA UNA PARTE DEL TERNARIO
-                            <div className="flex justify-end">
-                                <div className="bg-blue-500 text-white rounded-lg p-2 mb-1 max-w-md flex center">
-                                    <p>{message.text}</p>
-                                    <div className="flex justify-end">
-                                        <img src={message.user.avatar} alt="Avatar" width="20" className="ml-2 rounded-full" />
-                                    </div>
-                                    <p>{myfuncion(message.createdAt)}</p>
-                                </div>
+                            <>
+                                <p className="flex justify-center">{myFuncionChangeDay(message.createdAt)}</p>
+                                <div className="flex justify-end">
 
-                            </div>
-                            // AQUI TERMINA UNA PARTE DEL TERNARIO 
+                                    <div className="bg-blue-500 text-white rounded-lg p-2 mb-1 max-w-md flex center">
+                                        <p>{message.text}</p>
+                                        <div className="flex justify-end">
+                                            <img src={message.user.avatar} alt="Avatar" width="20" className="ml-2 rounded-full" />
+                                        </div>
+                                        <p>{myfuncion(message.createdAt)}</p>
+                                    </div>
+                                </div>
+                            </>
                             :
                             <div className="flex">
                                 <div className="bg-gray-400 text-black rounded-lg p-2 mb-1 max-w-md">
@@ -115,12 +122,8 @@ const Chat = () => {
                                     <p>{myfuncion(message.createdAt)}</p>
                                 </div>
                             </div>
-                            // FIN DE TERNARIO
                         }
-
                     </div>
-
-
                 );
             })}
             <Input
@@ -134,7 +137,6 @@ const Chat = () => {
                 onBlur={() => { }}
             />
             <Button text='SEND MESSAGE' onClick={createMessageAndClearInput}>Send Message</Button>
-            {/* //volver al perfil del usuario*/}
             <Link to={`/alljobs`}><Button text="Jobs" /></Link>
         </div>
     );

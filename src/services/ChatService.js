@@ -6,8 +6,8 @@ export const getChat = (chatId) => {
   return http.get(`/chats/${chatId}`)
 }
 
-export const getAllChat = (me) => {
-  return http.get(`/chats/${me}`)
+export const getAllChat = () => {
+  return http.get("/chats")
 }
 
 
