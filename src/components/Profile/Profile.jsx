@@ -19,7 +19,21 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  // console.log('-----------------------', id)
+  const myDateFuncion = (date) => {
+    const parsedDate = new Date(date);
+    const day = parsedDate.getDate();
+    const month = parsedDate.getMonth() + 1; // Sumamos 1 porque los meses son de 0 a 11
+    const year = parsedDate.getFullYear();
+    const hours = parsedDate.getHours();
+    const minutes = parsedDate.getMinutes();
+    const formattedDay = day < 10 ? '0' + day : day;
+    const formattedMonth = month < 10 ? '0' + month : month;
+    const formattedYear = year;
+    const formattedHours = hours < 10 ? '0' + hours : hours;
+    const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
+
+    return `${formattedDay}-${formattedMonth}-${formattedYear} ${formattedHours}:${formattedMinutes}`;
+  };
 
   const handleCommentTextChange = (event) => {
     setCommentText(event.target.value);
@@ -105,32 +119,31 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
 
           <p className="profile-info">{user.typejob ? `Job: ${user.typejob}` : null}</p>
 
-          <div className="profile-comments">
-            <h2>Comments:</h2>
-            {user.comments.map(comment => {
-              return (
-                <div key={comment._id} className="comment">
-                  <p className="comment-text">{comment.text}</p>
-                  <p className="comment-date">{comment.date}</p>
-                  {comment.writer._id === currentUser.id && (
-                    <Button onClick={() => {
-                      if (comment.writer._id === currentUser.id) {
-                        handleDeleteComment(comment._id)
-                      }
-
-                    }} text="BORRAR"> </Button>
-                  )}
-
-
-                  <Link to={`/users/${comment.writer._id}`}>
-                    <p className="comment-info"> Posted by: {comment.writer.username}
-                    </p></Link>
-
+          <div className="profile-comments bg-gray-100 p-4 rounded-md ">
+            <h2 className="text-xl font-semibold mb-4">Comments:</h2>
+            {user.comments.map(comment => (
+              <div key={comment._id} className="flex flex-col space-y-2">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <Link to={`/users/${comment.writer._id}`}>
+                      <img src={comment.writer.avatar} alt="Avatar" className="w-8 h-8 rounded-full mr-2" />
+                    </Link>
+                    <div>
+                      <p className="font-semibold">{comment.writer.username}</p>
+                    </div>
+                  </div>
+                  <p className="text-xs text-gray-500">{myDateFuncion(comment.date)}</p>
                 </div>
-              )
-            })}
-
+                <p className="text-sm text-gray-600">{comment.text}</p>
+                {comment.writer._id === currentUser.id && (
+                  <Button onClick={() => handleDeleteComment(comment._id)} text="Delete" className="text-red-500 text-xs" />
+                )}
+              </div>
+            ))}
           </div>
+
+
+
 
           {!isCurrentUser && (
             <Input
