@@ -5,8 +5,10 @@ import { logout } from "../stores/AccessTokenStore";
 import AllChats from "../pages/AllChats";
 import HelpersLogoIndex from "../components/HelppersLogo/HelpersLogoIndex";
 
+
 const Navbar = () => {
   const { user, isAuthFetched } = useContext(AuthContext);
+  
 
   const protectedRoutes = [
     {
