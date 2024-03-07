@@ -96,7 +96,7 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
 
 =======
           <div className="flex justify-center items-center mb-2">
-            <img src={user.avatar} alt="Avatar" className="avatar-image" />
+          <img src={user.avatar} alt="Avatar" className="profile-info rounded-full" style={{ width: "250px", height: "250px" }} />
           </div>
 >>>>>>> 4d3c8b5ffdef00503f026744b8bab688bc1832f0
           <div className="flex justify-center profile-likes">
