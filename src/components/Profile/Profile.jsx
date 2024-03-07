@@ -89,7 +89,7 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
         <>
           {/* AQUI TOCA METER LA LOGICA SI ESTA CREADO EL CHAT REDIRECCIONAR, SINO CREAR EL ID */}
           <div className="flex justify-center items-center mb-2">
-            <img src={user.avatar} alt="Avatar" className="avatar-image" />
+          <img src={user.avatar} alt="Avatar" className="profile-info rounded-full" style={{ width: "250px", height: "250px" }} />
           </div>
           <div className="flex justify-center profile-likes">
             <Stars readOnly={false} initialRating={rating} onChange={handleRate} />
