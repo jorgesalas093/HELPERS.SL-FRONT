@@ -7,7 +7,7 @@ import ProtectedRoute from "./components/ProtectedRoute"
 import UserProfile from "./pages/UserProfile"
 import CurrentUserProfile from "./pages/CurrentUserProfile"
 import AllJobs from "./pages/AllJobs"
-
+import Activation from "./pages/Activation"
 
 import Footer from "./components/Footer/Footer"
 import TypeJob from "./pages/TypeJob/TypeJob"
@@ -28,6 +28,7 @@ function App() {
           <Route path="/job/:to" element={<TypeJob />} />
           <Route path="/alljobs" element={<AllJobs />} />
           <Route path="/chat/:id" element={<ProtectedRoute><Chat /></ProtectedRoute>} />
+          <Route path="/activate/:token" element={<Activation />} />
         </Routes>
       </div>
       <Footer />

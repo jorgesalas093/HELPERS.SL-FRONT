@@ -87,7 +87,7 @@ const Chat = () => {
                     <div key={index} className="bg-blue-400 p-4 rounded-lg border border-gray-500 flex justify-center">
                         <h1 className="text-center uppercase flex items-center">
                             <Link to={`/users/${chatUser._id}`}>
-                                <img src={chatUser.avatar} alt="Avatar" width="50" className="mr-2 rounded-full" />
+                                <img src={chatUser.avatar} alt="Avatar" width="50" className="mr-2 rounded-full " style={{ width: "40px", height: "40px" }} />
                             </Link>
                             {chatUser.username}
                         </h1>

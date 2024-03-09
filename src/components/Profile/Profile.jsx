@@ -84,17 +84,17 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
   };
 
   return (
-    
+
     <div className="profile-container">
       {user && (
         <div>
-       
+
           <div className="flex justify-center items-center mb-2">
-          <img src={user.avatar} alt="Avatar" className="profile-info rounded-full" style={{ width: "250px", height: "250px" }} />
+            <img src={user.avatar} alt="Avatar" className="profile-info rounded-full" style={{ width: "250px", height: "250px" }} />
           </div>
           <div className="flex justify-center profile-likes">
             <Stars readOnly={false} initialRating={rating} onChange={handleRate} />
-      
+
           </div>
 
           <div className='flex justify-center'>
@@ -114,25 +114,30 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
 
           <div className="profile-comments bg-gray-100 p-4 rounded-md ">
             <h2 className="text-xl font-semibold mb-4">Comments:</h2>
+
             {user.comments.map(comment => (
               <div key={comment._id} className="flex flex-col space-y-2">
+                {console.log(comment)}
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
-                    <Link to={`/users/${comment.writer._id}`}>
-                      <img src={comment.writer.avatar} alt="Avatar" className="w-8 h-8 rounded-full mr-2" />
-                    </Link>
+                    {comment.writer && (  // Verifica si comment.writer existe antes de acceder a sus propiedades
+                      <Link to={`/users/${comment.writer._id}`}>
+                        <img src={comment.writer.avatar} alt="Avatar" className="w-8 h-8 rounded-full mr-2" />
+                      </Link>
+                    )}
                     <div>
-                      <p className="font-semibold">{comment.writer.username}</p>
+                      <p className="font-semibold">{comment.writer ? comment.writer.username : "Unknown"}</p>  {/* Si comment.writer existe, muestra el nombre de usuario, de lo contrario, muestra "Unknown" */}
                     </div>
                   </div>
                   <p className="text-xs text-gray-500">{myDateFuncion(comment.date)}</p>
                 </div>
                 <p className="text-sm text-gray-600">{comment.text}</p>
-                {comment.writer._id === currentUser.id && (
+                {comment.writer?._id === currentUser.id && (  // Utiliza el operador de acceso opcional (?.) para evitar errores si comment.writer es null o undefined
                   <Button onClick={() => handleDeleteComment(comment._id)} text="Delete" className="text-red-500 text-xs" />
                 )}
               </div>
             ))}
+
           </div>
 
 
@@ -157,7 +162,7 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
         </div>
       )}
     </div>
-    
+
   );
 };
 

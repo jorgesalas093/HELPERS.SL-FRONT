@@ -11,3 +11,7 @@ export const register = (data) => {
 export const login = (data) => {
   return http.post('/login', data)
 }
+
+export const activate = (token) => {
+  return http.get(`/activate/${token}`)
+}

@@ -86,18 +86,18 @@ const Navbar = () => {
                 <>
                   <button
                     onClick={() => setShowChatsDropdown(!showChatsDropdown)}
-                    className="text-white hover:text-he-light-gray transform hover:scale-110 transition duration-300"
+                    className="text-white hover:text-he-light-gray transform hover:scale-200 transition duration-200"
                   >
                     {route.text}
                   </button>
                   {showChatsDropdown && (
-                    <div className="absolute top-full bg-white mt-1 py-2 px-4 rounded-lg shadow-lg">
-                      {route.subroutes.map((subroute, subindex) => (
-                        <NavLink key={subindex} to={subroute.to} className="block text-gray-800 hover:bg-gray-200 py-1">
-                          {subroute.text}
-                        </NavLink>
-                      ))}
-                    </div>
+                    <div className="absolute top-full bg-white mt-1 py-2 px-2 rounded-lg shadow-lg z-50">
+                    {route.subroutes.map((subroute, subindex) => (
+                      <NavLink key={subindex} to={subroute.to} className="block text-gray-800 hover:bg-gray-200 py-1">
+                        {subroute.text}
+                      </NavLink>
+                    ))}
+                  </div>
                   )}
                 </>
               ) : (
