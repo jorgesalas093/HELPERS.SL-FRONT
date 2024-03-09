@@ -28,9 +28,11 @@ const TypeJob = () => {
 
   return (
     <div className="type-job-container">
-      <p>{jobSelected.title}</p>
-      <img src={jobSelected.img} alt="Job Image" />
-      <p>{jobSelected.text}</p>
+
+    <p>{jobSelected.title}</p>
+    <img src={jobSelected.img} alt="Job Image" />
+    <p>{jobSelected.text}</p>
+
       {users.map((user) => (
         <div key={user._id}>
           <p>Username: {user.username}</p>
@@ -44,4 +46,6 @@ const TypeJob = () => {
     </div>
   );
 };
+
 export default TypeJob;
+
