@@ -1,1 +1,16 @@
 hola
+
+# MONGODB_URI=mongodb://127.0.0.1:27017
+MONGODB_URI=mongodb+srv://jorgesalas093:jr9XW8KTyldMugfv@cluster0.ooojvlx.mongodb.net
+CLOUDINARY_NAME = dwahroldl
+CLOUDINARY_KEY = 223685262933679
+CLOUDINARY_SECRET = ATQhoSLUcY7xQEWyhJLoTuj29vg
+PORT = 3000
+CORS_ORIGIN = http://localhost:5173
+JWT_SECRET =test
+
+
+# aque ubav ebej aiqk - jltorres
+
+# mtng ytob yenq hqoc - ironrider
+
