@@ -51,8 +51,9 @@ export const AuthContextProvider = ({ children }) => {
   const contextValue = useMemo(() => ({
     isAuthFetched,
     user,
-    login,
-  }), [isAuthFetched, user, login]);
+    login, 
+    fetchCurrentUser
+  }), [isAuthFetched, user, login, fetchCurrentUser]);
 
   return (
     <AuthContext.Provider value={contextValue}>

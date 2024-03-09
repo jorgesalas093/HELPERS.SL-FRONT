@@ -6,6 +6,10 @@ export const getCurrentUser = () => {
   return http.get('/users/me')
 }
 
+export const getEnumTypeJob = () => {
+  return http.get('/users/typesjob')
+}
+
 export const getUser = (id) => {
   return http.get(`/users/${id}`)
 }
@@ -17,5 +21,6 @@ export const getAllUser = () => {
 export const getTypeJobUser = (typejob) => {
   return http.get(`/users/jobs/${typejob}`)
 }
+
 
 

@@ -8,7 +8,7 @@ import HelpersLogoIndex from "../components/HelppersLogo/HelpersLogoIndex";
 
 const Navbar = () => {
   const { user, isAuthFetched } = useContext(AuthContext);
-  
+
 
   const protectedRoutes = [
     {
@@ -32,8 +32,8 @@ const Navbar = () => {
       ]
     },
     {
-      to: '/workwithus',
-      text: 'Work With Us'
+      to: '/joinus',
+      text: 'Join Us'
     },
   ];
 
@@ -92,12 +92,12 @@ const Navbar = () => {
                   </button>
                   {showChatsDropdown && (
                     <div className="absolute top-full bg-white mt-1 py-2 px-2 rounded-lg shadow-lg z-50">
-                    {route.subroutes.map((subroute, subindex) => (
-                      <NavLink key={subindex} to={subroute.to} className="block text-gray-800 hover:bg-gray-200 py-1">
-                        {subroute.text}
-                      </NavLink>
-                    ))}
-                  </div>
+                      {route.subroutes.map((subroute, subindex) => (
+                        <NavLink key={subindex} to={subroute.to} className="block text-gray-800 hover:bg-gray-200 py-1">
+                          {subroute.text}
+                        </NavLink>
+                      ))}
+                    </div>
                   )}
                 </>
               ) : (

@@ -1,49 +1,47 @@
-import { useEffect, useState } from 'react';
-import { createHttp } from '../../services/BaseService';
-import { Link, useParams } from 'react-router-dom';
-import "./TypeJob.css"
-import Button from '../../components/Button';
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import "./TypeJob.css";
+import Button from "../../components/Button";
+import { jobs } from "../../assets/utils/utils";
 
 
-//AQUI TOCA HACER UN USEPARAMS PARA PILLAR TODOS LOS VALORES QUE VENGAN DE CADA TIPO DE TRABAJO Y ACTUAR SOBRE ELLO EN EL BACK
+import { getTypeJobUser } from "../../services/UserService";
 
 const TypeJob = () => {
   const [users, setUsers] = useState([]);
-  const http = createHttp(true); // Usar token de acceso
-  const { to: typejob } = useParams();
-  { console.log(http); }
-  { console.log(typejob); }
+  const { job } = useParams();
+
+  const jobSelected = jobs.find((jobData) => jobData.title === job);
 
   useEffect(() => {
-    const fetchUsers = () => {
-      http.get(`/users/jobs/${typejob}`)
-        .then(response => {
-          console.log(response)
-          setUsers(response);
-        })
-        .catch(error => {
-          console.error('Error fetching users:', error);
-        });
+    const fetchUsers = async () => {
+      try {
+        const response = await getTypeJobUser(job);
+        setUsers(response);
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      }
     };
-
     fetchUsers();
-  }, [typejob]);
-
+  }, [job]);
+  console.log(jobSelected);
 
   return (
-    <div className='type-job-container'>
-      {users.map(user => (
+    <div className="type-job-container">
+      <p>{jobSelected.title}</p>
+      <img src={jobSelected.img} alt="Job Image" />
+      <p>{jobSelected.text}</p>
+      {users.map((user) => (
         <div key={user._id}>
           <p>Username: {user.username}</p>
           <p>Email: {user.email}</p>
-          
-          
-          
-          <Link to={`/users/${user.id}`}><Button text="PROFILE" /></Link>
+          <p>Job: {user.typejob}</p>
+          <Link to={`/users/${user.id}`}>
+            <Button text="PROFILE" />
+          </Link>
         </div>
       ))}
     </div>
   );
 };
-
 export default TypeJob;
