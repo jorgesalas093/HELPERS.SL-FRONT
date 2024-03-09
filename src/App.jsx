@@ -1,13 +1,15 @@
-import { Route, Routes } from "react-router-dom";
-import Home from "./pages/Home/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import Navbar from "./components/Navbar";
-import ProtectedRoute from "./components/ProtectedRoute";
-import UserProfile from "./pages/UserProfile";
-import CurrentUserProfile from "./pages/CurrentUserProfile";
-import AllJobs from "./pages/AllJobs";
-import Activation from "./pages/Activation";
+import { Route, Routes } from "react-router-dom"
+import Home from "./pages/Home/Home"
+import Login from "./pages/Login"
+import Register from "./pages/Register"
+import Navbar from "./components/Navbar"
+import ProtectedRoute from "./components/ProtectedRoute"
+import UserProfile from "./pages/UserProfile"
+import CurrentUserProfile from "./pages/CurrentUserProfile"
+import AllJobs from "./pages/AllJobs"
+import Activation from "./pages/Activation"
+import JoinUs from "./pages/JoinUs"
+
 
 import Footer from "./components/Footer/Footer";
 import TypeJob from "./pages/TypeJob/TypeJob";
@@ -23,14 +25,9 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route
-            path="/profile"
-            element={
-              <ProtectedRoute>
-                <CurrentUserProfile />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/profile" element={<ProtectedRoute><CurrentUserProfile /></ProtectedRoute>} />
+          <Route path="/joinus" element={<ProtectedRoute><JoinUs /></ProtectedRoute>} />
+
           <Route path="/users/:id" element={<UserProfile />} />
           <Route path="/job/:job" element={<TypeJob />} />
           <Route path="/alljobs" element={<AllJobs />} />
@@ -43,6 +40,7 @@ function App() {
             }
           />
           <Route path="/activate/:token" element={<Activation />} />
+
         </Routes>
       </div>
       <Footer />
@@ -51,3 +49,4 @@ function App() {
 }
 
 export default App;
+

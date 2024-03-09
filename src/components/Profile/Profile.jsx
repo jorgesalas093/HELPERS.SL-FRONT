@@ -78,6 +78,8 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
         console.error('Error deleting comment:', error);
       });
   };
+
+  //AQUI LA LOGICA DEL RATE
   const handleRate = (value) => {
     setRating(value);
     // Aquí puedes hacer algo con la calificación, como enviarla al servidor

@@ -15,6 +15,7 @@ import Teacher from "../../assets/imageJob/teacher.jpg";
 import Welder from "../../assets/imageJob/welder.jpg";
 
 export const jobs = [
+
   {
     title: "Carer",
     img: Carer,
@@ -55,4 +56,5 @@ export const jobs = [
   { title: "Plumber", img: Plumber, text: ".", to: "Plumber" },
   { title: "Teacher", img: Teacher, text: ".", to: "Teacher" },
   { title: "Welder", img: Welder, text: ".", to: "Welder" },
+
 ];
