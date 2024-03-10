@@ -1,24 +1,36 @@
+//HOOKS
 import { useContext, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
+//COMPONENTS
 import Input from '../Input';
 import Button from '../Button';
-import './Profile.css'
-import { Link } from 'react-router-dom';
-import { createComment } from '../../services/CommentService';
-import { deleteComment } from './../../services/CommentService';
-import AuthContext from '../../contexts/AuthContext';
-import { createChat } from '../../services/ChatService';
 import Stars from '../Stars/Stars';
 
+//SERVICE
+import { createComment } from '../../services/CommentService';
+import { deleteComment } from './../../services/CommentService';
+import { createChat } from '../../services/ChatService';
+import postLikeProfile, { getLikesProfile } from "../../services/RateService"
+
+//CONTEXT
+import AuthContext from '../../contexts/AuthContext';
+
+//STYLE
+import './Profile.css'
 
 const Profile = ({ user, isCurrentUser, refetch }) => {
   const [commentText, setCommentText] = useState('');
   const [rating, setRating] = useState(0);
+  const [score, setScore] = useState(0);
 
   const { user: currentUser } = useContext(AuthContext)
   const { id } = useParams();
   const navigate = useNavigate();
 
+
+  //FUNCIÓN PARA FORMATEAR LA FECHA 
   const myDateFuncion = (date) => {
     const parsedDate = new Date(date);
     const day = parsedDate.getDate();
@@ -35,16 +47,45 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
     return `${formattedDay}-${formattedMonth}-${formattedYear} ${formattedHours}:${formattedMinutes}`;
   };
 
+  //FUNCIÓN PARA DAR UN LIKE
+  const handleRate = (rate) => {
+    if (currentUser.id === id) {
+      console.error('Cannot rate yourself');
+      return;
+    }
+    setRating(rate);
+    postLikeProfile(id, rate, currentUser.id)
+      .then(response => {
+        console.log('Rating sent to server:', response);
+        setRating(Math.round(score));
+      })
+      .catch(error => {
+        console.error('Error sending rating to server:', error);
+      });
+  };
+
+  getLikesProfile(id)
+    .then(response => {
+      console.log(response.score)
+      const totalScore = response.score;
+      setRating(totalScore);
+      setScore(totalScore);
+    })
+    .catch(error => {
+      console.error('Error fetching likes:', error);
+    });
+
+
   const handleCommentTextChange = (event) => {
     setCommentText(event.target.value);
   };
 
+  //FUNCION DEL SERVIDOR DE CREAR CHAT PASANDO EL ID DEL PARAMS
   const createChart = () => {
-    //FUNCION DEL SERVIDOR DE CREAR CHAT PASANDO EL ID DEL PARAMS
     createChat(id)
       .then(chat => {
         navigate(`/chat/${chat.id}`)
-        console.log(chat.id)
+
       })
       .catch(error => {
         console.error('Error fetching chats------------:', error);
@@ -52,14 +93,11 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
   };
 
   //AQUI SE HACE EL CREAR EL COMENTARIO
-
   const handleCreateComment = () => {
     createComment(id, commentText)
-      .then(response => {
-        console.log('Comment created:', response);
-        // Aquí puedes realizar alguna acción adicional, como actualizar la lista de comentarios
+      .then(() => {
         setCommentText(''); // Borrar el contenido del input después de comentar
-        refetch && refetch()
+        refetch && refetch();
       })
       .catch(error => {
         console.error('Error creating comment:', error);
@@ -79,12 +117,6 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
       });
   };
 
-  //AQUI LA LOGICA DEL RATE
-  const handleRate = (value) => {
-    setRating(value);
-    // Aquí puedes hacer algo con la calificación, como enviarla al servidor
-  };
-
   return (
 
     <div className="profile-container">
@@ -96,7 +128,7 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
           </div>
           <div className="flex justify-center profile-likes">
             <Stars readOnly={false} initialRating={rating} onChange={handleRate} />
-
+            <p>{rating.toFixed(2)} </p>
           </div>
 
           <div className='flex justify-center'>
@@ -119,7 +151,8 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
 
             {user.comments.map(comment => (
               <div key={comment._id} className="flex flex-col space-y-2">
-                {console.log(comment)}
+
+                {console.log(comment.text)}
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
                     {comment.writer && (  // Verifica si comment.writer existe antes de acceder a sus propiedades
@@ -135,14 +168,18 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
                 </div>
                 <p className="text-sm text-gray-600">{comment.text}</p>
                 {comment.writer?._id === currentUser.id && (  // Utiliza el operador de acceso opcional (?.) para evitar errores si comment.writer es null o undefined
-                  <Button onClick={() => handleDeleteComment(comment._id)} text="Delete" className="text-red-500 text-xs" />
+                  <Button
+                    text="Delete"
+                    onClick={() => handleDeleteComment(comment._id)}
+                    purpose="delete"
+                    className="text-red-500 text-xs"
+                  />
+
                 )}
               </div>
             ))}
 
           </div>
-
-
 
 
           {!isCurrentUser && (

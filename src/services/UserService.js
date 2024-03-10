@@ -22,5 +22,9 @@ export const getTypeJobUser = (typejob) => {
   return http.get(`/users/jobs/${typejob}`)
 }
 
+export const EditCurrentUserProfile = ( avatar, username, email, biography, birthday, typejob) => {
+  return http.put('/users/me', {  avatar, username, email, biography, birthday, typejob })
+}
+
 
 

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { getEnumTypeJob } from '../services/UserService'; // Reemplaza 'tuRutaAlServicio' con la ruta correcta
+import { getEnumTypeJob } from '../services/UserService';
 import Button from '../components/Button';
+import { EditCurrentUserProfile } from '../services/UserService'; // Asegúrate de importar la función de servicio adecuada
 
 const JoinUs = () => {
     const [typesJob, setTypesJob] = useState([]);
@@ -22,10 +23,25 @@ const JoinUs = () => {
 
     const toggleWorkSelection = (work) => {
         if (selectedWork.includes(work)) {
-            setSelectedWork(selectedWork.filter(item => item !== work)); // Si el trabajo ya está seleccionado, quítalo
+            setSelectedWork(selectedWork.filter(item => item !== work));
         } else {
-            setSelectedWork([...selectedWork, work]); // Si el trabajo no está seleccionado, agrégalo
+            setSelectedWork([...selectedWork, work]);
         }
+    };
+
+    const handleSaveSelectedWork = () => {
+        // Formatear los trabajos seleccionados antes de enviarlos al servidor
+        const formattedSelectedWork = selectedWork.map(work => work.toUpperCase());
+
+        // Llamar a la función del servicio para editar el perfil con los trabajos seleccionados
+        EditCurrentUserProfile({ typejob: formattedSelectedWork }) // Pasar un objeto con la propiedad typejob
+            .then(response => {
+                console.log('Perfil editado exitosamente:', response);
+                // Aquí puedes realizar alguna acción adicional después de editar el perfil
+            })
+            .catch(error => {
+                console.error('Error al editar el perfil:', error);
+            });
     };
 
     return (
@@ -34,13 +50,11 @@ const JoinUs = () => {
             <div>
                 {typesJob.map((type, index) => (
                     <p className='flex' key={index}>
-                        {/* <Button text="Mi botón" onClick={() => console.log("Botón clicado")} bgcolor="bg-green-500" /> */}
                         <Button
                             text={type}
-                            bgcolor="bg-green-500"
                             onClick={() => toggleWorkSelection(type)}
                             selected={selectedWork.includes(type)}
-                            style={{ backgroundColor: selectedWork.includes(type) ? 'green' : 'inherit' }} // Cambia el color a verde si está seleccionado
+                            bgcolor="bg-green-500"
                         >
                             {type}
                         </Button>
@@ -48,6 +62,7 @@ const JoinUs = () => {
                 ))}
             </div>
             <p>Trabajos seleccionados: {selectedWork.join(', ')}</p>
+            <Button text="Guardar Trabajos" onClick={handleSaveSelectedWork} bgcolor="bg-blue-500" />
         </div>
     );
 };
