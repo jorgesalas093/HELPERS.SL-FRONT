@@ -1,4 +1,4 @@
-import "./IconsAllJob.css"
+import "./IconsAllJob.css";
 
 import Carer from "../../assets/pngWorks/carer-cuidador.png";
 import Carpenter from "../../assets/pngWorks/carpenter.png";
@@ -34,11 +34,10 @@ const listIcon = [
   { icon: Welder, text: "Welder" },
 ];
 
-const IconItem = ({ icon, text, searchQuery }) => {
+const IconItem = ({ icon, text, action }) => {
   const handleIconClick = () => {
     // Realizar la búsqueda relacionada con el trabajo específico
-    console.log(`Realizar búsqueda para "${searchQuery}"`);
-    // llamar a una función que realice la búsqueda.
+    action(text);
   };
 
   return (
@@ -51,28 +50,21 @@ const IconItem = ({ icon, text, searchQuery }) => {
           </div>
         </button>
       </div>
-      <div>
-      
-      </div>
+      <div></div>
     </div>
   );
 };
 
-const Icon = () => {
+const Icon = ({ action }) => {
   const iconRows = [];
   let currentRow = [];
 
   listIcon.forEach((item, index) => {
     currentRow.push(
-      <IconItem
-        key={index}
-        icon={item.icon}
-        text={item.text}
-        searchQuery={item.searchQuery}
-      />
+      <IconItem key={index} icon={item.icon} text={item.text} action={action} />
     );
 
-        if (currentRow.length === 5 || index === listIcon.length - 1) {
+    if (currentRow.length === 5 || index === listIcon.length - 1) {
       iconRows.push(
         <div key={index} className="icons-row">
           {currentRow}

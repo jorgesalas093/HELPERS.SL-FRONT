@@ -5,13 +5,13 @@ import { getAllUser } from "../../services/UserService";
 import Card from "../../components/Card/Card";
 import Icon from "../../components/IconsAllJob/IconsAllJob";
 
-import "./AllJobs.css"
+import "./AllJobs.css";
 
 const AllJobs = () => {
   const [users, setUsers] = useState([]);
   const [filteredJobs, setFilteredJobs] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-
+  const [searchFilter, setSearchFilter] = useState("");
 
   useEffect(() => {
     const fetchUsers = () => {
@@ -38,16 +38,21 @@ const AllJobs = () => {
     }
   }, [searchTerm]);
 
-
-  const filteredUsers = users.filter((user) =>
-    user.username.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredUsers = users.filter(
+    (user) =>
+      user.username.toLowerCase().includes(searchTerm.toLowerCase()) &&
+      user.typejob.join(" ").includes(searchFilter.toLowerCase())
   );
+
+  const handleIconFiltersClick = (filterValue) => {
+    setSearchFilter(filterValue);
+  };
 
   return (
     <div>
       <div>
         <div>
-          <Icon />
+          <Icon action={handleIconFiltersClick} />
         </div>
       </div>
       <div className="container-search">
@@ -61,8 +66,7 @@ const AllJobs = () => {
       </div>
       <div className="search-user type-job-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredUsers.map((user) => (
-          <div key={user._id} >
-
+          <div key={user._id}>
             <Link to={`/users/${user.id}`}>
               <Card
                 key={user._id}
@@ -75,7 +79,6 @@ const AllJobs = () => {
         ))}
         {filteredJobs.map((job) => (
           <div key={job.id}>
-
             <p>{job.description}</p>
           </div>
         ))}

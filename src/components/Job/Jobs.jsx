@@ -97,14 +97,29 @@ const info = [
     text: "Messenger",
     to: "Messenger",
   },
-  { gifSrc: PainterGif,
+  { 
+    gifSrc: PainterGif,
     staticSrc: Painter,
     text: "Painter",
     to: "Painter"
   },
-  { gifSrc: PlumberGif, staticSrc: Plumber, text: "Plumber", to: "Plumber" },
-  { gifSrc: TeacherGif, staticSrc: Teacher, text: "Teacher", to: "Teacher" },
-  { gifSrc: WelderGif, staticSrc: Welder, text: "Welder", to: "Welder" },
+  { 
+    gifSrc: PlumberGif,
+    staticSrc: Plumber,
+    text: "Plumber",
+    to: "Plumber" },
+  { 
+    gifSrc: TeacherGif,
+    staticSrc: Teacher,
+    text: "Teacher",
+    to: "Teacher"
+  },
+  {
+    gifSrc: WelderGif,
+    staticSrc: Welder,
+    text: "Welder",
+    to: "Welder"
+  },
 ];
 
 const CarouselItem = ({ gifSrc, staticSrc, text, to }) => {
