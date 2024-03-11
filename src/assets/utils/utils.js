@@ -43,18 +43,66 @@ export const jobs = [
   {
     title: "Closet Organizer",
     img: ClosetOrganizer,
-    text: ".",
+    text: "Wardrobe change season has arrived. If you need help organizing rooms, closets. We can also help you organize your suitcases for your trips.",
     to: "ClosetOrganizer",
   },
-  { title: "Electrician", img: Electrician, text: ".", to: "Electrician" },
-  { title: "Assembler", img: Assembler, text: ".", to: "Assembler" },
-  { title: "Gardener", img: Gardener, text: ".", to: "Gardener" },
-  { title: "Home Cleaner", img: HomeCleaner, text: ".", to: "HomeCleaner" },
-  { title: "Locksmith", img: Locksmith, text: ".", to: "Locksmith" },
-  { title: "Messenger", img: Messenger, text: ".", to: "Messenger" },
-  { title: "Painter", img: Painter, text: ".", to: "Painter" },
-  { title: "Plumber", img: Plumber, text: ".", to: "Plumber" },
-  { title: "Teacher", img: Teacher, text: ".", to: "Teacher" },
-  { title: "Welder", img: Welder, text: ".", to: "Welder" },
-
+  {
+    title: "Electrician",
+    img: Electrician,
+    text: "Installation, maintenance and repair of electrical systems to guarantee a safe and efficient energy supply.",
+    to: "Electrician"
+  },
+  {
+    title: "Assembler",
+    img: Assembler,
+    text: "Have you bought a piece of furniture and need help with assembly or installation? We can also take it to you and assemble it if you need it.",
+    to: "Assembler"
+  },
+  {
+    title: "Gardener",
+    img: Gardener, text: "If you have a garden or orchard and need help with proper maintenance or want to plant your favorite flowers and don't know where to start.",
+    to: "Gardener"
+  },
+  {
+    title: "Home Cleaner",
+    img: HomeCleaner,
+    text: "Domestic cleaning service. If you need help cleaning your home, putting on washing machines, ironing and placing clothes.",
+    to: "HomeCleaner"
+  },
+  {
+    title: "Locksmith",
+    img: Locksmith,
+    text: "Installation, repair and adjustment of locks and security systems on doors and windows to ensure protection and safe access to properties and spaces.",
+    to: "Locksmith"
+  },
+  {
+    title: "Messenger",
+    img: Messenger,
+    text: "Delivery of products or documents efficiently and safely. We can make the purchase and deliver it to your home, ensuring customer satisfaction and compliance with delivery times.",
+    to: "Messenger"
+  },
+  {
+    title: "Painter",
+    img: Painter,
+    text: "Application of paint to interior and exterior walls and surfaces to improve their appearance and protection. Prepare surfaces, mix colors and apply techniques to achieve aesthetically attractive and long-lasting results. Murals and wallpaper are also put up.",
+    to: "Painter"
+  },
+  {
+    title: "Plumber",
+    img: Plumber,
+    text: "Installation, repair and maintenance of plumbing systems, such as pipes, faucets and drainage systems, to ensure efficient and safe water supply and drainage in residential, commercial and industrial buildings.",
+    to: "Plumber"
+  },
+  {
+    title: "Teacher",
+    img: Teacher,
+    text: "Personalized teaching in various subjects, adapting methods and resources according to the student's needs. It encourages effective learning and deep understanding of topics, helping students achieve their academic goals.",
+    to: "Teacher"
+  },
+  {
+    title: "Welder",
+    img: Welder,
+    text: "The welder joins metallic materials using heat and welding, following specific plans and procedures. It guarantees safe and long-lasting connections, working with precision and complying with safety standards.",
+    to: "Welder"
+  },
 ];
