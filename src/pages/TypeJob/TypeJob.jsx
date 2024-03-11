@@ -3,9 +3,8 @@ import { Link, useParams } from "react-router-dom";
 import "./TypeJob.css";
 import { jobs } from "../../assets/utils/utils";
 
-
 import { getTypeJobUser } from "../../services/UserService";
-import Card from "../../components/Card";
+import Card from "../../components/CardAllWorkers/CardAllWorkers";
 
 const TypeJob = () => {
   const [users, setUsers] = useState([]);
@@ -28,7 +27,6 @@ const TypeJob = () => {
 
   return (
     <div className="type-job-container">
-
       <p>{jobSelected.title}</p>
       <img src={jobSelected.img} alt="Job Image" />
       <p>{jobSelected.text}</p>
@@ -42,7 +40,6 @@ const TypeJob = () => {
                 imageUrl={user.avatar}
                 description={user.typejob}
               />
-
             </Link>
           </div>
         ))}
@@ -52,4 +49,3 @@ const TypeJob = () => {
 };
 
 export default TypeJob;
-

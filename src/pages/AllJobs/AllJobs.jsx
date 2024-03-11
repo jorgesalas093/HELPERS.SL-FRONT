@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { jobs } from "../assets/utils/utils";
-import { getAllUser } from "../services/UserService";
-import Card from "../components/Card";
+import { jobs } from "../../assets/utils/utils";
+import { getAllUser } from "../../services/UserService";
+import Card from "../../components/CardAllWorkers/CardAllWorkers";
+import Icon from "../../components/IconsAllJob/IconsAllJob";
+
+import "./AllJobs.css"
 
 const AllJobs = () => {
   const [users, setUsers] = useState([]);
@@ -41,17 +44,25 @@ const AllJobs = () => {
   );
 
   return (
-    <div className="type-job-container">
-      <input
-        type="text"
-        placeholder="Search for user"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-      <button>Buscar</button>
-      <div className="type-job-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div>
+      <div>
+        <div>
+          <Icon/>
+        </div>
+      </div>
+      <div className="container-search">
+        <input
+          className="search-all"
+          type="text"
+          placeholder="Search for user"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
+      <div className="search-user">
         {filteredUsers.map((user) => (
           <div key={user._id} >
+
             <Link to={`/users/${user.id}`}>
               <Card
                 key={user._id}
@@ -59,8 +70,6 @@ const AllJobs = () => {
                 imageUrl={user.avatar}
                 description={user.typejob}
               />
-
-
             </Link>
           </div>
         ))}

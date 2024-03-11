@@ -6,10 +6,9 @@ import Navbar from "./components/Navbar"
 import ProtectedRoute from "./components/ProtectedRoute"
 import UserProfile from "./pages/UserProfile"
 import CurrentUserProfile from "./pages/CurrentUserProfile"
-import AllJobs from "./pages/AllJobs"
+import AllJobs from "./pages/AllJobs/AllJobs"
 import Activation from "./pages/Activation"
 import JoinUs from "./pages/JoinUs"
-
 
 import Footer from "./components/Footer/Footer";
 import TypeJob from "./pages/TypeJob/TypeJob";

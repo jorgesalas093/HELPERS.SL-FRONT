@@ -46,7 +46,7 @@ const JoinUs = () => {
 
     return (
         <div>
-            <h2>Tipos de trabajo:</h2>
+            <h2>Type of job:</h2>
             <div>
                 {typesJob.map((type, index) => (
                     <p className='flex' key={index}>
@@ -61,8 +61,8 @@ const JoinUs = () => {
                     </p>
                 ))}
             </div>
-            <p>Trabajos seleccionados: {selectedWork.join(', ')}</p>
-            <Button text="Guardar Trabajos" onClick={handleSaveSelectedWork} bgcolor="bg-blue-500" />
+            <p>Selected work: {selectedWork.join(', ')}</p>
+            <Button text="Save works" onClick={handleSaveSelectedWork} bgcolor="bg-blue-500" />
         </div>
     );
 };

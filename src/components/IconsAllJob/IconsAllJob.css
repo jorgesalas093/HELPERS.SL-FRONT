@@ -1,0 +1,41 @@
+.icons-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .icons-row {
+    display: flex;
+    justify-content: space-around;
+    flex-basis: calc(20% - 20px); /* Establece el ancho máximo de cada fila (20% - 20px de espacio entre íconos) */
+    margin-bottom: 5px;
+  }
+  
+  .icons-line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .icons-line img {
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    margin-bottom: 5px;
+  }
+  
+  .icons-line p {
+    width: 60px;
+    font-size: 10px;
+    margin-top: 5px;
+  }
+
+  .icons-title {
+    font-size: 15px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  
