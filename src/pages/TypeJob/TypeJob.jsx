@@ -4,7 +4,7 @@ import "./TypeJob.css";
 import { jobs } from "../../assets/utils/utils";
 
 import { getTypeJobUser } from "../../services/UserService";
-import Card from "../../components/CardAllWorkers/CardAllWorkers";
+import Card from "../../components/Card/Card";
 
 const TypeJob = () => {
   const [users, setUsers] = useState([]);

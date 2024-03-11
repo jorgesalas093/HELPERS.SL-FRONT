@@ -2,6 +2,8 @@
 import { useContext, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { TbPhotoEdit } from "react-icons/tb";
+
 
 //COMPONENTS
 import Input from '../Input';
@@ -126,6 +128,8 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
           <div className="flex justify-center items-center mb-2">
             <img src={user.avatar} alt="Avatar" className="profile-info rounded-full" style={{ width: "250px", height: "250px" }} />
           </div>
+          <TbPhotoEdit />
+         
           <div className="flex justify-center profile-likes">
             <Stars readOnly={false} initialRating={rating} onChange={handleRate} />
             <p>{rating.toFixed(2)} </p>

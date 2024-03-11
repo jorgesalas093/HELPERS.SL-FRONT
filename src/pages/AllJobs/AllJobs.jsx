@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { jobs } from "../../assets/utils/utils";
 import { getAllUser } from "../../services/UserService";
-import Card from "../../components/CardAllWorkers/CardAllWorkers";
+import Card from "../../components/Card/Card";
 import Icon from "../../components/IconsAllJob/IconsAllJob";
 
 import "./AllJobs.css"
@@ -47,7 +47,7 @@ const AllJobs = () => {
     <div>
       <div>
         <div>
-          <Icon/>
+          <Icon />
         </div>
       </div>
       <div className="container-search">
@@ -59,7 +59,7 @@ const AllJobs = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
-      <div className="search-user">
+      <div className="search-user type-job-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredUsers.map((user) => (
           <div key={user._id} >
 
