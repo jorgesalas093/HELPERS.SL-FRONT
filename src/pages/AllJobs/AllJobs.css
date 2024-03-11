@@ -3,6 +3,10 @@
     align-items: center;
     margin-bottom: 20px;
   }
+
+  .search-all {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
   
   input[type="text"] {
     flex: 1;

@@ -1,3 +1,4 @@
+
 const Card = ({ title, imageUrl, description }) => {
   return (
     <div className="card-container w-400">
@@ -10,8 +11,8 @@ const Card = ({ title, imageUrl, description }) => {
             className="rounded-full mt-5"
           />
           <div className="card-content">
-            <h3 className="mb-2">{title}</h3>
-            <p className="text-sm">{description.join(" - ")}</p>
+            <h3 className="mb-2 text-center">{title}</h3>
+            <p className="text-sm text-center">{description.join(" / ")}</p>
           </div>
         </div>
       </div>

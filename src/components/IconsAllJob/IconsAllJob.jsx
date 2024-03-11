@@ -75,7 +75,7 @@ const Icon = ({ action }) => {
   });
 
   return (
-    <div>
+    <div className="container">
       <h2 className="icons-title">Select a type job</h2>
       <div className="icons-container">{iconRows}</div>
     </div>
