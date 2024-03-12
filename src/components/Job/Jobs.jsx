@@ -41,7 +41,12 @@ import "slick-carousel/slick/slick-theme.css";
 import "./Jobs.css";
 
 const info = [
-  { gifSrc: CarerGif, staticSrc: Carer, text: "Carer", to: "Carer" },
+  {
+    gifSrc: CarerGif,
+    staticSrc: Carer,
+    text: "Carer",
+    to: "Carer"
+  },
   {
     gifSrc: CarpenterGif,
     staticSrc: Carpenter,
@@ -54,7 +59,12 @@ const info = [
     text: "Brickwork",
     to: "Brickwork",
   },
-  { gifSrc: ChefGif, staticSrc: Chef, text: "Chef", to: "Chef" },
+  {
+    gifSrc: ChefGif,
+    staticSrc: Chef,
+    text: "Chef",
+    to: "Chef"
+  },
   {
     gifSrc: ClosetOrganizerGif,
     staticSrc: ClosetOrganizer,

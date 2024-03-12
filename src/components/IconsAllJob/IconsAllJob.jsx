@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import "./IconsAllJob.css";
 
 import Carer from "../../assets/pngWorks/carer-cuidador.png";
@@ -16,36 +18,60 @@ import Plumber from "../../assets/pngWorks/plumber.png";
 import Teacher from "../../assets/pngWorks/teacher.png";
 import Welder from "../../assets/pngWorks/welder-soldador.png";
 
+import CarerGif from "../../assets/gifWorks/carer-cuidador.gif";
+import CarpenterGif from "../../assets/gifWorks/carpenter.gif";
+import BrickworkGif from "../../assets/gifWorks/brickwork-reformas-en-general.gif";
+import ChefGif from "../../assets/gifWorks/chef.gif";
+import ClosetOrganizerGif from "../../assets/gifWorks/closet-organizer-organizador-armario.gif";
+import ElectricianGif from "../../assets/gifWorks/electrician.gif";
+import AssemblerGif from "../../assets/gifWorks/fitter-montador-muebles.gif";
+import GardenerGif from "../../assets/gifWorks/gardener-jardinero.gif";
+import HomeCleanerGif from "../../assets/gifWorks/home-cleaner-limpieza-hogar.gif";
+import LocksmithGif from "../../assets/gifWorks/locksmith-cerrajero.gif";
+import MessengerGif from "../../assets/gifWorks/messenger-hacer-compra.gif";
+import PainterGif from "../../assets/gifWorks/painter-pintor.gif";
+import PlumberGif from "../../assets/gifWorks/plumber.gif";
+import TeacherGif from "../../assets/gifWorks/teacher.gif";
+import WelderGif from "../../assets/gifWorks/welder-soldador.gif";
+
 const listIcon = [
-  { icon: Carer, text: "Carer" },
-  { icon: Carpenter, text: "Carpenter" },
-  { icon: Brickwork, text: "Brickwork" },
-  { icon: Chef, text: "Chef" },
-  { icon: ClosetOrganizer, text: "Closet Organizer" },
-  { icon: Electrician, text: "Electrician" },
-  { icon: Assembler, text: "Assembler" },
-  { icon: Gardener, text: "Gardener" },
-  { icon: HomeCleaner, text: "Home Cleaner" },
-  { icon: Locksmith, text: "Locksmith" },
-  { icon: Messenger, text: "Messenger" },
-  { icon: Painter, text: "Painter" },
-  { icon: Plumber, text: "Plumber" },
-  { icon: Teacher, text: "Teacher" },
-  { icon: Welder, text: "Welder" },
+  { icon: Carer, gif: CarerGif, text: "Carer" },
+  { icon: Carpenter, gif: CarpenterGif, text: "Carpenter" },
+  { icon: Brickwork, gif: BrickworkGif, text: "Brickwork" },
+  { icon: Chef, gif: ChefGif, text: "Chef" },
+  { icon: ClosetOrganizer, gif: ClosetOrganizerGif, text: "Closet Organizer" },
+  { icon: Electrician, gif: ElectricianGif, text: "Electrician" },
+  { icon: Assembler, gif: AssemblerGif, text: "Assembler" },
+  { icon: Gardener, gif: GardenerGif, text: "Gardener" },
+  { icon: HomeCleaner, gif: HomeCleanerGif, text: "Home Cleaner" },
+  { icon: Locksmith, gif: LocksmithGif, text: "Locksmith" },
+  { icon: Messenger, gif: MessengerGif, text: "Messenger" },
+  { icon: Painter, gif: PainterGif, text: "Painter" },
+  { icon: Plumber, gif: PlumberGif, text: "Plumber" },
+  { icon: Teacher, gif: TeacherGif, text: "Teacher" },
+  { icon: Welder, gif: WelderGif, text: "Welder" },
 ];
 
-const IconItem = ({ icon, text, action }) => {
-  const handleIconClick = () => {
-    // Realizar la búsqueda relacionada con el trabajo específico
-    action(text);
+const IconItem = ({ icon, gif, text, action, selected, onSelect }) => {
+  const [isGifDisplayed, setIsGifDisplayed] = useState(false);
+
+  const handleClick = () => {
+    if (selected === text && isGifDisplayed) {
+      setIsGifDisplayed(false);
+      onSelect(null);
+    } else {
+      setIsGifDisplayed(true);
+      onSelect(text);
+      action(text);
+    }
   };
 
   return (
     <div>
       <div>
-        <button className="icon-button" onClick={handleIconClick}>
+        <button className={`icon-button ${selected === text ? 'selected' : ''}`} onClick={handleClick}>
           <div className="icons-line">
-            <img src={icon} alt={text} />
+            <img src={selected === text ? (isGifDisplayed ? gif : icon) : icon} alt={text} className={isGifDisplayed ? 'gif' : ''} />
             <p>{text}</p>
           </div>
         </button>
@@ -56,28 +82,28 @@ const IconItem = ({ icon, text, action }) => {
 };
 
 const Icon = ({ action }) => {
-  const iconRows = [];
-  let currentRow = [];
+  const [selectedIcon, setSelectedIcon] = useState(null);
 
-  listIcon.forEach((item, index) => {
-    currentRow.push(
-      <IconItem key={index} icon={item.icon} text={item.text} action={action} />
-    );
-
-    if (currentRow.length === 5 || index === listIcon.length - 1) {
-      iconRows.push(
-        <div key={index} className="icons-row">
-          {currentRow}
-        </div>
-      );
-      currentRow = [];
-    }
-  });
+  const handleIconSelect = (text) => {
+    setSelectedIcon(text);
+  };
 
   return (
     <div className="container">
       <h2 className="icons-title">Select a type job</h2>
-      <div className="icons-container">{iconRows}</div>
+      <div className="icons-container">
+        {listIcon.map((item, index) => (
+          <IconItem
+            key={index}
+            icon={item.icon}
+            gif={item.gif}
+            text={item.text}
+            action={action}
+            selected={selectedIcon}
+            onSelect={handleIconSelect}
+          />
+        ))}
+      </div>
     </div>
   );
 };

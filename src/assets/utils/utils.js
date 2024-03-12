@@ -84,7 +84,7 @@ export const jobs = [
   {
     title: "Painter",
     img: Painter,
-    text: "Application of paint to interior and exterior walls and surfaces to improve their appearance and protection. Prepare surfaces, mix colors and apply techniques to achieve aesthetically attractive and long-lasting results. Murals and wallpaper are also put up.",
+    text: "Application of paint to interior and exterior walls and surfaces to improve their appearance and protection. Prepare surfaces, mix colors and apply techniques to achieve aesthetically attractive and long-lasting results.",
     to: "Painter"
   },
   {
