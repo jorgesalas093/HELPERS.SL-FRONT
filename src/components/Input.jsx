@@ -1,7 +1,7 @@
 const Input = ({ value, onChange, name, placeholder, type, label, error, onBlur }) => {
   return (
-    <div>
-      <label htmlFor={name} className="block mb-2 font-medium text-tw-primary">
+    <div className="font-roboto">
+      <label htmlFor={name} className="text-normal">
         {label}
       </label>
       <input

@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import Input from "../components/Input";
-
 import { useState, useEffect, useCallback, useContext, useRef } from 'react';
-
 import { useParams } from 'react-router-dom';
 import { createMessage, getChat } from "../services/ChatService";
 import AuthContext from "../contexts/AuthContext";
@@ -80,11 +78,11 @@ const Chat = () => {
     }, [id, fetchChat, lastDay]);
 
     return (
-        <div className="border border-gray-500 rounded-lg">
-            <div className="p-2 mb-1 ">
+        <div className="font-roboto">
+            <div className="text-normal p-2 mb-1 ">
                 {chat && chat.users.map((chatUser, index) => (
                     chatUser._id !== user._id &&
-                    <div key={index} className="bg-blue-400 p-4 rounded-lg border border-gray-500 flex justify-center">
+                    <div key={index} className="bg-blue-400 text-normal p-4 rounded-lg border border-gray-500 flex justify-center">
                         <h1 className="text-center uppercase flex items-center">
                             <Link to={`/users/${chatUser._id}`}>
                                 <img src={chatUser.avatar} alt="Avatar" width="50" className="mr-2 rounded-full " style={{ width: "40px", height: "40px" }} />
@@ -95,39 +93,38 @@ const Chat = () => {
                 ))}
             </div>
 
-            {chat && chat.messages.map(message => {
-                return (
-                    <div key={message._id} className="items-center p-4 ">
-                        {user._id === message.user._id ?
-                            <>
-                                <p className="flex justify-center">{myFuncionChangeDay(message.createdAt)}</p>
-                                <div className="flex justify-end">
-
-                                    <div className="bg-blue-500 text-white rounded-lg p-2 mb-1 max-w-md flex center">
-                                        <p>{message.text}</p>
-                                        <div className="flex justify-end">
-                                            <img src={message.user.avatar} alt="Avatar" width="20" className="ml-2 rounded-full" />
-                                        </div>
-                                        <p>{myfuncion(message.createdAt)}</p>
+            <div>
+                {chat && chat.messages.map(message => {
+                    return (
+                        <div key={message._id} className="font roboto flex bg-gray-100 rounded-md mb-1 justify-between items-center p-4">
+                            {user._id === message.user._id ?
+                                <>
+                                <p className="flex justify-center">modificar fecha{myFuncionChangeDay(message.createdAt)}</p>
+                                <div className="font-normal  flex justify-end">
+                                    <div className="bg-green-200 text-black rounded-lg p-2 mb-1 max-w-md flex center">
+                                        <p className="text-sm">{message.text}</p>
+                                        <p className="text-xs font-normal ml-2 mb-[-6px] bg-green-200 mt-auto p-auto">{myfuncion(message.createdAt)}</p>
                                     </div>
                                 </div>
-                            </>
-                            :
-                            <div className="flex">
-                                <div className="bg-gray-400 text-black rounded-lg p-2 mb-1 max-w-md">
-                                    <h1 className="text-white flex items-center mr-4">
-                                        <img src={message.user.avatar} width="20" className="mr-2 rounded-full" />
-                                        {message.text}
-                                    </h1>
-                                    <p>{myfuncion(message.createdAt)}</p>
+                                </>
+                                :
+                                <div className="flex">
+                                    <div className="flex-row bg-gray-100 text-black rounded-lg p-2 mb-1 max-w-md">
+                                        <div className="bg-white text-black rounded-lg p-2 mb-1 max-w-md flex center">
+                                        <p className="text-sm">
+                                        {message.text}</p>
+                                        <p className="text-xs font-normal ml-2 mb-[-6px] bg-white mt-auto p-auto">{myfuncion(message.createdAt)}</p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        }
-                    </div>
-                );
-            })}
-            <div className="flex mr-20">
-                <div className="w-5/6 mr-2"> {/* Input con 3/4 del ancho */}
+
+                            }
+                        </div>
+                    );
+                })}
+            </div>
+            <div className="flex">
+                <div className="flex-grow"> {/* Input con ancho completo */}
                     <Input
                         value={text}
                         onChange={handleChatTextChange}
@@ -137,13 +134,13 @@ const Chat = () => {
                         label=""
                         error={null}
                         onBlur={() => { }}
+                        className="w-full" // Esta clase hace que el input ocupe todo el ancho del div
                     />
                 </div>
-                <div className="w-1/6"> {/* Botón con 1/4 del ancho */}
+                <div className=""> {/* Botón con 1/4 del ancho */}
                     <Button text='' purpose="send" onClick={createMessageAndClearInput}>Send Message</Button>
                 </div>
             </div>
-
         </div>
     );
 };

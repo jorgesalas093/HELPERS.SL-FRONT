@@ -49,9 +49,9 @@ const Button = ({ type, onClick, text, disabled, purpose, color }) => {
   const getColor = (color) => {
     switch (color) {
       case 'red':
-        return 'bg-red-400'; // Cambia el icono de acuerdo al propósito
+        return 'bg-red-400';
       case 'green':
-        return 'bg-green-400'; // Cambia el icono de acuerdo al propósito
+        return 'bg-green-400';
       default:
         return 'bg-he-primary';
     }
