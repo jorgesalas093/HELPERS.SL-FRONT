@@ -15,7 +15,7 @@ const TypeJob = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await getTypeJobUser(job);
+        const response = await getTypeJobUser(job.toLowerCase());
         setUsers(response);
       } catch (error) {
         console.error("Error fetching users:", error);

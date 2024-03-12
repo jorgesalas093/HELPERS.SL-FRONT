@@ -86,7 +86,7 @@ const Navbar = () => {
                 <>
                   <button
                     onClick={() => setShowChatsDropdown(!showChatsDropdown)}
-                    className="text-white hover:text-he-light-gray transform hover:scale-200 transition duration-200"
+                    className="text-white hover:text-white transform hover:scale-200 transition duration-200"
                   >
                     {route.text}
                   </button>

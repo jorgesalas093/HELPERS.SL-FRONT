@@ -126,18 +126,24 @@ const Chat = () => {
                     </div>
                 );
             })}
-            <Input
-                value={text}
-                onChange={handleChatTextChange}
-                name="message"
-                placeholder="Write your message here..."
-                type="text"
-                label=""
-                error={null}
-                onBlur={() => { }}
-            />
-            <Button text='SEND MESSAGE' onClick={createMessageAndClearInput}>Send Message</Button>
-            <Link to={`/alljobs`}><Button text="Jobs" /></Link>
+            <div className="flex mr-20">
+                <div className="w-5/6 mr-2"> {/* Input con 3/4 del ancho */}
+                    <Input
+                        value={text}
+                        onChange={handleChatTextChange}
+                        name="message"
+                        placeholder="Write your message here..."
+                        type="text"
+                        label=""
+                        error={null}
+                        onBlur={() => { }}
+                    />
+                </div>
+                <div className="w-1/6"> {/* Botón con 1/4 del ancho */}
+                    <Button text='' purpose="send" onClick={createMessageAndClearInput}>Send Message</Button>
+                </div>
+            </div>
+
         </div>
     );
 };

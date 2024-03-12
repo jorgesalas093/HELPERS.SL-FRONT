@@ -2,7 +2,7 @@
 import { useContext, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { TbPhotoEdit } from "react-icons/tb";
+
 
 
 //COMPONENTS
@@ -21,6 +21,8 @@ import AuthContext from '../../contexts/AuthContext';
 
 //STYLE
 import './Profile.css'
+import { deleteCurrentUser } from '../../services/UserService';
+// import UserProfile from './../../pages/UserProfile';
 
 const Profile = ({ user, isCurrentUser, refetch }) => {
   const [commentText, setCommentText] = useState('');
@@ -31,6 +33,17 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
   const { id } = useParams();
   const navigate = useNavigate();
 
+
+  // const [showInput, setShowInput] = useState(false);
+  // const [showEditInput, setShowEditInput] = useState(false);
+  // const [editInputType, setEditInputType] = useState('');
+  // const [editInputValue, setEditInputValue] = useState('');
+
+  // const handleToggleEditInput = (inputType) => {
+  //   setShowEditInput(!showEditInput);
+  //   setEditInputType(inputType);
+  //   setEditInputValue(''); // Limpiar el valor del campo de entrada al cambiar de tipo de edición
+  // };
 
   //FUNCIÓN PARA FORMATEAR LA FECHA 
   const myDateFuncion = (date) => {
@@ -66,6 +79,7 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
       });
   };
 
+  //AQUI LA LOGICA DE MOSTRAR EL RATE
   getLikesProfile(id)
     .then(response => {
       console.log(response.score)
@@ -119,6 +133,36 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
       });
   };
 
+  //AQUI LA LOGICA DE EDITAR EL PERFIL
+  // const handleEditProfile = () => {
+  //   const formData = new FormData();
+  //   formData.append(editInputType, editInputValue); 
+  //   EditCurrentUserProfile(formData)
+  //     .then(response => {
+  //       console.log('Perfil editado exitosamente:', response);
+  //       // Realizar alguna acción adicional después de editar el perfil
+  //     })
+  //     .catch(error => {
+  //       console.error('Error al editar el perfil:', error);
+  //     });
+  // };
+
+
+  // const handleInputChange = (event) => {
+  //   setEditInputValue(event.target.value);
+  // };
+
+  //AQUI SE HACE LA LOGICA DE BORRAR EL PERFIL
+  const handleDeleteCurrentUserProfile = (id) => {
+    deleteCurrentUser(id)
+      .then(response => {
+        console.log('Perfil eliminado exitosamente:', response);
+      })
+      .catch(error => {
+        console.error('Error al eliminar el perfil:', error);
+      });
+  }
+
   return (
 
     <div className="profile-container">
@@ -127,29 +171,84 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
 
           <div className="flex justify-center items-center mb-2">
             <img src={user.avatar} alt="Avatar" className="profile-info rounded-full" style={{ width: "250px", height: "250px" }} />
+
+            <Button
+              purpose="editphoto"
+              color="green"
+              // onClick={handleToggleEditInput}
+            />
+
+            {/* {showEditInput && editInputType === 'avatar' && (
+              <Input
+                name="avatar"
+                type="file"
+                onChange={(event) => {
+                  const file = event.target.files[0];
+                  const formData = new FormData();
+                  formData.append('avatar', file);
+                  handleEditProfile(formData);
+                }}
+              />
+            )} */}
+
           </div>
-          <TbPhotoEdit />
-         
+
+
           <div className="flex justify-center profile-likes">
             <Stars readOnly={false} initialRating={rating} onChange={handleRate} />
             <p>{rating.toFixed(2)} </p>
           </div>
 
           <div className='flex justify-center'>
-            <div>
-              <p className="profile-username">Name: {user.username}</p>
-            </div>
+            <p className="profile-username">Name: {user.username}</p>
+            <Button
+              purpose="edit"
+              color="green"
+              // onClick={() => handleToggleEditInput('username')} // Pasar el tipo de edición como argumento al hacer clic en el botón de edición
+            />
+{/* 
+            {showEditInput && editInputType === 'username' && (
+              <div>
+                <Input
+                  name="username"
+                  type="text"
+                  value={editInputValue}
+                  onChange={handleInputChange}
+                />
+                <Button
+                  purpose="save"
+                  color="blue"
+                  onClick={handleEditProfile} // Invocar la función handleEditProfile al hacer clic en el botón de guardar
+                />
+              </div>
+            )} */}
+
           </div>
           <div className="flex justify-center mb-5">
             {!isCurrentUser && (
-              <Button onClick={createChart} text="CHAT" />
+              <Button onClick={createChart} text=""
+                purpose="chat" />
             )}
           </div>
           <p className="profile-info">Email: {user.email}</p>
           <p className="profile-info">Birthday: {user.birthday}</p>
           <p className="profile-info">Biography: {user.biography}</p>
-          <p className="profile-info">{user.typejob ? `Job: ${user.typejob}` : null}</p>
+          <div className='flex justify-self-end'>
 
+            <p className="profile-info">{user.typejob ? `Job: ${user.typejob}` : null}</p>
+            <div>
+              {isCurrentUser && (
+                <Button
+                  purpose="delete"
+                  color="red"
+                  onClick={() => handleDeleteCurrentUserProfile(user.id)}
+                />
+              )}
+
+
+
+            </div>
+          </div>
           <div className="profile-comments bg-gray-100 p-4 rounded-md ">
             <h2 className="text-xl font-semibold mb-4">Comments:</h2>
 
@@ -168,18 +267,31 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
                       <p className="font-semibold">{comment.writer ? comment.writer.username : "Unknown"}</p>  {/* Si comment.writer existe, muestra el nombre de usuario, de lo contrario, muestra "Unknown" */}
                     </div>
                   </div>
-                  <p className="text-xs text-gray-500">{myDateFuncion(comment.date)}</p>
-                </div>
-                <p className="text-sm text-gray-600">{comment.text}</p>
-                {comment.writer?._id === currentUser.id && (  // Utiliza el operador de acceso opcional (?.) para evitar errores si comment.writer es null o undefined
-                  <Button
-                    text="Delete"
-                    onClick={() => handleDeleteComment(comment._id)}
-                    purpose="delete"
-                    className="text-red-500 text-xs"
-                  />
+                  <div>
+                    <p className="text-xs text-gray-500">{myDateFuncion(comment.date)}</p>
 
-                )}
+                  </div>
+                </div>
+
+                <div className='flex '>
+                  <p className="text-sm text-gray-600">{comment.text}</p>
+                  {comment.writer?._id === currentUser.id && (  // Utiliza el operador de acceso opcional (?.) para evitar errores si comment.writer es null o undefined
+                    <div className='flex justify-end'>
+                      {isCurrentUser && (
+                        <Button
+                          text=""
+                          onClick={() => handleDeleteComment(comment._id)}
+                          purpose="delete"
+                          className="text-red-500 text-xs"
+                          color="red"
+                        />
+                      )}
+
+                    </div>
+
+                  )}
+                </div>
+
               </div>
             ))}
 
