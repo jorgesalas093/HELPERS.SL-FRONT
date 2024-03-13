@@ -27,12 +27,15 @@ const TypeJob = () => {
 
   return (
     // pendiente retocar esta div con animacion, es la animacion de la card principal de typejob
-    <AnimatePresence>
-      <motion.div className="type-job-container">
-        <p>{jobSelected.title}</p>
-        <img src={jobSelected.img} alt="Job Image" />
-        <p>{jobSelected.text}</p>
-        <div className="type-job-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <AnimatePresence> 
+      <motion.div className="flex flex-col">
+        <div className="justify-center rounded-lg p-2 mb-1 max-w-md items-center">
+          <p className="text-xl text-center mb-4 bg-green-200">{jobSelected.title}</p>
+          <img className="" src={jobSelected.img} alt="Job Image" />
+          <p className="text-sm">{jobSelected.text}</p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {users.map((user) => (
             <div key={user._id}>
               <Link to={`/users/${user.id}`}>
