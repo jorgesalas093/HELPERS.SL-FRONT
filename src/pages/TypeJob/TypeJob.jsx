@@ -3,7 +3,6 @@ import { Link, useParams } from "react-router-dom";
 import { jobs } from "../../assets/utils/utils";
 import { getTypeJobUser } from "../../services/UserService";
 import Card from "../../components/Card/Card";
-import { motion, AnimatePresence } from "framer-motion";
 
 import "./TypeJob.css";
 const TypeJob = () => {
@@ -25,32 +24,33 @@ const TypeJob = () => {
   }, [job]);
   console.log(jobSelected);
 
-  return (
-    // pendiente retocar esta div con animacion, es la animacion de la card principal de typejob
-    <AnimatePresence> 
-      <motion.div className="flex flex-col bg-">
-        <div className="justify-center rounded-lg p-2 mb-1 max-w-md items-center">
-          <p className="text-xl text-center mb-4 bg-green-200">{jobSelected.title}</p>
-          <img className="" src={jobSelected.img} alt="Job Image" />
-          <p className="text-sm">{jobSelected.text}</p>
+  return (    
+    <div>    
+      <div className="flex flex-col items-center justify-center h-screen">
+        <div className="bg-gray-100 rounded-lg p- mb-24 max-w-md">
+          <div className="text-center">
+            <p className="text-2xl text-gray-800 mb-16 mt-2">{jobSelected.title}</p>
+            <img className="mx-auto rounded-lg" src={jobSelected.img} alt="Job Image" />
+            <p className="text-base text-gray-700 mt-4">{jobSelected.text}</p>
+          </div>
         </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {users.map((user) => (
-            <div key={user._id}>
-              <Link to={`/users/${user.id}`}>
-                <Card
-                  key={user._id}
-                  title={user.username}
-                  imageUrl={user.avatar}
-                  description={user.typejob}
-                />
-              </Link>
-            </div>
-          ))}
-        </div>
-      </motion.div>
-    </AnimatePresence>
+      </div>
+  
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {users.map((user) => (
+          <div key={user._id}>
+            <Link to={`/users/${user.id}`}>
+              <Card
+                key={user._id}
+                title={user.username}
+                imageUrl={user.avatar}
+                description={user.typejob}
+              />
+            </Link>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 
