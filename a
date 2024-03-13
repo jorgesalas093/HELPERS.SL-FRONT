@@ -1,6 +1,27 @@
 hola
 
+            <div>
+                {chat && chat.messages.map((message, index) => {
+                    // Verificar si es el primer mensaje o si la fecha del mensaje actual es diferente del último día mostrado
+                    const isFirstMessageOfDay = index === 0 || ChangeDay(message.createdAt) !== ChangeDay(chat.messages[index - 1].createdAt);
 
+                    return (
+                        <div key={message._id} className="font roboto flex rounded-md mb-1 justify-between items-center p-4">
+                            {isFirstMessageOfDay && (
+                                <p className="flex justify-center">modificar fecha{ChangeDay(message.createdAt)}</p>
+                            )}
+                            <div className={user._id === message.user._id ? "font-normal  flex justify-end" : "flex"}>
+                                <div className={user._id === message.user._id ? "bg-green-200 text-black rounded-lg p-2 mb-1 max-w-md flex center" : "flex-row text-black rounded-lg p-2 mb-1 max-w-md"}>
+                                    <div className={user._id === message.user._id ? "text-sm" : "bg-white text-black rounded-lg p-2 mb-1 max-w-md flex center"}>
+                                        <p className="text-sm">{message.text}</p>
+                                        <p className="text-xs font-normal ml-2 mb-[-6px] bg-green-200 mt-auto p-auto">{formatDate(message.createdAt)}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    );
+                })}
+            </div>
 
  
 

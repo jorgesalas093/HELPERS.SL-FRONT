@@ -28,7 +28,7 @@ const TypeJob = () => {
   return (
     // pendiente retocar esta div con animacion, es la animacion de la card principal de typejob
     <AnimatePresence> 
-      <motion.div className="flex flex-col">
+      <motion.div className="flex flex-col bg-">
         <div className="justify-center rounded-lg p-2 mb-1 max-w-md items-center">
           <p className="text-xl text-center mb-4 bg-green-200">{jobSelected.title}</p>
           <img className="" src={jobSelected.img} alt="Job Image" />

@@ -6,6 +6,8 @@ import { useParams } from 'react-router-dom';
 import { createMessage, getChat } from "../services/ChatService";
 import AuthContext from "../contexts/AuthContext";
 
+import HelpersBackground from "../assets/helpersLogo/HelpersCompleto.jpeg"
+
 const Chat = () => {
     const { id } = useParams();
     const { user } = useContext(AuthContext);
@@ -40,7 +42,7 @@ const Chat = () => {
             });
     };
 
-    const myfuncion = (date) => {
+    const formatDate = (date) => {
         const parsedDate = new Date(date);
         const hours = parsedDate.getHours();
         const minutes = parsedDate.getMinutes();
@@ -49,13 +51,15 @@ const Chat = () => {
         return `${formattedHours}:${formattedMinutes}`;
     };
 
-    const myFuncionChangeDay = (date) => {
+    const ChangeDay = (date) => {
         const parsedDate = new Date(date);
-        const day = parsedDate.getDate();
-        const month = parsedDate.getMonth() + 1;
+        const day = parsedDate.getDate().toString().padStart(2, '0');
+        const month = (parsedDate.getMonth() + 1).toString().padStart(2, '0');
         const year = parsedDate.getFullYear();
         return `${day}-${month}-${year}`;
     };
+
+    
 
     useEffect(() => {
         intervalRef.current = setInterval(() => {
@@ -78,53 +82,63 @@ const Chat = () => {
     }, [id, fetchChat, lastDay]);
 
     return (
-        <div className="font-roboto">
-            <div className="text-normal p-2 mb-1 ">
-                {chat && chat.users.map((chatUser, index) => (
-                    chatUser._id !== user._id &&
-                    <div key={index} className="bg-blue-400 text-normal p-4 rounded-lg border border-gray-500 flex justify-center">
-                        <h1 className="text-center uppercase flex items-center">
-                            <Link to={`/users/${chatUser._id}`}>
-                                <img src={chatUser.avatar} alt="Avatar" width="50" className="mr-2 rounded-full " style={{ width: "40px", height: "40px" }} />
-                            </Link>
-                            {chatUser.username}
-                        </h1>
-                    </div>
-                ))}
+
+        <div className="font-roboto h-50vh min-h-screen"
+            style={{
+                backgroundColor: '#e1e3e6',
+                backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.9)), url(${HelpersBackground})`,
+                backgroundSize: '100%',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center bottom',
+                borderRadius: '5px',
+                marginBottom: '30px',
+            }}
+        >
+            <div className="text-normal p-2 mb-1">
+                {chat &&
+                    chat.users.map((chatUser, index) => (
+                        chatUser._id !== user._id && (
+                            <div key={index} className="bg-blue-300 text-normal p-4 rounded-lg border border-gray-500 flex items-center justify-center">
+                                <Link to={`/users/${chatUser._id}`} className="flex items-center">
+                                    <img src={chatUser.avatar} alt="Avatar" width="50" className="mr-2 rounded-full" style={{ width: "40px", height: "40px" }} />
+                                    <div>
+                                        <h1 className="text-center uppercase font-bold text-sm" style={{ fontFamily: 'Roboto' }}>{chatUser.username}</h1>
+                                        <p style={{ fontFamily: 'Roboto' }}>{chatUser.typejob}</p>
+                                    </div>
+                                </Link>
+                            </div>
+                        )
+                    ))}
             </div>
 
             <div>
-                {chat && chat.messages.map(message => {
-                    return (
-                        <div key={message._id} className="font roboto flex bg-gray-100 rounded-md mb-1 justify-between items-center p-4">
-                            {user._id === message.user._id ?
-                                <>
-                                <p className="flex justify-center">modificar fecha{myFuncionChangeDay(message.createdAt)}</p>
-                                <div className="font-normal  flex justify-end">
-                                    <div className="bg-green-200 text-black rounded-lg p-2 mb-1 max-w-md flex center">
-                                        <p className="text-sm">{message.text}</p>
-                                        <p className="text-xs font-normal ml-2 mb-[-6px] bg-green-200 mt-auto p-auto">{myfuncion(message.createdAt)}</p>
-                                    </div>
-                                </div>
-                                </>
-                                :
-                                <div className="flex">
-                                    <div className="flex-row bg-gray-100 text-black rounded-lg p-2 mb-1 max-w-md">
-                                        <div className="bg-white text-black rounded-lg p-2 mb-1 max-w-md flex center">
-                                        <p className="text-sm">
-                                        {message.text}</p>
-                                        <p className="text-xs font-normal ml-2 mb-[-6px] bg-white mt-auto p-auto">{myfuncion(message.createdAt)}</p>
-                                        </div>
-                                    </div>
-                                </div>
+                {chat && chat.messages.map((message, index) => {
+                    const isFirstMessageOfDay = index === 0 || ChangeDay(message.createdAt) !== ChangeDay(chat.messages[index - 1].createdAt);
+                    const isCurrentUser = user._id === message.user._id;
 
-                            }
+                    return (
+                        <div key={message._id} className={`font roboto flex rounded-md mb-1 p-4 ${isCurrentUser ? 'justify-end' : 'justify-start'}`}>
+                            <div className={`${isCurrentUser ? 'bg-green-200 text-black' : 'bg-white text-black'} rounded-lg p-2 max-w-md flex center`}>
+                                <p className="text-sm">{message.text}</p>
+                                <p className="text-xs font-normal ml-1 self-end" style={{ fontSize: '10px',  }}>{formatDate(message.createdAt)}</p>
+                            </div>
+
+
+                            <div className="flex flex-col">
+                            {/* Pendiente poner la fecha en el centro de la pantalla, quiza tenga que quitar el ultimo div */}
+                            {isFirstMessageOfDay && (
+                                <p className="flex justify-center mb-4">modificar fecha {ChangeDay(message.createdAt)}</p>
+                            )}
+                            </div>
+
+
                         </div>
                     );
                 })}
             </div>
+            
             <div className="flex">
-                <div className="flex-grow"> {/* Input con ancho completo */}
+                <div className="flex-grow">
                     <Input
                         value={text}
                         onChange={handleChatTextChange}
@@ -134,10 +148,10 @@ const Chat = () => {
                         label=""
                         error={null}
                         onBlur={() => { }}
-                        className="w-full" // Esta clase hace que el input ocupe todo el ancho del div
+                        className="w-full"
                     />
                 </div>
-                <div className=""> {/* Botón con 1/4 del ancho */}
+                <div className="">
                     <Button text='' purpose="send" onClick={createMessageAndClearInput}>Send Message</Button>
                 </div>
             </div>
