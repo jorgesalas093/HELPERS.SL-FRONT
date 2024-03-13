@@ -22,12 +22,14 @@ import AuthContext from '../../contexts/AuthContext';
 //STYLE
 import './Profile.css'
 import { deleteCurrentUser } from '../../services/UserService';
+import { logout } from '../../stores/AccessTokenStore';
 // import UserProfile from './../../pages/UserProfile';
 
 const Profile = ({ user, isCurrentUser, refetch }) => {
   const [commentText, setCommentText] = useState('');
   const [rating, setRating] = useState(0);
   const [score, setScore] = useState(0);
+  const [showModal, setShowModal] = useState(false);
 
   const { user: currentUser } = useContext(AuthContext)
   const { id } = useParams();
@@ -133,6 +135,14 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
       });
   };
 
+  //LOGICA PARA QUE EL BUTTON HAGA DOS FUNCIONES A LA VEZ, BORRAR Y LOGOUT
+  const handleDeleteProfileAndLogout = (userId) => {
+    // Invoca la función para eliminar el perfil
+    handleDeleteCurrentUserProfile(userId);
+    // Invoca la función de logout
+    logout();
+  };
+
   //AQUI LA LOGICA DE EDITAR EL PERFIL
   // const handleEditProfile = () => {
   //   const formData = new FormData();
@@ -175,7 +185,7 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
             <Button
               purpose="editphoto"
               color="green"
-              // onClick={handleToggleEditInput}
+            // // onClick={handleToggleEditInput}
             />
 
             {/* {showEditInput && editInputType === 'avatar' && (
@@ -195,7 +205,7 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
 
 
           <div className="flex justify-center profile-likes">
-            <Stars readOnly={false} initialRating={rating} onChange={handleRate} />
+            <Stars readOnly={!id} initialRating={rating} onChange={handleRate} />
             <p>{rating.toFixed(2)} </p>
           </div>
 
@@ -204,9 +214,9 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
             <Button
               purpose="edit"
               color="green"
-              // onClick={() => handleToggleEditInput('username')} // Pasar el tipo de edición como argumento al hacer clic en el botón de edición
+            // onClick={() => handleToggleEditInput('username')} // Pasar el tipo de edición como argumento al hacer clic en el botón de edición
             />
-{/* 
+            {/* 
             {showEditInput && editInputType === 'username' && (
               <div>
                 <Input
@@ -238,11 +248,40 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
             <p className="profile-info">{user.typejob ? `Job: ${user.typejob}` : null}</p>
             <div>
               {isCurrentUser && (
-                <Button
-                  purpose="delete"
-                  color="red"
-                  onClick={() => handleDeleteCurrentUserProfile(user.id)}
-                />
+                <div>
+                  <Button
+                    purpose="delete"
+                    color="red"
+                    onClick={() => setShowModal(true)}
+                  />
+
+                  {/* Modal */}
+                  {showModal && (
+                    <div className="fixed inset-0 flex items-center justify-center z-50">
+                      <div className="absolute inset-0 bg-black opacity-50"></div>
+                      <div className="relative bg-white rounded-lg p-8">
+                        <p className="mb-4">Delete profile?</p>
+                        <div className="flex justify-between">
+                          <button
+                            className="px-4 py-2 bg-red-500 text-white rounded mr-4"
+                            onClick={() => {
+                              handleDeleteProfileAndLogout(user.id);
+                              setShowModal(false);
+                            }}
+                          >
+                            Delete my profile
+                          </button>
+                          <button
+                            className="px-4 py-2 bg-gray-300 text-gray-800 rounded"
+                            onClick={() => setShowModal(false)}
+                          >
+                            Cancelar
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
               )}
 
 

@@ -28,8 +28,8 @@ function App() {
           <Route path="/joinus" element={<ProtectedRoute><JoinUs /></ProtectedRoute>} />
 
           <Route path="/users/:id" element={<UserProfile />} />
-          <Route path="/job/:job" element={<TypeJob />} />
-          <Route path="/alljobs" element={<AllJobs />} />
+          <Route path="/job/:job" element={<ProtectedRoute><TypeJob /></ProtectedRoute>} />
+          <Route path="/alljobs" element={<ProtectedRoute><AllJobs /></ProtectedRoute>} />
           <Route
             path="/chat/:id"
             element={
