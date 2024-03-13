@@ -6,9 +6,9 @@ import { EditCurrentUserProfile } from '../services/UserService'; // Asegúrate 
 import { Link } from 'react-router-dom';
 
 const JoinUs = () => {
-    const [typesJob, setTypesJob] = useState([]);
+    const [allTypesJob, setAllTypesJob] = useState([]);
     const [selectedWork, setSelectedWork] = useState([]);
-    
+
     useEffect(() => {
         fetchEnumTypeJob();
     }, []);
@@ -16,7 +16,7 @@ const JoinUs = () => {
     const fetchEnumTypeJob = () => {
         getEnumTypeJob()
             .then((response) => {
-                setTypesJob(response);
+                setAllTypesJob(response);
             })
             .catch(error => {
                 console.error('Error fetching enum type job:', error);
@@ -24,23 +24,22 @@ const JoinUs = () => {
     };
 
 
-    const toggleWorkSelection = (work) => {
-        if (selectedWork.includes(work)) {
-            setSelectedWork(selectedWork.filter(item => item !== work));
+    const toggleWorkSelection = (typejob) => {
+        if (selectedWork.includes({ typejob })) {
+            setSelectedWork(selectedWork.filter(item => item !== typejob));
         } else {
-            setSelectedWork([...selectedWork, work]);
+            setSelectedWork([...selectedWork, typejob]);
         }
     };
 
     const handleSaveSelectedWork = (typeJob) => {
-
+        console.log(typeJob)
         const formattedSelectedWork = typeJob.map(work => work.toLowerCase());
-
+        console.log(formattedSelectedWork)
 
         EditCurrentUserProfile({ typejob: formattedSelectedWork })
             .then(response => {
                 console.log('Perfil editado exitosamente:', response);
-
             })
             .catch(error => {
                 console.error('Error al editar el perfil:', error);
@@ -51,7 +50,7 @@ const JoinUs = () => {
         <div>
             <h2>Type of job:</h2>
             <div className='flex justify-evenly'>
-                {typesJob.map((type, index) => (
+                {allTypesJob.map((type, index) => (
                     <p key={index}>
                         <Button
                             text={type}
@@ -66,7 +65,7 @@ const JoinUs = () => {
             </div>
             <p>Selected work: {selectedWork.join(', ')}</p>
             <Link to={`/profile`}>
-                <Button text="Save works" onClick={handleSaveSelectedWork(selectedWork)} bgcolor="bg-blue-500" />
+                <Button text="Save works" onClick={() => handleSaveSelectedWork(selectedWork)} bgcolor="bg-blue-500" />
             </Link>
 
         </div>

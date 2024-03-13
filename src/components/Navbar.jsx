@@ -78,7 +78,7 @@ const Navbar = () => {
             <span className="text-white ml-2 text-lg font-semibold"></span>
           </div>
         </Link>
-
+        {/* <p>{user.username} </p> */}
         <div className="flex gap-x-3">
           {routes ? routes.map((route, index) => (
             <div key={route.to || index} className="relative">

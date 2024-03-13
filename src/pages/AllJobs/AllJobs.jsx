@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { jobs } from "../../assets/utils/utils";
+
 import { getAllUser } from "../../services/UserService";
 import Card from "../../components/Card/Card";
 import Icon from "../../components/IconsAllJob/IconsAllJob";
@@ -9,7 +9,6 @@ import "./AllJobs.css";
 
 const AllJobs = () => {
   const [users, setUsers] = useState([]);
-  const [filteredJobs, setFilteredJobs] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchFilter, setSearchFilter] = useState("");
 
@@ -26,17 +25,6 @@ const AllJobs = () => {
 
     fetchUsers();
   }, []);
-
-  useEffect(() => {
-    if (searchTerm.trim() !== "") {
-      const filtered = jobs.filter((job) =>
-        job.title.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-      setFilteredJobs(filtered);
-    } else {
-      setFilteredJobs(jobs);
-    }
-  }, [searchTerm]);
 
   const filteredUsers = users.filter(
     (user) =>
@@ -75,11 +63,6 @@ const AllJobs = () => {
                 description={user.typejob}
               />
             </Link>
-          </div>
-        ))}
-        {filteredJobs.map((job) => (
-          <div key={job.id}>
-            <p>{job.description}</p>
           </div>
         ))}
       </div>
