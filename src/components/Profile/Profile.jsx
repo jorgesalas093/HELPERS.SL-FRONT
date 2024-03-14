@@ -23,6 +23,7 @@ import AuthContext from '../../contexts/AuthContext';
 import './Profile.css'
 import { deleteCurrentUser } from '../../services/UserService';
 import { logout } from '../../stores/AccessTokenStore';
+
 // import UserProfile from './../../pages/UserProfile';
 
 const Profile = ({ user, isCurrentUser, refetch }) => {
@@ -35,17 +36,29 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  //ESTADOS PARA EDIT PROFILE
+  const [visible, setVisible] = useState(true);
+  const [showEditName, setShowEditName] = useState(true);
+  const [showEditAvatar, setShowEditAvatar] = useState(true);
+  const [showEditEmail, setShowEditEmail] = useState(true);
+  const [showEditBiography, setShowEditBiography] = useState(true);
+  const [showEditBirthday, setShowEditBirthday] = useState(true);
 
-  // const [showInput, setShowInput] = useState(false);
-  // const [showEditInput, setShowEditInput] = useState(false);
-  // const [editInputType, setEditInputType] = useState('');
-  // const [editInputValue, setEditInputValue] = useState('');
+//CONST PARA EDIT SHOW EDIT PROFILE
+  const showEdit = () => {setVisible(false); };
+  const closeEdit = () => {setVisible(true);};
 
-  // const handleToggleEditInput = (inputType) => {
-  //   setShowEditInput(!showEditInput);
-  //   setEditInputType(inputType);
-  //   setEditInputValue(''); // Limpiar el valor del campo de entrada al cambiar de tipo de edición
-  // };
+  const handleshowEditUsername = () => { setShowEditName(false); };
+  const handlecloseEditUsername = () => { setShowEditName(true);};
+
+  const handleshowEditAvatar = () => { setShowEditAvatar(false);};
+  const handlecloseEditAvatar = () => {setShowEditAvatar(true);};
+
+  const handleshowEditEmail = () => { setShowEditEmail(false);};
+  const handlecloseEditEmail = () => {setShowEditEmail(true);};
+
+
+
 
   //FUNCIÓN PARA FORMATEAR LA FECHA 
   const myDateFuncion = (date) => {
@@ -64,6 +77,13 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
     return `${formattedDay}-${formattedMonth}-${formattedYear} ${formattedHours}:${formattedMinutes}`;
   };
 
+  const myFuncionChangeDay = (date) => {
+    const parsedDate = new Date(date);
+    const day = parsedDate.getDate();
+    const month = parsedDate.getMonth() + 1;
+    const year = parsedDate.getFullYear();
+    return `${day}-${month}-${year}`;
+};
   //FUNCIÓN PARA DAR UN LIKE
   const handleRate = (rate) => {
     if (currentUser.id === id) {
@@ -82,7 +102,7 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
   };
 
   //AQUI LA LOGICA DE MOSTRAR EL RATE
-  getLikesProfile(id)
+  getLikesProfile(id, currentUser.id)
     .then(response => {
       console.log(response.score)
       const totalScore = response.score;
@@ -137,9 +157,7 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
 
   //LOGICA PARA QUE EL BUTTON HAGA DOS FUNCIONES A LA VEZ, BORRAR Y LOGOUT
   const handleDeleteProfileAndLogout = (userId) => {
-    // Invoca la función para eliminar el perfil
     handleDeleteCurrentUserProfile(userId);
-    // Invoca la función de logout
     logout();
   };
 
@@ -178,17 +196,35 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
     <div className="profile-container">
       {user && (
         <div>
+          {/* LOGICA NO MOSTRAR EDITAR */}
+          {isCurrentUser && (
+            <div>
+              {visible && (
+                <div>
+                  <Button text="EDIT PROFILE" onClick={showEdit} />
+                </div>
+              )}
+              {(!visible && (<Button text="CLOSE EDIT" onClick={closeEdit} />))}
+            </div>
+          )}
+
 
           <div className="flex justify-center items-center mb-2">
             <img src={user.avatar} alt="Avatar" className="profile-info rounded-full" style={{ width: "250px", height: "250px" }} />
 
-            <Button
+            {(!visible && (<Button
               purpose="editphoto"
               color="green"
-            // // onClick={handleToggleEditInput}
-            />
+             onClick={() => handleshowEditAvatar()}
+            />))}
 
-            {/* {showEditInput && editInputType === 'avatar' && (
+{(showEditAvatar && (<Button
+              purpose="editphoto"
+              color="green"
+             onClick={() => handleshowEditAvatar()}
+            />))}
+
+             {!showEditAvatar && (
               <Input
                 name="avatar"
                 type="file"
@@ -196,26 +232,30 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
                   const file = event.target.files[0];
                   const formData = new FormData();
                   formData.append('avatar', file);
-                  handleEditProfile(formData);
+                  // handleEditProfile(formData);
                 }}
               />
-            )} */}
+            )} 
 
           </div>
 
 
-          <div className="flex justify-center profile-likes">
+          <div className="flex justify-center profile-likes gap-2">
             <Stars readOnly={!id} initialRating={rating} onChange={handleRate} />
             <p>{rating.toFixed(2)} </p>
           </div>
 
           <div className='flex justify-center'>
-            <p className="profile-username">Name: {user.username}</p>
-            <Button
-              purpose="edit"
-              color="green"
-            // onClick={() => handleToggleEditInput('username')} // Pasar el tipo de edición como argumento al hacer clic en el botón de edición
-            />
+            <p className="profile-username flex">
+              <span className='strong'>Name:</span> {user.username}</p>
+
+            {(!visible && (
+              <Button className="mr-5"
+                purpose="edit"
+                color="green"
+              // onClick={() => handleToggleEditInput('username')} // Pasar el tipo de edición como argumento al hacer clic en el botón de edición
+              />))}
+
             {/* 
             {showEditInput && editInputType === 'username' && (
               <div>
@@ -240,9 +280,38 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
                 purpose="chat" />
             )}
           </div>
-          <p className="profile-info">Email: {user.email}</p>
-          <p className="profile-info">Birthday: {user.birthday}</p>
-          <p className="profile-info">Biography: {user.biography}</p>
+
+
+          <div className='flex'>
+            {(!visible && (
+              <Button
+                purpose="edit"
+                color="green"
+              // onClick={() => handleToggleEditInput('username')} // Pasar el tipo de edición como argumento al hacer clic en el botón de edición
+              />))}
+            <p className="profile-info">Email: {user.email}</p>
+          </div>
+
+          <div className='flex'>
+            {(!visible && (
+              <Button
+                purpose="edit"
+                color="green"
+              // onClick={() => handleToggleEditInput('username')} // Pasar el tipo de edición como argumento al hacer clic en el botón de edición
+              />))}
+            <p className="profile-info">Birthday: {user.birthday}</p>
+          </div>
+
+          <div className='flex'>
+            {(!visible && (
+              <Button
+                purpose="edit"
+                color="green"
+              // onClick={() => handleToggleEditInput('username')} // Pasar el tipo de edición como argumento al hacer clic en el botón de edición
+              />))}
+            <p className="profile-info">Biography: {user.biography}</p>
+          </div>
+
           <div className='flex justify-self-end'>
 
             <p className="profile-info">{user.typejob ? `Job: ${user.typejob}` : null}</p>
@@ -255,7 +324,7 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
                     onClick={() => setShowModal(true)}
                   />
 
-                  {/* Modal */}
+
                   {showModal && (
                     <div className="fixed inset-0 flex items-center justify-center z-50">
                       <div className="absolute inset-0 bg-black opacity-50"></div>
@@ -312,21 +381,16 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
                   </div>
                 </div>
 
-                <div className='flex '>
+                <div className='flex gap-20 justify-between items-center '>
                   <p className="text-sm text-gray-600">{comment.text}</p>
                   {comment.writer?._id === currentUser.id && (  // Utiliza el operador de acceso opcional (?.) para evitar errores si comment.writer es null o undefined
-                    <div className='flex justify-end'>
-                      {isCurrentUser && (
-                        <Button
-                          text=""
-                          onClick={() => handleDeleteComment(comment._id)}
-                          purpose="delete"
-                          className="text-red-500 text-xs"
-                          color="red"
-                        />
-                      )}
-
-                    </div>
+                    <Button
+                      text=""
+                      onClick={() => handleDeleteComment(comment._id)}
+                      purpose="delete"
+                      className="text-red-500 text-xs"
+                      color="red"
+                    />
 
                   )}
                 </div>

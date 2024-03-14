@@ -40,7 +40,7 @@ const Register = () => {
     validateOnMount: true,
   })
   return (
-    <div>
+    <div className='floating-dialog'>
       <h1 className='text-tw-primary uppercase font-bold text-3xl underline'>Register your account</h1>
 
       <form onSubmit={handleSubmit}>
@@ -85,7 +85,7 @@ const Register = () => {
             }}
             onBlur={handleBlur}
           />
-          {/* <Input
+          <Input
             name="biography"
             label="biography"
             placeholder="Ex: 'About me...'"
@@ -102,7 +102,7 @@ const Register = () => {
             error={touched.birthday && errors.birthday}
             onChange={handleChange}
             onBlur={handleBlur}
-          />  */}
+          /> 
         </div>
         <Button extraClassName="mt-4" text="Create account"
         //  disabled={!isValid} 
