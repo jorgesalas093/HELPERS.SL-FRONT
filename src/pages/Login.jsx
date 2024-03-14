@@ -6,6 +6,7 @@ import { useContext } from "react";
 import AuthContext from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
+
 const userSchema = object({
   email: string().email('Enter a valid email').required('Required field'),
   password: string().min(8, 'Password of at least 8 characters').required('Required field')
@@ -33,7 +34,7 @@ const Login = () => {
   })
 
   return (
-    <div>
+    <div className="floating-dialog">
       <h1 className='text-tw-primary uppercase font-bold text-3xl underline'>Sign in your account</h1>
 
       <form onSubmit={handleSubmit}>

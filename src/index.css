@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+
+.floating-dialog {
+    box-shadow: 0px 6px 30px 0px #23435e1a;
+    border: 1px solid #2d2f3129;
+    /* display: inline-block; */
+    border-radius: 2.5rem;
+    padding: 1.5rem;
+    /* display: inline-block; */
+}
