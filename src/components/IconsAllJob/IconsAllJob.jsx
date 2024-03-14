@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 import "./IconsAllJob.css";
 
@@ -59,6 +59,7 @@ const IconItem = ({ icon, gif, text, action, selected, onSelect }) => {
     if (selected === text && isGifDisplayed) {
       setIsGifDisplayed(false);
       onSelect(null);
+      action("");
     } else {
       setIsGifDisplayed(true);
       onSelect(text);
@@ -69,9 +70,16 @@ const IconItem = ({ icon, gif, text, action, selected, onSelect }) => {
   return (
     <div>
       <div>
-        <button className={`icon-button ${selected === text ? 'selected' : ''}`} onClick={handleClick}>
+        <button
+          className={`icon-button ${selected === text ? "selected" : ""}`}
+          onClick={handleClick}
+        >
           <div className="icons-line">
-            <img src={selected === text ? (isGifDisplayed ? gif : icon) : icon} alt={text} className={isGifDisplayed ? 'gif' : ''} />
+            <img
+              src={selected === text ? (isGifDisplayed ? gif : icon) : icon}
+              alt={text}
+              className={isGifDisplayed ? "gif" : ""}
+            />
             <p>{text}</p>
           </div>
         </button>
@@ -85,6 +93,7 @@ const Icon = ({ action }) => {
   const [selectedIcon, setSelectedIcon] = useState(null);
 
   const handleIconSelect = (text) => {
+    console.log(text);
     setSelectedIcon(text);
   };
 
