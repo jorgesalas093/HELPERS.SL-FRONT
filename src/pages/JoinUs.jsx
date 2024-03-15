@@ -48,11 +48,13 @@ const JoinUs = () => {
 
     return (
         <div className='floating-dialog'>
-            <h1 className='text-tw-primary uppercase font-bold text-3xl text-center'>CHOoSE YOUR PROFESIONS</h1>
+            <h1 className='text-tw-primary uppercase font-bold text-3xl text-center'>CHOOSE YOUR PROFESIONS</h1>
+            <p className='text-xs text-center'>Choose all the jobs you could do and save your changes.</p>
             <div className="grid grid-cols-5 gap-4 mt-8">
                 {allTypesJob.map((type, index) => (
                     <p key={index}>
                         <Button
+                            className=""
                             text={type}
                             onClick={() => toggleWorkSelection(type)}
                             selected={selectedWork.includes(type)}

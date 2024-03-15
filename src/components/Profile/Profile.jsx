@@ -42,7 +42,7 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
   const [showEditAvatar, setShowEditAvatar] = useState(true);
   const [showEditEmail, setShowEditEmail] = useState(true);
   const [showEditBiography, setShowEditBiography] = useState(true);
-  const [showEditBirthday, setShowEditBirthday] = useState(true);
+  // const [showEditBirthday, setShowEditBirthday] = useState(true);
 
   //CONST PARA EDIT SHOW EDIT PROFILE
   const showEdit = () => { setVisible(false); };
@@ -200,7 +200,7 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
           {isCurrentUser && (
             <div>
               {visible && (
-                <div>
+                <div className="flex items-center">
                   <Button text="EDIT PROFILE" onClick={showEdit} />
                 </div>
               )}
@@ -210,7 +210,7 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
 
 
           <div className="flex justify-center items-center mb-2">
-            <img src={user.avatar} alt="Avatar" className="profile-info rounded-full" style={{ width: "250px", height: "250px" }} />
+            <img src={user.avatar} alt="Avatar" className="rounded-xl object-cover" style={{ width: "100%", height: "100%" }} />
 
             {(!visible && showEditAvatar === true && (<Button
               purpose="editphoto"
@@ -247,8 +247,7 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
           </div>
 
           <div className='flex justify-center'>
-            <p className="profile-username flex">
-              <span className='strong'>Name:</span> {user.username}</p>
+            <p className="profile-username flex">{user.username}</p>
 
             {(!visible && (
               <Button className="mr-5"
@@ -300,7 +299,7 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
                 color="green"
               // onClick={() => handleToggleEditInput('username')} // Pasar el tipo de edición como argumento al hacer clic en el botón de edición
               />))}
-            <p className="profile-info">Birthday: {user.birthday}</p>
+
           </div>
 
           <div className='flex'>
@@ -315,10 +314,10 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
 
           <div className='flex justify-self-end'>
 
-            <p className="profile-info">{user.typejob ? `Job: ${user.typejob}` : null}</p>
+            <p className="profile-info">{user.typejob ? `Jobs: ${user.typejob} ` : null}</p>
             <div>
               {isCurrentUser && (
-                <div>
+                <div className=''>
                   <Button
                     purpose="delete"
                     color="red"

@@ -5,8 +5,6 @@ import { getAllUser } from "../../services/UserService";
 import Card from "../../components/Card/Card";
 import Icon from "../../components/IconsAllJob/IconsAllJob";
 
-import "./AllJobs.css";
-
 const AllJobs = () => {
   const [users, setUsers] = useState([]);
   const [filteredJobs, setFilteredJobs] = useState([]);
@@ -67,7 +65,7 @@ const AllJobs = () => {
       </div>
       <div className="search-user type-job-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredUsers.map((user) => (
-          <div key={user._id}>
+          <div className="card-container" key={user._id}>
             <Link to={`/users/${user.id}`}>
               <Card
                 key={user._id}

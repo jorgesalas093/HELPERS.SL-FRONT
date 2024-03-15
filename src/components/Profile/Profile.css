@@ -1,5 +1,5 @@
 .profile-container {
-  max-width: 600px;
+  max-width: 750px;
   margin: 0 auto;
   padding: 20px;
   border: 1px solid #e0e0e0;
@@ -35,6 +35,14 @@
   font-size: 16px;
   color: #484848;
   margin-bottom: 5px;
+  max-width: 100%;
+  padding: 7px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+}
+
+.profile-info p {
+  margin: 0;
+  word-wrap: break-word;
 }
 
 .profile-comments {

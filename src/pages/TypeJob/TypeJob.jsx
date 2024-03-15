@@ -4,6 +4,8 @@ import { jobs } from "../../assets/utils/utils";
 import { getTypeJobUser } from "../../services/UserService";
 import Card from "../../components/Card/Card";
 
+import "./TypeJob.css"
+
 const TypeJob = () => {
   const [users, setUsers] = useState([]);
   const { job } = useParams();
@@ -37,7 +39,7 @@ const TypeJob = () => {
   
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {users.map((user) => (
-          <div key={user._id}>
+          <div className="card-container" key={user._id}>
             <Link to={`/users/${user.id}`}>
               <Card
                 key={user._id}
