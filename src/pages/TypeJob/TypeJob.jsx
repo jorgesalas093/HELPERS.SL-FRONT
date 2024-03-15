@@ -4,7 +4,6 @@ import { jobs } from "../../assets/utils/utils";
 import { getTypeJobUser } from "../../services/UserService";
 import Card from "../../components/Card/Card";
 
-import "./TypeJob.css";
 const TypeJob = () => {
   const [users, setUsers] = useState([]);
   const { job } = useParams();
@@ -24,14 +23,14 @@ const TypeJob = () => {
   }, [job]);
   console.log(jobSelected);
 
-  return (    
-    <div>    
-      <div className="flex flex-col items-center justify-center h-screen">
-        <div className="bg-gray-100 rounded-lg p- mb-24 max-w-md">
+  return (
+    <div>
+      <div className="flex flex-col items-center justify-center">
+        <div className="bg-gray-100 rounded-lg max-w-md mb-3">
           <div className="text-center">
-            <p className="text-2xl text-gray-800 mb-16 mt-2">{jobSelected.title}</p>
-            <img className="mx-auto rounded-lg" src={jobSelected.img} alt="Job Image" />
-            <p className="text-base text-gray-700 mt-4">{jobSelected.text}</p>
+            <p className="text-2xl text-gray-800 mb-1 mt-2">{jobSelected.title}</p>
+            <img className="rounded-lg" src={jobSelected.img} alt="Job Image" />
+            <p className="text-base text-gray-700 mt-2 p-2 mb-3">{jobSelected.text}</p>
           </div>
         </div>
       </div>

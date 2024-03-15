@@ -169,8 +169,8 @@ const Jobs = () => {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 10,
-    slidesToScroll: 5,
+    slidesToShow: 2,
+    slidesToScroll: 3,
     variableWidth: true,
   };
 

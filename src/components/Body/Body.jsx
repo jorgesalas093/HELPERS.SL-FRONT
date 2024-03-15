@@ -1,5 +1,4 @@
 import CardJob from "../CardJob/CardJob";
-import Trato from "../Trato";
 import "./Body.css"
 
 
@@ -7,7 +6,7 @@ const Body = () => {
     return (
         <div className="container mx-auto px-4">
             <div className="md:flex md:justify-between md:items-center">
-                <div className="md:w-1/2 md:pr-4">
+                <div className="md:pr-4 mb-4">
                     <h3 className="font-serif text-xs text-center md:text-left mb-3">We offer all types of comprehensive services, HELPERS is made up of a team of professionals for each service area, with the aim of satisfying the different needs of each client.</h3>
                     <span className="flex justify-center text-xs font-bold items-center mb-2">Our main services</span>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -40,9 +39,7 @@ const Body = () => {
                         </div>
                     </div>
                 </div>
-                <div className="md:w-1/2 md:pl-4">
-                    <Trato />
-                </div>
+                
             </div>
             <div>
                 <CardJob />

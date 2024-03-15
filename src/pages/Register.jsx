@@ -1,4 +1,4 @@
-import { object, string, mixed, number } from 'yup';
+import { object, string, mixed } from 'yup';
 import { useFormik } from 'formik';
 import Input from "../components/Input";
 import { register } from '../services/AuthService';
@@ -9,8 +9,7 @@ const userSchema = object({
   username: string().min(3, 'At least 3').required('Required field'),
   email: string().email('Enter a valid email').required('Required field'),
   password: string().min(8, 'Password of at least 8 characters').required('Required field'),
-  avatar: mixed().required('Required field'),
-  birthday: number()
+  avatar: mixed().required('Required field')
 });
 
 const Register = () => {
@@ -95,6 +94,7 @@ const Register = () => {
             onChange={handleChange}
             onBlur={handleBlur}
           />
+
           <Input
             name="birthday"
             type="date"

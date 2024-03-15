@@ -1,40 +1,53 @@
-.card-container {
-  width: 100%;
-  transition: transform 0.3s ease;
-}
+.card-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 20px;
+    list-style: none;
+    padding: 0;
+  }
+  
+  .card-container {
+    width: 100%;
+    transition: transform 0.3s ease;
+  }
 
-.card-container:hover {
-  transform: translateY(-5px);
-}
-
-body {
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(180deg, #d0e, #91f);
-}
-
-.container {
-  width: 150px;
-  height: 150px;
-  display: grid;
-  overflow: hidden;
-  margin: 0;
-  list-style: none;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 15px;
-  padding: 15px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 50px;
-}
-
-.item {
-  background: white;
-  border-radius: 100%;
-}
+  .card-container:hover {
+    transform: translateY(-5px);
+  }
+  
+  .card {
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-wrapper {
+    position: relative;
+  }
+  
+  .splash-container {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .splash {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+  
+  .splash img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid #ccc;
+  }
