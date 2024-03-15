@@ -5,6 +5,8 @@ import { getAllUser } from "../../services/UserService";
 import Card from "../../components/Card/Card";
 import Icon from "../../components/IconsAllJob/IconsAllJob";
 
+import "./AllJobs.css"
+
 const AllJobs = () => {
   const [users, setUsers] = useState([]);
   const [filteredJobs, setFilteredJobs] = useState([]);
