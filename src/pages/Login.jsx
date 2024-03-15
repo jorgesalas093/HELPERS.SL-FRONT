@@ -16,26 +16,26 @@ const Login = () => {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const { values, errors, touched, 
-   // isValid,
+  const { values, errors, touched,
+    // isValid,
     handleBlur, handleChange, handleSubmit } = useFormik({
-    initialValues: {
-      email: '',
-      password: ''
-    },
-    onSubmit: (values) => {
-      login(values)
-        .then(() => navigate('/profile'))
-    },
-    validationSchema: userSchema,
-    validateOnChange: true,
-    validateOnBlur: true,
-    validateOnMount: true,
-  })
+      initialValues: {
+        email: '',
+        password: ''
+      },
+      onSubmit: (values) => {
+        login(values)
+          .then(() => navigate('/profile'))
+      },
+      validationSchema: userSchema,
+      validateOnChange: true,
+      validateOnBlur: true,
+      validateOnMount: true,
+    })
 
   return (
     <div className="floating-dialog">
-      <h1 className='text-tw-primary uppercase font-bold text-3xl underline'>Sign in your account</h1>
+      <h1 className='text-tw-primary uppercase font-bold text-3xl text-center'>Sign in</h1>
 
       <form onSubmit={handleSubmit}>
         <div className="mt-4 grid grid-cols-1 gap-4">
@@ -60,9 +60,12 @@ const Login = () => {
             onBlur={handleBlur}
           />
         </div>
-        <Button extraClassName="mt-4" 
-        // disabled={!isValid}
-         text="Sign in" />
+        <div className='flex mt-4 justify-center'>
+          <Button extraClassName="mt-4"
+            // disabled={!isValid}
+            text="Sign in" />
+        </div>
+
 
       </form>
     </div>

@@ -17,7 +17,7 @@ const Navbar = () => {
     },
     {
       to: '/alljobs',
-      text: 'All Workers'
+      text: 'Workers'
     },
     {
 
@@ -48,7 +48,7 @@ const Navbar = () => {
     },
     {
       to: '/alljobs',
-      text: 'Jobs'
+      text: 'Workers'
     },
   ];
 

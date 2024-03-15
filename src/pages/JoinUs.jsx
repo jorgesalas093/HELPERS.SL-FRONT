@@ -47,9 +47,9 @@ const JoinUs = () => {
     };
 
     return (
-        <div>
-            <h2>Type of job:</h2>
-            <div className='flex justify-evenly'>
+        <div className='floating-dialog'>
+            <h1 className='text-tw-primary uppercase font-bold text-3xl text-center'>CHOoSE YOUR PROFESIONS</h1>
+            <div className="grid grid-cols-5 gap-4 mt-8">
                 {allTypesJob.map((type, index) => (
                     <p key={index}>
                         <Button
@@ -63,11 +63,13 @@ const JoinUs = () => {
                     </p>
                 ))}
             </div>
-            <p>Selected work: {selectedWork.join(', ')}</p>
-            <Link to={`/profile`}>
-                <Button text="Save works" onClick={() => handleSaveSelectedWork(selectedWork)} bgcolor="bg-blue-500" />
-            </Link>
-
+            <div className='mt-8 flex justify-center'>
+                <Link to={`/profile`}>
+                    <Button text="SAVE WORKS" 
+                    onClick={() => handleSaveSelectedWork(selectedWork)} 
+                    color="green" />
+                </Link>
+            </div>
         </div>
     );
 };

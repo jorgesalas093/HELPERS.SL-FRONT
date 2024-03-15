@@ -52,7 +52,7 @@ const Button = ({ type, onClick, text, disabled, purpose, color }) => {
       case "green":
         return "bg-green-400";
       default:
-        return "bg-he-primary";
+        return "bg-blue-500";
     }
   };
 

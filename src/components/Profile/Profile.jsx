@@ -44,18 +44,18 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
   const [showEditBiography, setShowEditBiography] = useState(true);
   const [showEditBirthday, setShowEditBirthday] = useState(true);
 
-//CONST PARA EDIT SHOW EDIT PROFILE
-  const showEdit = () => {setVisible(false); };
-  const closeEdit = () => {setVisible(true);};
+  //CONST PARA EDIT SHOW EDIT PROFILE
+  const showEdit = () => { setVisible(false); };
+  const closeEdit = () => { setVisible(true); };
 
   const handleshowEditUsername = () => { setShowEditName(false); };
-  const handlecloseEditUsername = () => { setShowEditName(true);};
+  const handlecloseEditUsername = () => { setShowEditName(true); };
 
-  const handleshowEditAvatar = () => { setShowEditAvatar(false);};
-  const handlecloseEditAvatar = () => {setShowEditAvatar(true);};
+  const handleshowEditAvatar = () => { setShowEditAvatar(false); };
+  const handlecloseEditAvatar = () => { setShowEditAvatar(true); };
 
-  const handleshowEditEmail = () => { setShowEditEmail(false);};
-  const handlecloseEditEmail = () => {setShowEditEmail(true);};
+  const handleshowEditEmail = () => { setShowEditEmail(false); };
+  const handlecloseEditEmail = () => { setShowEditEmail(true); };
 
 
 
@@ -83,7 +83,7 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
     const month = parsedDate.getMonth() + 1;
     const year = parsedDate.getFullYear();
     return `${day}-${month}-${year}`;
-};
+  };
   //FUNCIÓN PARA DAR UN LIKE
   const handleRate = (rate) => {
     if (currentUser.id === id) {
@@ -212,19 +212,20 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
           <div className="flex justify-center items-center mb-2">
             <img src={user.avatar} alt="Avatar" className="profile-info rounded-full" style={{ width: "250px", height: "250px" }} />
 
-            {(!visible && (<Button
+            {(!visible && showEditAvatar === true && (<Button
               purpose="editphoto"
               color="green"
-             onClick={() => handleshowEditAvatar()}
+              onClick={() => handleshowEditAvatar()}
             />))}
 
-{(showEditAvatar && (<Button
+            {(!showEditAvatar && (<Button
               purpose="editphoto"
               color="green"
-             onClick={() => handleshowEditAvatar()}
+              onClick={() => handlecloseEditUsername()}
             />))}
 
-             {!showEditAvatar && (
+
+            {!showEditAvatar && (
               <Input
                 name="avatar"
                 type="file"
@@ -235,7 +236,7 @@ const Profile = ({ user, isCurrentUser, refetch }) => {
                   // handleEditProfile(formData);
                 }}
               />
-            )} 
+            )}
 
           </div>
 
