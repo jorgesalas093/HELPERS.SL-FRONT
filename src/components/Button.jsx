@@ -6,6 +6,9 @@ import { BsSend } from "react-icons/bs";
 import { IoChatbubblesOutline } from "react-icons/io5";
 import { FaRegCommentDots } from "react-icons/fa6";
 import { GrDocumentUpdate } from "react-icons/gr";
+import { GrUserSettings } from "react-icons/gr";
+import { TbSettingsX } from "react-icons/tb";
+
 <GrDocumentUpdate />;
 
 const Button = ({ type, onClick, text, disabled, purpose, color }) => {
@@ -40,6 +43,10 @@ const Button = ({ type, onClick, text, disabled, purpose, color }) => {
         return <FaRegCommentDots />;
       case "save":
         return <GrDocumentUpdate />;
+      case "editprofile":
+        return <GrUserSettings />;
+      case "closeeditprofile":
+        return <TbSettingsX />;
       default:
         return null;
     }
@@ -50,7 +57,7 @@ const Button = ({ type, onClick, text, disabled, purpose, color }) => {
       case "red":
         return "bg-red-400";
       case "green":
-        return "bg-green-400";
+        return "bg-green-300";
       default:
         return "bg-blue-500";
     }

@@ -94,7 +94,15 @@ const Register = () => {
             onChange={handleChange}
             onBlur={handleBlur}
           />
-
+    <Input
+            name="birthday"
+            type="date"
+            label="Add your birthday"
+            value={values.birthday}
+            error={touched.birthday && errors.birthday}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />  
           
         </div>
         <div className='flex mt-4 justify-center'>
