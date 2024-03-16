@@ -48,7 +48,7 @@ const Register = () => {
           <Input
             name="username"
             label="User name"
-            placeholder="Ex: 'manolitogafotas'"
+            placeholder="Ex: 'put your name'"
             value={values.username}
             error={touched.username && errors.username}
             onChange={handleChange}
@@ -58,7 +58,7 @@ const Register = () => {
             name="email"
             type="email"
             label="Email"
-            placeholder="Ex: 'manolitogafotas@gmail.com'"
+            placeholder="Ex: 'correo@gmail.com'"
             value={values.email}
             error={touched.email && errors.email}
             onChange={handleChange}
@@ -94,7 +94,7 @@ const Register = () => {
             onChange={handleChange}
             onBlur={handleBlur}
           />
-    <Input
+          <Input
             name="birthday"
             type="date"
             label="Add your birthday"
@@ -102,8 +102,8 @@ const Register = () => {
             error={touched.birthday && errors.birthday}
             onChange={handleChange}
             onBlur={handleBlur}
-          />  
-          
+          />
+
         </div>
         <div className='flex mt-4 justify-center'>
           <Button text="Create account"

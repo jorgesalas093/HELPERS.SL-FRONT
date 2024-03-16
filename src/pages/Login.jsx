@@ -43,7 +43,7 @@ const Login = () => {
             name="email"
             type="email"
             label="Email"
-            placeholder="Ex: 'manolitogafotas@gmail.com'"
+            placeholder="Ex: 'correo@gmail.com'"
             value={values.email}
             error={touched.email && errors.email}
             onChange={handleChange}
